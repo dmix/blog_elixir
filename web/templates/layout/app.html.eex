@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render "head.html", conn: @conn %>
+
+  <body>
+    <%= render "navigation.html", conn: @conn %>
+
+    <section class="main-content row expanded">
+      <%= render "alerts.html", conn: @conn %>
+
+      <div class="row content">
+        <%= render @view_module, @view_template, assigns %>
+      </div>
+    </section>
+
+    <%= render "script.html", conn: @conn %>
+  </body>
+</html>

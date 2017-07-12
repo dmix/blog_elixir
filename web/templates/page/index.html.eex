@@ -1,0 +1,7 @@
+<div class="jumbotron">
+  <h2>My Awesome Blog!</h2>
+  <p class="lead">
+    Really, you could put anything here that explains to your readers what your blog is all about! Tech stuff, kitten stuff, puppy stuff, even goats, whatever!
+  </p>
+  <%= link "View All Posts", to: post_path(@conn, :index), class: "button primary expanded" %>
+</div>
