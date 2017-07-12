@@ -1,0 +1,5 @@
+{% for item in site.data.menu %}
+    <a href='{{ item.url }}' class='btn {{ item.style }}'>
+        {{ item.name }}
+    </a>
+{% endfor %}

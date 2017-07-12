@@ -40,17 +40,9 @@ exports.config = {
             // Do not use ES6 compiler in vendor code
             ignore: [/web\/static\/vendor/]
         },
-        sass: {
-            options: {
-                includePaths: [
-                    'node_modules/foundation-sites/scss',
-                    'node_modules/motion-ui/src',
-                ]
-            }
-        },
         postcss: {
             processors: [
-                require('autoprefixer')(['last 8 versions']),
+                require('autoprefixer')([]),
                 require('postcss-import')(),
                 require('postcss-mixins')(),
                 require('postcss-custom-media')(),

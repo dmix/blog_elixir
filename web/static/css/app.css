@@ -1,1 +1,266 @@
-/* This file is for your main application css. */
+/* --------------------------------------------------------------------------*/
+/*
+/*                                 DMIX
+/*
+/* --------------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------------*/
+/* Basscss */
+/* --------------------------------------------------------------------------*/
+
+@import 'basscss-basic';
+@import 'basscss-type-scale';
+@import 'basscss-typography';
+@import 'basscss-layout';
+@import 'basscss-align';
+@import 'basscss-margin';
+@import 'basscss-padding';
+@import 'basscss-grid';
+@import 'basscss-flexbox';
+@import 'basscss-position';
+@import 'basscss-border';
+@import 'basscss-hide';
+
+/* --------------------------------------------------------------------------*/
+/* Basscss Add-ons */
+/* --------------------------------------------------------------------------*/
+
+@import 'basscss-addons/modules/responsive-margin';
+@import 'basscss-addons/modules/responsive-padding';
+
+@import 'basscss-addons/modules/media-object';
+@import 'basscss-addons/modules/all';
+@import 'basscss-addons/modules/forms';
+@import 'basscss-addons/modules/input-range';
+@import 'basscss-addons/modules/progress';
+
+@import 'basscss-addons/modules/btn';
+@import 'basscss-addons/modules/btn-primary';
+@import 'basscss-addons/modules/btn-outline';
+@import 'basscss-addons/modules/btn-sizes';
+
+@import 'basscss-addons/modules/colors';
+@import 'basscss-addons/modules/background-colors';
+@import 'basscss-addons/modules/border-colors';
+@import 'basscss-addons/modules/darken';
+@import 'basscss-addons/modules/lighten';
+@import 'basscss-addons/modules/background-images';
+
+
+/* --------------------------------------------------------------------------*/
+/* Basscss Settings */
+/* --------------------------------------------------------------------------*/
+
+@custom-media --mobile        (max-width: 40em);
+@custom-media --desktop       (min-width: 40em);
+@custom-media --breakpoint-sm (min-width: 40em);
+@custom-media --breakpoint-md (min-width: 52em);
+@custom-media --breakpoint-lg (min-width: 64em);
+
+:root {
+  --h1: 2rem;
+  --h2: 1.5rem;
+  --h3: 1.25rem;
+  --h4: 1rem;
+  --h5: .875rem;
+  --h6: .75rem;
+
+  /* --button-color: var(--light-gray); */
+  /* --button-background-color: var(--black); */
+
+  --bold-font-weight: bold;
+
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+
+  --border-width: 1px;
+  --border-radius: 3px;
+
+  --light-gray: #F4F4F4;
+  --dark-gray: #383832;
+  --dark-blue: #1b1255;
+}
+
+/* --------------------------------------------------------------------------*/
+/* Functions */
+/* --------------------------------------------------------------------------*/
+
+@define-mixin pad-x $level {
+   padding-left:   var(--space-$(level));
+   padding-right:  var(--space-$(level));
+}
+
+@define-mixin pad-y $level {
+   padding-top:   var(--space-$(level));
+   padding-bottom:  var(--space-$(level));
+}
+
+/* --------------------------------------------------------------------------*/
+/* Colors */
+/* --------------------------------------------------------------------------*/
+
+.bg-light-gray {
+  background: var(--light-gray);
+  color: var(--black);
+}
+
+.light-gray {
+  color: var(--light-gray);
+}
+
+.bg-dark-gray {
+  background: var(--dark-gray);
+  color: var(--light-gray);
+}
+
+.dark-gray {
+  color: var(--dark-gray);
+}
+
+.bg-dark-blue {
+  background: var(--dark-blue);
+  color: var(--light-gray);
+}
+
+.dark-blue {
+  color: var(--dark-blue);
+}
+
+/* --------------------------------------------------------------------------*/
+/* Layout */
+/* --------------------------------------------------------------------------*/
+
+body, html {
+    height: 100%;
+    background: white;
+}
+
+a {
+    color: var(--green);
+}
+
+.layout {
+    height: 100%;
+    overflow: hidden;
+}
+
+.layout main, .layout nav, .layout aside {
+    @mixin pad-y 2;
+    @mixin pad-x 2;
+}
+
+.layout nav menu {
+    padding: 0;
+    margin: 0;
+}
+
+.layout nav .logo {
+    display: block;
+}
+
+@media (--desktop) {
+    .btn-primary {
+        /* background: var(--black); */
+    }
+
+    .layout {
+        display: flex;
+        box-orient: horizontal;
+    }
+
+    .layout main, .layout nav, .layout aside {
+        height: 100%;
+        flex: 1;
+    }
+
+    .layout nav {
+        background: var(--light-gray);
+        min-height: 64em;
+    }
+
+    .layout nav .logo {
+        @mixin pad-y 2;
+        color: var(--black);
+        margin-left: -10%;
+    }
+
+    .layout nav menu {
+        @mixin pad-y 2;
+        border-top: 1px solid #DDD;
+    }
+
+    .layout nav menu .btn {
+        @mixin pad-y 2;
+    }
+
+    .layout nav menu .btn {
+        margin-bottom: 0.5em;
+        padding: 0.75rem 1rem;
+        display: block;
+    }
+
+    .layout main {
+        min-height: 64em;
+        border-color: var(--gray);
+    }
+}
+
+@media (--mobile) {
+    .layout nav {
+        background: var(--black);
+    }
+
+    .layout nav .logo {
+        color: var(--white);
+        text-align: left;
+    }
+
+    .layout nav menu {
+        text-align: left;
+        @mixin pad-y 1;
+        /* text-align: center; */
+    }
+
+    .layout nav menu .btn {
+        color: var(--gray);
+        background: var(--dark-gray);
+        border: none;
+        display: inline-block;
+    }
+
+    .layout nav menu .btn-primary {
+        color: var(--white);
+    }
+    .layout main {
+        padding-top: 0;
+    }
+
+}
+
+/* --------------------------------------------------------------------------*/
+/* Columns */
+/* --------------------------------------------------------------------------*/
+
+@media (--breakpoint-sm) {
+    .layout nav   { flex: 0 0 12em; }
+    .layout main  { flex: 0 0 28em; @mixin pad-x 3; }
+}
+@media (--breakpoint-md) {
+    .layout nav   { flex: 0 0 16em; }
+    .layout main  { flex: 0 0 36em; @mixin pad-x 3; }
+}
+@media (--breakpoint-lg) {
+    .layout nav   { flex: 0 0 18em; }
+    .layout main  { flex: 0 0 42em; @mixin pad-x 4; }
+}
+
+
+/* --------------------------------------------------------------------------*/
+/* Content */
+/* --------------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------------*/
+/* Homepage */
+/* --------------------------------------------------------------------------*/
