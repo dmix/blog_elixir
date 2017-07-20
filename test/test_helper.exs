@@ -1,4 +1,4 @@
-ExUnit.start
+ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(Blog.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(BlogApp.Web.Repo, :manual)
 
