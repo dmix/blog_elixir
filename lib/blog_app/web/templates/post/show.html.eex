@@ -1,18 +1,38 @@
-<h2>Show Post</h2>
+<article>
+  <input type="hidden" id="post-id" value="<%= @post.id %>">
 
-<ul>
-
-  <li>
-    <strong>Title:</strong>
+  <h2>
     <%= @post.title %>
-  </li>
+  </h2>
 
-  <li>
-    <strong>Body:</strong>
-    <%= @post.body %>
-  </li>
+  <h4>
+    <%= @post.user.username %>
+  </h4>
 
-</ul>
+  <hr>
+  <%= markdown(@post.body) %>
+  <hr>
 
-<span><%= link "Edit", to: post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: post_path(@conn, :index) %></span>
+  <div class="comments">
+    <h3>Comments</h3>
+    <%= for comment <- @post.comments do %>
+      <%= render BlogApp.Web.CommentView,
+        "comment.html",
+        comment: comment,
+        author_or_admin: @conn.assigns[:author_or_admin],
+        conn: @conn
+      %>
+    <% end %>
+  </div>
+
+  <%= render BlogApp.Web.CommentView,
+    "form.html",
+    changeset: @comment_changeset,
+    action: post_comment_path(@conn, :create, @post),
+    post: @post
+  %>
+
+  <%= link "Edit", to: user_post_path(@conn, :edit, @user, @post), class: "button warning" %>
+  &nbsp;
+  <%= link "Back", to: user_post_path(@conn, :index, @user), class: "button alert" %>
+</article>

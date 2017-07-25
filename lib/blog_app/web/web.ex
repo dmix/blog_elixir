@@ -39,6 +39,10 @@ defmodule BlogApp.Web do
       import BlogApp.Web.Router.Helpers
       import BlogApp.Web.ErrorHelpers
       import BlogApp.Web.Gettext
+      import BlogApp.Web.Helpers
+
+      # Plugins
+      import PhoenixActiveLink
     end
   end
 

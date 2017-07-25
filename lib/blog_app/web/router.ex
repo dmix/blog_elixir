@@ -16,16 +16,18 @@ defmodule BlogApp.Web.Router do
   scope "/", BlogApp.Web do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/",         PageController, :index
+    get "/about",    PageController, :about
+    get "/projects", PageController, :projects
 
-    resources "/posts", PostController, only: [:index]
+    resources "/blog", PostController, only: [:index]
 
-    resources "/posts", PostController, only: [] do
+    resources "/blog", PostController, only: [] do
       resources "/comments", CommentController, only: [:create, :delete, :update]
     end
 
     resources "/users", UserController do
-      resources "/posts", PostController
+      resources "/blog", PostController
     end
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end

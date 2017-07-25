@@ -3,6 +3,7 @@ defmodule BlogApp.Web.PostController do
 
   alias BlogApp.Blog
   alias BlogApp.Blog.Post
+  alias BlogApp.Accounts
  
   plug :assign_user when not action in [:index]
   plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
@@ -11,10 +12,8 @@ defmodule BlogApp.Web.PostController do
   def index(conn, %{"user_id" => _user_id}) do
     conn = assign_user(conn, nil)
     if conn.assigns[:user] do
-      posts = Repo.all(Ecto.assoc(conn.assigns[:user], :posts)) 
-              |> Repo.preload(:user)
-      # user = Ecto.assoc(conn.assigns[:user], :posts)
-      # posts = Blog.list_posts(user)
+      user = Ecto.assoc(conn.assigns[:user], :posts)
+      posts = Blog.list_posts(user)
       render(conn, "index.html", posts: posts)
     else
       conn
@@ -22,8 +21,7 @@ defmodule BlogApp.Web.PostController do
   end
 
   def index(conn, _params) do
-    user = Ecto.assoc(conn.assigns[:user], :posts)
-    posts = Blog.list_posts(user)
+    posts = Blog.list_posts
     render(conn, "index.html", posts: posts)
   end
 
@@ -31,7 +29,7 @@ defmodule BlogApp.Web.PostController do
     changeset =
       conn.assigns[:user]
       |> Ecto.build_assoc(:posts)
-      |> Blog.change_post(%BlogApp.Blog.Post{})
+      |> Blog.change_post
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -51,7 +49,6 @@ defmodule BlogApp.Web.PostController do
   def show(conn, %{"id" => id}) do
     user = Ecto.assoc(conn.assigns[:user], :posts)
     post = Blog.get_post!(user, id) 
-           |> Ecto.build_assoc(:comments)
     comment_changeset = Blog.comment_changeset(post)
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
@@ -89,7 +86,7 @@ defmodule BlogApp.Web.PostController do
   defp assign_user(conn, _opts) do
     case conn.params do
       %{"user_id" => user_id} ->
-        case Repo.get(Blog.User, user_id) do
+        case Accounts.get_user!(user_id) do
           nil  -> invalid_user(conn)
           user -> assign(conn, :user, user)
         end

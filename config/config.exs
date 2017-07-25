@@ -25,3 +25,8 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :phoenix_active_link, :defaults,
+  class_active:   "btn btn-primary active",
+  class_inactive: "btn btn-outline inactive",
+  active: :inclusive

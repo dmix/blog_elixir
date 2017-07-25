@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
 <!-- TOKEN -->
-<%= if current_user = @conn.assigns[:current_user] do %>
+<%= if current_user = current_user(@conn) do %>
     <%= tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "user", current_user.id) %>
 <% end %>
 

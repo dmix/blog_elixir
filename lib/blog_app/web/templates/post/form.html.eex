@@ -13,11 +13,15 @@
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= text_input f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control", id: "body-editor" %>
     <%= error_tag f, :body %>
   </div>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Submit", class: "button primary" %>
   </div>
 <% end %>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>var simplemde = new SimpleMDE();</script>

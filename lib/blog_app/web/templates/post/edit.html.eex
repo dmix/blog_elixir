@@ -1,6 +1,7 @@
 <h2>Edit Post</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: post_path(@conn, :update, @post) %>
-
+<%= if current_user = current_user(@conn) do %>
+  <%= render "form.html", changeset: @changeset,
+                          action: user_post_path(@conn, :update, current_user.id, @post) %>
+<% end %>
 <span><%= link "Back", to: post_path(@conn, :index) %></span>

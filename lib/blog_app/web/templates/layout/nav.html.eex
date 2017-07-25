@@ -1,11 +1,19 @@
-{% for item in site.data.menu %}
-    <a href='{{ item.url }}' class='btn {{ item.style }}'>
-        {{ item.name }}
-    </a>
-{% endfor %}
+<%= active_link(@conn, "Home",     to: "/"         ) %>
+<%= active_link(@conn, "Blog",     to: "/blog"     ) %>
+<%= active_link(@conn, "Projects", to: "/projects" ) %>
+<%= active_link(@conn, "About",    to: "/about"    ) %>
+
 <p>
   <%= link "Login", to: session_path(@conn, :new) %>
 </p>
-<p>
-  <%= link "New User", to: user_path(@conn, :new) %>
-</p>
+<%= if current_user = current_user(@conn) do %>
+  <p>
+    <%= link "New User", to: user_path(@conn, :new) %>
+  </p>
+  <p>
+    <%= link "New Post", to: user_post_path(@conn, :new, current_user.id) %>
+  </p>
+  <p>
+    <%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete %>
+  </p>
+<% end %>
