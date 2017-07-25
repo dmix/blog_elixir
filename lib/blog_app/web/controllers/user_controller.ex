@@ -68,7 +68,7 @@ defmodule BlogApp.Web.UserController do
 
   defp authorize_user(conn, _) do
     user = get_session(conn, :current_user)
-    if user && (Integer.to_string(user.id) == conn.params["id"] || Blog.RoleChecker.is_admin?(user)) do
+    if user && (Integer.to_string(user.id) == conn.params["id"] || Accounts.RoleChecker.is_admin?(user)) do
       conn
     else
       conn
@@ -80,7 +80,7 @@ defmodule BlogApp.Web.UserController do
 
   defp authorize_admin(conn, _) do
     user = get_session(conn, :current_user)
-    if user && Blog.RoleChecker.is_admin?(user) do
+    if user && Accounts.RoleChecker.is_admin?(user) do
       conn
     else
       conn

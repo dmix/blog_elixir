@@ -9,8 +9,9 @@
 <div class='clearfix border'>
 
     <div class="layout">
-        <nav class='border-left border-right'>
-            <a class='logo h1 bold center'>
+      <nav class='border-left border-right'>
+
+            <a href="<%= page_path(@conn, :index) %>" class='logo h1 bold center'>
                 <i class="fa fa-diamond" aria-hidden="true" /></i>
                 dmix
             </a>

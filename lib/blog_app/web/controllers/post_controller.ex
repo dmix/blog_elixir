@@ -106,7 +106,7 @@ defmodule BlogApp.Web.PostController do
 
   defp is_authorized_user?(conn) do
     user = get_session(conn, :current_user)
-    (user && (Integer.to_string(user.id) == conn.params["user_id"] || Blog.RoleChecker.is_admin?(user)))
+    (user && (Integer.to_string(user.id) == conn.params["user_id"] || Accounts.RoleChecker.is_admin?(user)))
   end
 
   defp authorize_user(conn, _) do

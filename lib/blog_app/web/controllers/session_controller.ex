@@ -1,18 +1,19 @@
-defmodule BlogApp.SessionController do
+defmodule BlogApp.Web.SessionController do
   use BlogApp.Web, :controller
 
+  alias BlogApp.Accounts
   alias BlogApp.Accounts.User
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   plug :scrub_params, "user" when action in [:create]
 
   def new(conn, _params) do
-    render conn, "new.html", changeset: User.changeset(%User{})
+    render conn, "new.html", changeset: Accounts.changeset(%User{})
   end
 
   def create(conn, %{"user" => %{"username" => username, "password" => password}})
   when not is_nil(username) and not is_nil(password) do
-    user = Repo.get_by(User, username: username)
+    user = Accounts.create_session(username)
     sign_in(user, password, conn)
   end
 

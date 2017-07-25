@@ -3,3 +3,9 @@
         {{ item.name }}
     </a>
 {% endfor %}
+<p>
+  <%= link "Login", to: session_path(@conn, :new) %>
+</p>
+<p>
+  <%= link "New User", to: user_path(@conn, :new) %>
+</p>

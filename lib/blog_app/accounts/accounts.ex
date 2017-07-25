@@ -5,7 +5,6 @@ defmodule BlogApp.Accounts do
 
   import Ecto.Query, warn: false
   alias BlogApp.Web.Repo
-
   alias BlogApp.Accounts.Role
 
   @doc """
@@ -196,5 +195,14 @@ defmodule BlogApp.Accounts do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+
+  def changeset(user) do
+    User.changeset(user, %{})
+  end
+
+  def create_session(username) do
+    Repo.get_by(User, username: username)
   end
 end

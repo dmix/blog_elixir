@@ -1,4 +1,4 @@
-defmodule BlogApp.RoleChecker do
+defmodule BlogApp.Accounts.RoleChecker do
   alias BlogApp.Web.Repo
   alias BlogApp.Accounts.Role
 
