@@ -8,6 +8,33 @@
   </li>
 
   <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </li>
+
+  <li>
+    <strong>Avatar:</strong>
+    <%= @user.avatar_url %>
+  </li>
+
+  <li>
+    <strong>Social Media:</strong><br>
+    Twitter:
+    <%= @user.twitter_url %><br>
+    Github:
+    <%= @user.github_url %><br>
+    Linkedin:
+    <%= @user.linkedin_url %><br>
+    Dribble
+    <%= @user.dribbble_url %><br>
+  </li>
+
+  <li>
     <strong>Email:</strong>
     <%= @user.email %>
   </li>

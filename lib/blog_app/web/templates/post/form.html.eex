@@ -12,10 +12,22 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :permalink, class: "control-label" %>
+    <%= text_input f, :permalink, class: "form-control" %>
+    <%= error_tag f, :permalink %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :body, class: "control-label" %>
     <%= textarea f, :body, class: "form-control", id: "body-editor" %>
     <%= error_tag f, :body %>
   </div>
+
+  <%= for category <- @categories do %>
+    <p>
+    <%= checkbox :categories, category, unchecked_value: nil, checked_value: category %> <%= category %>
+    </p>
+  <% end %>
 
   <div class="form-group">
     <%= submit "Submit", class: "button primary" %>

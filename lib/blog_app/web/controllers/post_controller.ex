@@ -1,5 +1,6 @@
 defmodule BlogApp.Web.PostController do
   use BlogApp.Web, :controller
+  require Logger
 
   alias BlogApp.Blog
   alias BlogApp.Blog.Post
@@ -8,6 +9,16 @@ defmodule BlogApp.Web.PostController do
   plug :assign_user when not action in [:index]
   plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
   plug :set_authorization_flag
+
+  def index(conn, %{"category" => category_name}) do
+    category = Blog.get_category_by_name!(category_name)
+    if category do
+      posts = Blog.list_category_posts(category.id)
+      render(conn, "index.html", posts: posts)
+    else
+      conn
+    end
+  end
 
   def index(conn, %{"user_id" => _user_id}) do
     conn = assign_user(conn, nil)
@@ -30,19 +41,24 @@ defmodule BlogApp.Web.PostController do
       conn.assigns[:user]
       |> Ecto.build_assoc(:posts)
       |> Blog.change_post
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", 
+           changeset: changeset, 
+           categories: Blog.list_category_names)
   end
 
-  def create(conn, %{"post" => post_params}) do
+  def create(conn, %{"post" => post_params, "categories" => category_params}) do
     user = conn.assigns[:user]
            |> Ecto.build_assoc(:posts)
     case Blog.create_post(user, post_params) do
       {:ok, post} ->
+        Blog.append_categories(post, Map.values(category_params))
         conn
         |> put_flash(:info, "Post created successfully.")
         |> redirect(to: user_post_path(conn, :index, conn.assigns[:user]))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", 
+               changeset: changeset,
+               categories: Blog.list_category_names)
     end
   end
 
@@ -57,14 +73,18 @@ defmodule BlogApp.Web.PostController do
     user = Ecto.assoc(conn.assigns[:user], :posts)
     post = Blog.get_post!(user, id)
     changeset = Blog.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+    render(conn, "edit.html", 
+           post: post, 
+           changeset: changeset,
+           categories: Blog.list_category_names)
   end
 
-  def update(conn, %{"id" => id, "post" => post_params}) do
+  def update(conn, %{"id" => id, "post" => post_params, "categories" => category_params}) do
     user = Ecto.assoc(conn.assigns[:user], :posts)
     post = Blog.get_post!(user, id)
     case Blog.update_post(post, post_params) do
       {:ok, post} ->
+        Blog.append_categories(post, Map.values(category_params))
         conn
         |> put_flash(:info, "Post updated successfully.")
         |> redirect(to: user_post_path(conn, :show, conn.assigns[:user], post))
@@ -74,7 +94,7 @@ defmodule BlogApp.Web.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Ecto.assoc(conn.assigns[:user])
+    user = Ecto.assoc(conn.assigns[:user], :posts)
     post = Blog.get_post!(user, id)
     {:ok, _post} = Blog.delete_post(post)
 

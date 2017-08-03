@@ -10,6 +10,48 @@
     <%= text_input f, :username, class: "form-control" %>
     <%= error_tag f, :username %>
   </div>
+ 
+  <div class="form-group">
+    <%= label f, :name, class: "control-label" %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :bio, class: "control-label" %>
+    <%= text_input f, :bio, class: "form-control" %>
+    <%= error_tag f, :bio %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :avatar_url, class: "control-label" %>
+    <%= text_input f, :avatar_url, class: "form-control" %>
+    <%= error_tag f, :avatar_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :twitter_url, class: "control-label" %>
+    <%= text_input f, :twitter_url, class: "form-control" %>
+    <%= error_tag f, :twitter_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :github_url, class: "control-label" %>
+    <%= text_input f, :github_url, class: "form-control" %>
+    <%= error_tag f, :github_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :linkedin_url, class: "control-label" %>
+    <%= text_input f, :linkedin_url, class: "form-control" %>
+    <%= error_tag f, :linkedin_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :dribbble_url, class: "control-label" %>
+    <%= text_input f, :dribbble_url, class: "form-control" %>
+    <%= error_tag f, :dribbble_url %>
+  </div>
 
   <div class="form-group">
     <%= label f, :email, class: "control-label" %>

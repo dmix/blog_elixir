@@ -9,6 +9,13 @@
     <%= @post.user.username %>
   </h4>
 
+  <small>
+    Categories: 
+    <%= for category <- @post.categories do %>
+      <%= category.name %>,
+    <% end %>
+  </small>
+
   <hr>
   <%= markdown(@post.body) %>
   <hr>

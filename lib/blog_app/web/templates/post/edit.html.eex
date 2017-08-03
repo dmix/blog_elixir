@@ -2,6 +2,7 @@
 
 <%= if current_user = current_user(@conn) do %>
   <%= render "form.html", changeset: @changeset,
+                          categories: @categories,
                           action: user_post_path(@conn, :update, current_user.id, @post) %>
 <% end %>
 <span><%= link "Back", to: post_path(@conn, :index) %></span>

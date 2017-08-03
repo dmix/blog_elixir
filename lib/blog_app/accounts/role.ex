@@ -1,6 +1,5 @@
 defmodule BlogApp.Accounts.Role do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use BlogApp.Web, :data
   alias BlogApp.Accounts.Role
 
   schema "accounts_roles" do

@@ -1,14 +1,21 @@
 defmodule BlogApp.Accounts.User do
-  use Ecto.Schema
-  import Ecto.Changeset
-  alias BlogApp.Accounts.User
+  use BlogApp.Web, :data
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
+  alias BlogApp.Accounts.User
 
   schema "accounts_users" do
     field :email, :string
     field :password_digest, :string
     field :username, :string
+    field :primary, :boolean
+    field :name, :string
+    field :bio, :string
+    field :avatar_url, :string
+    field :twitter_url, :string
+    field :github_url, :string
+    field :linkedin_url, :string
+    field :dribbble_url, :string
 
     timestamps()
 
@@ -23,8 +30,11 @@ defmodule BlogApp.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :password, :password_confirmation, :role_id])
-    |> validate_required([:username, :email, :password, :password_confirmation, :role_id])
+    |> cast(attrs, [:username, :email, :password, :password_confirmation, 
+                    :role_id, :name, :bio, :avatar_url, :twitter_url, 
+                    :linkedin_url, :github_url, :dribbble_url])
+    |> validate_required([:username, :email, :password, 
+                          :password_confirmation, :role_id, :name, :bio])
     |> hash_password
   end
 

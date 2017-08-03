@@ -3,7 +3,7 @@ defmodule BlogApp.Blog do
   The boundary for the Blog system.
   """
 
-  import Ecto.Query, warn: false
+  use BlogApp.Web, :context
 
   alias BlogApp.Web.Repo
   alias BlogApp.Blog.Comment
@@ -22,13 +22,24 @@ defmodule BlogApp.Blog do
   """
   def list_posts do
     Repo.all(from p in Post,
-             limit: 5,
              order_by: [desc: :inserted_at],
-             preload: [:user])
+             preload: [:user, :categories])
   end
 
-  def list_posts(user) do
-    Repo.all(user) 
+  def list_category_posts(category_id) do
+    # PostCategory where category_id = id
+    post_ids = Repo.all(from p in PostCategory,
+                        where: [category_id: ^category_id],
+                        select: p.post_id)
+    IEx.pry
+    Repo.all(from p in Post,
+             where: [id: ^post_ids],
+             order_by: [desc: :inserted_at],
+             preload: [:user, :categories])
+  end
+
+  def list_posts(user_posts) do
+    Repo.all(user_posts) 
     |> Repo.preload(:user)
     |> Repo.preload(:categories)
   end
@@ -100,6 +111,15 @@ defmodule BlogApp.Blog do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+  end
+
+  def append_categories(%Post{} = post, categories \\ []) do
+    for name <- categories, name != "" do
+      category = Blog.get_category_by_name!(name)
+      attrs = %{ :category_id => category.id, :post_id => post.id }
+      changeset = PostCategory.changeset(%PostCategory{}, attrs)
+      Repo.insert(changeset, on_conflict: :nothing)
+    end
   end
 
   @doc """
@@ -229,16 +249,22 @@ defmodule BlogApp.Blog do
 
 
   @doc """
-  Returns the list of categorys.
+  Returns the list of categories.
 
   ## Examples
 
-      iex> list_categorys()
+      iex> list_categories()
       [%Category{}, ...]
 
   """
-  def list_categorys do
+  def list_categories do
     Repo.all(Category)
+  end
+
+
+  def list_category_names do
+    Repo.all(from c in Category,
+             select: c.name)
   end
 
   @doc """
@@ -256,6 +282,10 @@ defmodule BlogApp.Blog do
 
   """
   def get_category!(id), do: Repo.get!(Category, id)
+
+  def get_category_by_name!(name) do 
+    Repo.one(from(p in Category, where: [name: ^name]))
+  end
 
   @doc """
   Creates a category.
@@ -327,9 +357,9 @@ defmodule BlogApp.Blog do
   #
 
 def create_post_category(post, category) do
-    attrs = %{ blog_post_id: post.id, blog_category_id: category.id}
+    attrs = %{ post_id: post.id, category_id: category.id}
     %PostCategory{}
-    |> Category.changeset(attrs)
+    |> PostCategory.changeset(attrs)
     |> Repo.insert()
   end
 

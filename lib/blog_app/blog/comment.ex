@@ -1,6 +1,5 @@
 defmodule BlogApp.Blog.Comment do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use BlogApp.Web, :data
   alias BlogApp.Blog.Comment
 
   schema "blog_comments" do

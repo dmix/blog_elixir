@@ -21,14 +21,18 @@ defmodule BlogApp.Web.Router do
     get "/projects", PageController, :projects
 
     resources "/blog", PostController, only: [:index]
+    resources "/blog/:category", PostController, only: [:index]
 
     resources "/blog", PostController, only: [] do
       resources "/comments", CommentController, only: [:create, :delete, :update]
     end
 
+    resources "/categories", CategoryController
+
     resources "/users", UserController do
       resources "/blog", PostController
     end
+
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 

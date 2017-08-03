@@ -1,11 +1,13 @@
 defmodule BlogApp.Blog.Post do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use BlogApp.Web, :data
   alias BlogApp.Blog.Post
 
   schema "blog_posts" do
     field :body, :string
     field :title, :string
+    field :permalink, :string
+
+    field :category_names, :string, virtual: true
 
     timestamps()
 
@@ -17,8 +19,8 @@ defmodule BlogApp.Blog.Post do
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :body])
-    |> validate_required([:title, :body])
+    |> cast(attrs, [:title, :permalink, :body])
+    |> validate_required([:title, :permalink, :body])
     |> strip_unsafe_body(attrs)
   end
 

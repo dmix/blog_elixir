@@ -15,6 +15,26 @@ defmodule BlogApp.Web do
   Do NOT define functions inside the quoted expressions
   below.
   """
+  
+  def context do
+    quote do
+      import Ecto.Query, warn: false
+
+      # Debugging
+      require Logger
+      require IEx
+    end
+  end
+
+  def data do
+    quote do
+      use Ecto.Schema
+      import Ecto.Changeset
+    
+      require Logger
+      require IEx 
+    end
+  end
 
   def controller do
     quote do
@@ -22,6 +42,9 @@ defmodule BlogApp.Web do
       import Plug.Conn
       import BlogApp.Web.Router.Helpers
       import BlogApp.Web.Gettext
+      
+      require Logger
+      require IEx 
     end
   end
 
@@ -43,6 +66,12 @@ defmodule BlogApp.Web do
 
       # Plugins
       import PhoenixActiveLink
+
+      # Debugging
+      if Mix.env == :dev do
+        require Logger
+        require IEx 
+      end
     end
   end
 
@@ -58,6 +87,12 @@ defmodule BlogApp.Web do
     quote do
       use Phoenix.Channel
       import BlogApp.Web.Gettext
+
+      # Debugging
+      if Mix.env == :dev do
+        require Logger
+        require IEx 
+      end
     end
   end
 

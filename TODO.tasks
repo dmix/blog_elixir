@@ -1,0 +1,28 @@
+TODO:
+
+✔ forms for creating post categories @done(2017-07-26 13:13) @project(TODO)
+✔ update user form to include name/bio/etc   @done(2017-07-26 22:03) @project(TODO)
+☐ add blog/:category posts index
+✔ index page for categories @done(2017-07-26 22:17) @project(TODO)
+✔ add permalink form @done(2017-07-26 22:17) @project(TODO)
+☐ add permalink routes dmix.ca/x/:permalink
+☐ comments = working
+☐ sidebar with categories on certain pages (posts, homepage?)
+☐ UI design
+    ☐ nav bar
+    ☐ post typography
+    ☐ comments
+    ☐ categories
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+    ✔ remove categories field from blog_posts db @done(2017-07-26 11:46) @project(TODO)
+    ✔ rename blog_posts_categories -> blog_post_categories @done(2017-07-26 11:46) @project(TODO)
+    ✔ Add Blog.Category schema @done(2017-07-26 11:40) @project(TODO)
+    ✔ Add to User @done(2017-07-26 11:40) @project(TODO)
+    ✔ short bio @done(2017-07-26 11:40) @project(TODO)
+    ✔ add blog_posts_categories @done(2017-07-26 11:40) @project(TODO)
+    ✔ change body string -> text @done(2017-07-26 11:39) @project(TODO)
+    ✔ add permalink:string @done(2017-07-26 11:39) @project(TODO)
+    ✔ add categories:{:array, :string} @done(2017-07-26 11:39) @project(TODO)

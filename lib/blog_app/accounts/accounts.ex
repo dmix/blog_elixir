@@ -3,7 +3,8 @@ defmodule BlogApp.Accounts do
   The boundary for the Accounts system.
   """
 
-  import Ecto.Query, warn: false
+  use BlogApp.Web, :context
+
   alias BlogApp.Web.Repo
   alias BlogApp.Accounts.Role
 
