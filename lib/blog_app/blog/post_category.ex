@@ -4,8 +4,8 @@ defmodule BlogApp.Blog.PostCategory do
 
   schema "blog_post_categories" do
     @primary_key false
-    belongs_to :posts, BlogApp.Blog.Post, foreign_key: :post_id
-    belongs_to :categories, BlogApp.Blog.Category, foreign_key: :category_id
+    belongs_to :post, BlogApp.Blog.Post
+    belongs_to :category, BlogApp.Blog.Category
 
     timestamps()
   end

@@ -27,13 +27,11 @@ defmodule BlogApp.Blog do
   end
 
   def list_category_posts(category_id) do
-    # PostCategory where category_id = id
     post_ids = Repo.all(from p in PostCategory,
                         where: [category_id: ^category_id],
                         select: p.post_id)
-    IEx.pry
     Repo.all(from p in Post,
-             where: [id: ^post_ids],
+             where: p.id in ^post_ids,
              order_by: [desc: :inserted_at],
              preload: [:user, :categories])
   end
