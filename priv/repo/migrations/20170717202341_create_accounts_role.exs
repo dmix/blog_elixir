@@ -1,4 +1,4 @@
-defmodule BlogApp.Web.Repo.Migrations.CreateBlogApp.Accounts.Role do
+defmodule BlogApp.Repo.Migrations.CreateBlogApp.Accounts.Role do
   use Ecto.Migration
 
   def change do

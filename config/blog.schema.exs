@@ -89,33 +89,33 @@
       datatype: :binary,
       default: "fmEw9VvdugAYE+2kNnWz5OgB99A0PW/bmVwlC9wm9To8FBfKP2rKiaaIPfgf6adq"
     ],
-    "blog.Elixir.BlogApp.Web.Repo.adapter": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Repo.adapter here.",
-      to: "blog.Elixir.BlogApp.Web.Repo.adapter",
+    "blog.Elixir.BlogApp.Repo.adapter": [
+      doc: "Provide documentation for blog.Elixir.BlogApp.Repo.adapter here.",
+      to: "blog.Elixir.BlogApp.Repo.adapter",
       datatype: :atom,
       default: Ecto.Adapters.Postgres
     ],
-    "blog.Elixir.BlogApp.Web.Repo.username": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Repo.username here.",
-      to: "blog.Elixir.BlogApp.Web.Repo.username",
+    "blog.Elixir.BlogApp.Repo.username": [
+      doc: "Provide documentation for blog.Elixir.BlogApp.Repo.username here.",
+      to: "blog.Elixir.BlogApp.Repo.username",
       datatype: :binary,
       default: "postgres"
     ],
-    "blog.Elixir.BlogApp.Web.Repo.password": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Repo.password here.",
-      to: "blog.Elixir.BlogApp.Web.Repo.password",
+    "blog.Elixir.BlogApp.Repo.password": [
+      doc: "Provide documentation for blog.Elixir.BlogApp.Repo.password here.",
+      to: "blog.Elixir.BlogApp.Repo.password",
       datatype: :binary,
       default: "postgres"
     ],
-    "blog.Elixir.BlogApp.Web.Repo.database": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Repo.database here.",
-      to: "blog.Elixir.BlogApp.Web.Repo.database",
+    "blog.Elixir.BlogApp.Repo.database": [
+      doc: "Provide documentation for blog.Elixir.BlogApp.Repo.database here.",
+      to: "blog.Elixir.BlogApp.Repo.database",
       datatype: :binary,
       default: "blog_prod"
     ],
-    "blog.Elixir.BlogApp.Web.Repo.pool_size": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Repo.pool_size here.",
-      to: "blog.Elixir.BlogApp.Web.Repo.pool_size",
+    "blog.Elixir.BlogApp.Repo.pool_size": [
+      doc: "Provide documentation for blog.Elixir.BlogApp.Repo.pool_size here.",
+      to: "blog.Elixir.BlogApp.Repo.pool_size",
       datatype: :integer,
       default: 20
     ],

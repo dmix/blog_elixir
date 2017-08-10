@@ -5,7 +5,7 @@ defmodule BlogApp.Blog do
 
   use BlogApp.Web, :context
 
-  alias BlogApp.Web.Repo
+  alias BlogApp.Repo
   alias BlogApp.Blog.Comment
   alias BlogApp.Blog.Category
   alias BlogApp.Blog.Post

@@ -1,4 +1,4 @@
-defmodule BlogApp.Web.Repo.Migrations.CreateBlogApp.Blog.Comment do
+defmodule BlogApp.Repo.Migrations.CreateBlogApp.Blog.Comment do
   use Ecto.Migration
 
   def change do

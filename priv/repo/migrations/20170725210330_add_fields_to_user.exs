@@ -1,4 +1,4 @@
-defmodule BlogApp.Web.Repo.Migrations.AddFieldsToUser do
+defmodule BlogApp.Repo.Migrations.AddFieldsToUser do
   use Ecto.Migration
 
   def change do

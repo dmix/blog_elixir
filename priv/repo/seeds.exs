@@ -9,7 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias BlogApp.Web.Repo
+alias BlogApp.Repo
 alias BlogApp.Accounts.Role
 alias BlogApp.Accounts.User
 import Ecto.Query, only: [from: 2]

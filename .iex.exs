@@ -1,4 +1,4 @@
-alias BlogApp.Web.Repo
+alias BlogApp.Repo
 alias BlogApp.User
 alias BlogApp.Post
 alias BlogApp.Comment

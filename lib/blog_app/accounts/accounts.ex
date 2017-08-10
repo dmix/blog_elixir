@@ -5,7 +5,7 @@ defmodule BlogApp.Accounts do
 
   use BlogApp.Web, :context
 
-  alias BlogApp.Web.Repo
+  alias BlogApp.Repo
   alias BlogApp.Accounts.Role
 
   @doc """

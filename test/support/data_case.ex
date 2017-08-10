@@ -16,7 +16,7 @@ defmodule BlogApp.DataCase do
 
   using do
     quote do
-      alias BlogApp.Web.Repo
+      alias BlogApp.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -26,10 +26,10 @@ defmodule BlogApp.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BlogApp.Web.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BlogApp.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(BlogApp.Web.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(BlogApp.Repo, {:shared, self()})
     end
 
     :ok

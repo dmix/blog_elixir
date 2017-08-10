@@ -7,7 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :blog_app,
-  ecto_repos: [BlogApp.Web.Repo]
+  ecto_repos: [BlogApp.Repo]
 
 # Configures the endpoint
 config :blog_app, BlogApp.Web.Endpoint,

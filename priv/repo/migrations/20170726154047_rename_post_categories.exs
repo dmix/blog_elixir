@@ -1,4 +1,4 @@
-defmodule BlogApp.Web.Repo.Migrations.RenamePostCategories do
+defmodule BlogApp.Repo.Migrations.RenamePostCategories do
   use Ecto.Migration
 
   def change do
