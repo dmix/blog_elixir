@@ -4,7 +4,7 @@ defmodule BlogApp.Mixfile do
   def project do
     [app: :blog_app,
      version: "0.0.1",
-     elixir: "~> 1.4",
+     elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      start_permanent: Mix.env == :prod,
@@ -28,18 +28,19 @@ defmodule BlogApp.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc"},
+    [{:phoenix, "~> 1.3"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.2"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
+     {:postgrex, "~> 0.13"},
+     {:phoenix_html, "~> 2.10"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:phoenix_active_link, "~> 0.1.1"},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 2.5.2"},
-     {:ex_machina, "~> 1.0"},
-     {:earmark, "~> 1.0.1"},
+     {:phoenix_active_link, "~> 0.1"},
+     {:gettext, "~> 0.13"},
+     {:cowboy, "~> 1.1"},
+     {:comeonin, "~> 4.0"},
+     {:argon2_elixir, "~> 1.2"},
+     {:ex_machina, "~> 2.0"},
+     {:earmark, "~> 1.2"},
      {:distillery, "~> 1.4", runtime: false},
      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}]
   end

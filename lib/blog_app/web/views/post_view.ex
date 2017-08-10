@@ -3,7 +3,7 @@ defmodule BlogApp.Web.PostView do
 
   def markdown(body) do
     body
-    |> Earmark.to_html
+    |> Earmark.as_html!
     |> raw
   end
 end

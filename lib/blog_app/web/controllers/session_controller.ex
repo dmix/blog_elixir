@@ -1,9 +1,9 @@
 defmodule BlogApp.Web.SessionController do
   use BlogApp.Web, :controller
+  import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
 
   alias BlogApp.Accounts
   alias BlogApp.Accounts.User
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   plug :scrub_params, "user" when action in [:create]
 

@@ -4,6 +4,7 @@ defmodule BlogApp.Blog.PostCategory do
 
   schema "blog_post_categories" do
     @primary_key false
+
     belongs_to :post, BlogApp.Blog.Post
     belongs_to :category, BlogApp.Blog.Category
 

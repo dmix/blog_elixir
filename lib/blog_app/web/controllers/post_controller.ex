@@ -6,7 +6,7 @@ defmodule BlogApp.Web.PostController do
   alias BlogApp.Blog.Post
   alias BlogApp.Accounts
  
-  plug :assign_user when not action in [:index]
+  plug :assign_user when not action in [:index, :show]
   plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
   plug :set_authorization_flag
 
@@ -61,6 +61,13 @@ defmodule BlogApp.Web.PostController do
                categories: Blog.list_category_names)
     end
   end
+
+  def show(conn, %{"permalink" => permalink}) do
+    post = Blog.get_post!(permalink) 
+    comment_changeset = Blog.comment_changeset(post)
+    render(conn, "show.html", post: post, comment_changeset: comment_changeset)
+  end
+
 
   def show(conn, %{"id" => id}) do
     user = Ecto.assoc(conn.assigns[:user], :posts)

@@ -34,6 +34,8 @@ defmodule BlogApp.Web.Router do
     end
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+
+    get "/:permalink", PostController, :show
   end
 
 end

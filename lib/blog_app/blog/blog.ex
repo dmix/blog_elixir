@@ -38,9 +38,9 @@ defmodule BlogApp.Blog do
 
   def list_posts(user_posts) do
     Repo.all(user_posts) 
-    |> Repo.preload(:user)
-    |> Repo.preload(:categories)
+    |> Repo.preload(:user, :categories)
   end
+
   @doc """
   Gets a single post.
 
@@ -113,7 +113,7 @@ defmodule BlogApp.Blog do
 
   def append_categories(%Post{} = post, categories \\ []) do
     for name <- categories, name != "" do
-      category = Blog.get_category_by_name!(name)
+      category = get_category_by_name!(name)
       attrs = %{ :category_id => category.id, :post_id => post.id }
       changeset = PostCategory.changeset(%PostCategory{}, attrs)
       Repo.insert(changeset, on_conflict: :nothing)
