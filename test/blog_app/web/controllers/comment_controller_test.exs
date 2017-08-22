@@ -17,7 +17,7 @@ defmodule BlogApp.Web.CommentControllerTest do
   def fixture(:comment) do
     post = insert(:post, user: insert(:user))
     attrs = params_for(:comment, post: post)
-    {:ok, comment} = Blog.create_comment(attrs)
+    {:ok, comment} = Blog.create_comment(post.id, attrs)
     %{post: post, comment: comment, attrs: attrs}
   end
 
@@ -26,42 +26,44 @@ defmodule BlogApp.Web.CommentControllerTest do
 
   describe "unauthenticated user" do
 
-    test "creates and renders resource when data is valid", %{conn: conn} do
+    test "creates and renders comment when data is valid", %{conn: conn} do
       comment = valid_attrs()
       post = Blog.get_post!(comment.post_id)
       conn = post conn, post_comment_path(conn, :create, post), comment: comment 
+
       assert json_response(conn, 201)["data"]["id"]
       assert Repo.get_by(Comment, comment)
     end
 
-    test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    test "does not create comment and renders errors when data is invalid", %{conn: conn} do
       comment = invalid_attrs()
       post = Blog.get_post!(comment.post_id)
       conn = post conn, post_comment_path(conn, :create, post), comment: comment
+
       assert json_response(conn, 422)["errors"] != %{}
     end
 
-    # test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    #   %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
-    #   valid = attrs |> Map.put(:author, Faker.Internet.user_name())
-    #   conn = put conn, post_comment_path(conn, :update, post, comment), comment: valid 
-    #   assert json_response(conn, 200)["data"]["id"]
-    #   assert Repo.get_by(Comment, valid_attrs)
-    # end
-    #
-    # test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    #   %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
-    #   invalid = attrs |> Map.put(:author, "")
-    #   conn = put conn, post_comment_path(conn, :update, post, comment), comment: invalid 
-    #   assert json_response(conn, 422)["errors"] != %{}
-    # end
-    #
-    # test "deletes chosen resource", %{conn: conn} do
-    #   %{post: post, comment: comment} = fixture(:comment)
-    #   conn = delete conn, post_comment_path(conn, :delete, post, comment)
-    #   assert response(conn, 204)
-    #   refute Repo.get(Comment, comment.id)
-    # end
+    test "updates and renders chosen comment when data is valid", %{conn: conn} do
+      %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+      valid = attrs |> Map.put(:author, Faker.Internet.user_name())
+      conn = put conn, post_comment_path(conn, :update, post, comment), comment: valid 
+      assert json_response(conn, 200)["data"]["id"]
+      assert Repo.get_by(Comment, valid)
+    end
+
+    test "does not update chosen comment and renders errors when data is invalid", %{conn: conn} do
+      %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+      invalid = attrs |> Map.put(:author, "")
+      conn = put conn, post_comment_path(conn, :update, post, comment), comment: invalid 
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+
+    test "deletes chosen comment", %{conn: conn} do
+      %{post: post, comment: comment} = fixture(:comment)
+      conn = delete conn, post_comment_path(conn, :delete, post, comment)
+      assert response(conn, 204)
+      refute Repo.get(Comment, comment.id)
+    end
 
   end
 

@@ -6,7 +6,7 @@ defmodule BlogApp.Web.CommentController do
   alias BlogApp.Blog.Post
 
   plug :scrub_params, "comment" when action in [:create, :update]
-  plug :set_post_and_authorize_user when action in [:update, :delete]
+  #plug :set_post_and_authorize_user when action in [:update, :delete]
 
   action_fallback BlogApp.Web.FallbackController
 
@@ -16,7 +16,8 @@ defmodule BlogApp.Web.CommentController do
   end
 
   def create(conn, %{"post_id" => post_id, "comment" => comment_params}) do
-    with {:ok, %Comment{} = comment} <- Blog.create_comment(post_id, comment_params) do
+    comment = Blog.create_comment(post_id, comment_params)
+    with {:ok, %Comment{} = comment} <- comment do
       conn
       |> put_status(:created)
       |> put_resp_header("location", post_comment_path(conn, :show, post_id, comment))
@@ -44,22 +45,22 @@ defmodule BlogApp.Web.CommentController do
     end
   end
 
-  defp set_post(conn) do
-    post = Repo.get!(Post, conn.params["post_id"]) |> Repo.preload(:user)
-    assign(conn, :post, post)
-  end
-
-  defp set_post_and_authorize_user(conn, _opts) do
-    conn = set_post(conn)
-    if is_authorized_user?(conn) do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You are not authorized to modify that comment!")
-      |> redirect(to: page_path(conn, :index))
-      |> halt
-    end
-  end
+  # defp set_post(conn) do
+  #   post = Repo.get!(Post, conn.params["post_id"]) |> Repo.preload(:user)
+  #   assign(conn, :post, post)
+  # end
+  #
+  # defp set_post_and_authorize_user(conn, _opts) do
+  #   conn = set_post(conn)
+  #   if is_authorized_user?(conn) do
+  #     conn
+  #   else
+  #     conn
+  #     |> put_flash(:error, "You are not authorized to modify that comment!")
+  #     |> redirect(to: page_path(conn, :index))
+  #     |> halt
+  #   end
+  # end
 
   defp is_authorized_user?(conn) do
     user = get_session(conn, :current_user)

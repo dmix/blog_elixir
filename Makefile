@@ -2,8 +2,9 @@ BIN_DIR=/usr/local/bin
 MIX_ENV=production
 
 dev:
-	@tmux split-window -v 'make test'	
-	@tmux last-pane
+	@tmux split-window -v 'make test' \; \
+		  last-pane 				  \; \
+		  resize-pane -y 15
 	@make server
 	
 repl:

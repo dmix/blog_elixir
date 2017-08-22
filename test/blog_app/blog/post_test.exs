@@ -22,6 +22,7 @@ defmodule BlogApp.Blog.PostTest do
       Repo.get!(Post, post.id) 
       |> Repo.preload(:user) 
       |> Repo.preload(:categories)
+      |> Repo.preload(:comments)
     end
 
     # Post Tests
