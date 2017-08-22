@@ -6,11 +6,11 @@ defmodule BlogApp.Web.SessionControllerTest do
   @username "dmix"
   @password "test"
   @valid_attrs   %{"user" => %{"username" => @username,  "password" => @password}}
-  @invalid_attrs %{"user" => %{"username" => @usernamre, "password" => "wrong_password"}}
+  @invalid_attrs %{"user" => %{"username" => @username, "password" => "wrong_password"}}
 
   describe "authenticated" do
     setup do
-      login_admin
+      login_admin()
     end
 
     test "login page fails to render when authenticated", %{conn: conn, user: user} do

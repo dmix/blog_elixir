@@ -174,8 +174,6 @@ defmodule BlogApp.Blog do
     |> Post.changeset(post)
   end
 
-  alias BlogApp.Blog.Comment
-
   @doc """
   Returns the list of comments.
 
@@ -187,6 +185,20 @@ defmodule BlogApp.Blog do
   """
   def list_comments do
     Repo.all(Comment)
+  end
+
+  @doc """
+  Returns the list of comments for a post.
+
+  ## Examples
+
+      iex> list_comments(%Post{})
+      [%Comment{}, ...]
+
+  """
+  def list_comments(%Post{} = post) do
+    Repo.all(from(p in Comment,
+                  where: [post_id: ^post.id]))
   end
 
   @doc """

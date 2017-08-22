@@ -30,7 +30,7 @@ defmodule BlogApp.Web.UserControllerTest do
     end
 
     test "creating user requires authentication", %{conn: conn} do
-      conn = post conn, user_path(conn, :create), user: @create_attrs
+      conn = post conn, user_path(conn, :create), user: %{}
       assert conn.halted == true
       assert html_response(conn, 302)
     end
@@ -53,7 +53,7 @@ defmodule BlogApp.Web.UserControllerTest do
   describe "authenticated" do
 
     setup do
-      login_admin 
+      login_admin()
     end
 
     test "lists all entries on index", %{conn: conn} do

@@ -26,6 +26,12 @@ defmodule BlogApp.Web.CommentControllerTest do
 
   describe "unauthenticated user" do
 
+    test "lists all comments", %{conn: conn} do
+      %{post: post, comment: comment} = fixture(:comment)
+      conn = get conn, post_comment_path(conn, :index, post.id)
+      assert hd(json_response(conn, 200)["data"])["id"] == comment.id
+    end
+
     test "creates and renders comment when data is valid", %{conn: conn} do
       comment = valid_attrs()
       post = Blog.get_post!(comment.post_id)
@@ -70,11 +76,11 @@ defmodule BlogApp.Web.CommentControllerTest do
   describe "authenticated admin" do
 
     setup do
-      login_admin 
+      login_admin()
     end
 
-    test "lists all entries on index", %{conn: conn} do
-      %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+    test "lists all entries on admin index", %{conn: conn} do
+      %{post: _post, comment: comment, attrs: _attrs} = fixture(:comment)
       conn = get conn, comment_path(conn, :index)
       assert html_response(conn, 200) =~ "Listing Comments"
       assert html_response(conn, 200) =~  comment.author

@@ -25,7 +25,7 @@ defmodule BlogApp.Web.Router do
 
     resources "/comments", CommentController, only: [:index]
     resources "/blog", PostController, only: [] do
-      resources "/comments", CommentController, only: [:show, :create, :update, :delete]
+      resources "/comments", CommentController
     end
 
     resources "/categories", CategoryController

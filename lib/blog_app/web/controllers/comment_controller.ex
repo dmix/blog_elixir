@@ -1,23 +1,24 @@
 defmodule BlogApp.Web.CommentController do
   use BlogApp.Web, :controller
 
+  # alias BlogApp.Accounts
   alias BlogApp.Blog
   alias BlogApp.Blog.Comment
-  alias BlogApp.Blog.Post
 
   plug :scrub_params, "comment" when action in [:create, :update]
   #plug :set_post_and_authorize_user when action in [:update, :delete]
 
   action_fallback BlogApp.Web.FallbackController
 
-  def index(conn, _params) do
-    comments = Blog.list_comments()
-    render(conn, "index.html", comments: comments)
+  def index(conn, %{"post_id" => post_id}) do
+    post = Blog.get_post!(post_id)
+    comments = Blog.list_comments(post)
+    render(conn, "index.json", comments: comments)
   end
 
-  def index(conn, %{"post_id" => post_id}) do
+  def index(conn, %{}) do
     comments = Blog.list_comments()
-    render(conn, "index.json", comments: comments)
+    render(conn, "index.html", comments: comments)
   end
 
   def create(conn, %{"post_id" => post_id, "comment" => comment_params}) do
@@ -30,12 +31,12 @@ defmodule BlogApp.Web.CommentController do
     end
   end
 
-  def show(conn, %{"post_id" => post_id, "id" => id}) do
+  def show(conn, %{"post_id" => _post_id, "id" => id}) do
     comment = Blog.get_comment!(id)
     render(conn, "show.json", comment: comment)
   end
 
-  def update(conn, %{"post_id" => post_id, "id" => id, "comment" => comment_params}) do
+  def update(conn, %{"post_id" => _post_id, "id" => id, "comment" => comment_params}) do
     comment = Blog.get_comment!(id)
 
     with {:ok, %Comment{} = comment} <- Blog.update_comment(comment, comment_params) do
@@ -43,7 +44,7 @@ defmodule BlogApp.Web.CommentController do
     end
   end
 
-  def delete(conn, %{"post_id" => post_id, "id" => id}) do
+  def delete(conn, %{"post_id" => _post_id, "id" => id}) do
     comment = Blog.get_comment!(id)
     with {:ok, %Comment{}} <- Blog.delete_comment(comment) do
       send_resp(conn, :no_content, "")
@@ -66,10 +67,10 @@ defmodule BlogApp.Web.CommentController do
   #     |> halt
   #   end
   # end
-
-  defp is_authorized_user?(conn) do
-    user = get_session(conn, :current_user)
-    post = conn.assigns[:post]
-    user && (user.id == post.user_id || Accounts.RoleChecker.is_admin?(user))
-  end
+  #
+  # defp is_authorized_user?(conn) do
+  #   user = get_session(conn, :current_user)
+  #   post = conn.assigns[:post]
+  #   user && (user.id == post.user_id || Accounts.RoleChecker.is_admin?(user))
+  # end
 end

@@ -4,7 +4,6 @@ defmodule BlogApp.Web.PostControllerTest do
   alias BlogApp.Repo
   alias BlogApp.Blog
   alias BlogApp.Blog.Category
-  alias BlogApp.Blog.Post
   alias BlogApp.Accounts
   alias BlogApp.Accounts.User
 
@@ -43,9 +42,9 @@ defmodule BlogApp.Web.PostControllerTest do
   describe "unauthenticated" do
 
     test "creating post requires authentication", %{conn: conn} do
-      post = fixture(:post)
+      _post = fixture(:post)
       user = fixture(:user)
-      conn = post conn, user_post_path(conn, :create, user), post: @create_attrs
+      conn = post conn, user_post_path(conn, :create, user), post: %{}
       assert conn.halted == true
       assert html_response(conn, 302)
     end
@@ -71,7 +70,7 @@ defmodule BlogApp.Web.PostControllerTest do
 
     setup do
       Blog.create_category(@category)
-      login_admin 
+      login_admin()
     end
 
     test "lists all entries on index", %{conn: conn} do

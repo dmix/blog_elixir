@@ -30,7 +30,7 @@ defmodule BlogApp.Web.CategoryControllerTest do
     end
 
     test "creating category requires authentication", %{conn: conn} do
-      conn = post conn, category_path(conn, :create), category: @create_attrs
+      conn = post conn, category_path(conn, :create), category: %{}
       assert conn.halted == true
       assert html_response(conn, 302)
     end
@@ -53,7 +53,7 @@ defmodule BlogApp.Web.CategoryControllerTest do
   describe "authenticated" do
 
     setup do
-      login_admin 
+      login_admin()
     end
 
     test "lists all entries on index", %{conn: conn} do
