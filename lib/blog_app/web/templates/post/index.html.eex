@@ -10,13 +10,13 @@
 <%= for post <- @posts do %>
   <div class="row post">
     <div class="small-12 columns title">
-      <%= link to: user_post_path(@conn, :show, post.user_id, post.id) do %> 
+      <%= link to: post_path(@conn, :show, post.permalink) do %> 
         <h3><%= post.title %></h3>
       <% end %>
     </div>
     <div class="small-12 columns">
       <small>
-        Posted on <%= post.inserted_at %> by <%= link post.user.username, to: user_post_path(@conn, :index, post.user) %>
+        Posted on <%= post.inserted_at %> by <%= link post.user.username, to: post_path(@conn, :index) %>
       </small>
     </div>
 
@@ -34,7 +34,7 @@
     </div>
     <%= if current_user = current_user(@conn) do %>
       <div class="small-12 medium-4 columns">
-        <%= link "Show", to: user_post_path(@conn, :show, post.user, post), class: "button expanded" %>
+        <%= link "Show", to: post_path(@conn, :show, post.permalink), class: "button expanded" %>
       </div>
       <div class="small-12 medium-4 columns">
         <%= link "Edit", to: user_post_path(@conn, :edit, post.user, post), class: "button warning expanded" %>

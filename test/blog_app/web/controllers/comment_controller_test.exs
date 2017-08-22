@@ -1,69 +1,86 @@
 defmodule BlogApp.Web.CommentControllerTest do
   use BlogApp.Web.ConnCase
 
+  alias BlogApp.Repo
   alias BlogApp.Blog
+  alias BlogApp.Blog.Comment
 
-  @create_attrs %{approved: true, author: "some author", body: "some body"}
-  @update_attrs %{approved: false, author: "some updated author", body: "some updated body"}
-  @invalid_attrs %{approved: nil, author: nil, body: nil}
+  # Comment Attributes 
+  # -----------------------------------------------------------------------------
 
+  def valid_attrs,   do: params_for(:comment, post: insert(:post))
+  def invalid_attrs, do: valid_attrs() |> Map.put(:author, "")
+
+  # Comment Factories
+  # -----------------------------------------------------------------------------
+ 
   def fixture(:comment) do
-    {:ok, comment} = Blog.create_comment(@create_attrs)
-    comment
+    post = insert(:post, user: insert(:user))
+    attrs = params_for(:comment, post: post)
+    {:ok, comment} = Blog.create_comment(attrs)
+    %{post: post, comment: comment, attrs: attrs}
   end
 
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, comment_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing Comments"
-  end
+  # Comment Controller Tests
+  # -----------------------------------------------------------------------------
 
-  test "renders form for new comments", %{conn: conn} do
-    conn = get conn, comment_path(conn, :new)
-    assert html_response(conn, 200) =~ "New Comment"
-  end
+  describe "unauthenticated user" do
 
-  test "creates comment and redirects to show when data is valid", %{conn: conn} do
-    conn = post conn, comment_path(conn, :create), comment: @create_attrs
-
-    assert %{id: id} = redirected_params(conn)
-    assert redirected_to(conn) == comment_path(conn, :show, id)
-
-    conn = get conn, comment_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "Show Comment"
-  end
-
-  test "does not create comment and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, comment_path(conn, :create), comment: @invalid_attrs
-    assert html_response(conn, 200) =~ "New Comment"
-  end
-
-  test "renders form for editing chosen comment", %{conn: conn} do
-    comment = fixture(:comment)
-    conn = get conn, comment_path(conn, :edit, comment)
-    assert html_response(conn, 200) =~ "Edit Comment"
-  end
-
-  test "updates chosen comment and redirects when data is valid", %{conn: conn} do
-    comment = fixture(:comment)
-    conn = put conn, comment_path(conn, :update, comment), comment: @update_attrs
-    assert redirected_to(conn) == comment_path(conn, :show, comment)
-
-    conn = get conn, comment_path(conn, :show, comment)
-    assert html_response(conn, 200) =~ "some updated author"
-  end
-
-  test "does not update chosen comment and renders errors when data is invalid", %{conn: conn} do
-    comment = fixture(:comment)
-    conn = put conn, comment_path(conn, :update, comment), comment: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit Comment"
-  end
-
-  test "deletes chosen comment", %{conn: conn} do
-    comment = fixture(:comment)
-    conn = delete conn, comment_path(conn, :delete, comment)
-    assert redirected_to(conn) == comment_path(conn, :index)
-    assert_error_sent 404, fn ->
-      get conn, comment_path(conn, :show, comment)
+    test "creates and renders resource when data is valid", %{conn: conn} do
+      comment = valid_attrs()
+      post = Blog.get_post!(comment.post_id)
+      conn = post conn, post_comment_path(conn, :create, post), comment: comment 
+      assert json_response(conn, 201)["data"]["id"]
+      assert Repo.get_by(Comment, comment)
     end
+
+    test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+      comment = invalid_attrs()
+      post = Blog.get_post!(comment.post_id)
+      conn = post conn, post_comment_path(conn, :create, post), comment: comment
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+
+    # test "updates and renders chosen resource when data is valid", %{conn: conn} do
+    #   %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+    #   valid = attrs |> Map.put(:author, Faker.Internet.user_name())
+    #   conn = put conn, post_comment_path(conn, :update, post, comment), comment: valid 
+    #   assert json_response(conn, 200)["data"]["id"]
+    #   assert Repo.get_by(Comment, valid_attrs)
+    # end
+    #
+    # test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    #   %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+    #   invalid = attrs |> Map.put(:author, "")
+    #   conn = put conn, post_comment_path(conn, :update, post, comment), comment: invalid 
+    #   assert json_response(conn, 422)["errors"] != %{}
+    # end
+    #
+    # test "deletes chosen resource", %{conn: conn} do
+    #   %{post: post, comment: comment} = fixture(:comment)
+    #   conn = delete conn, post_comment_path(conn, :delete, post, comment)
+    #   assert response(conn, 204)
+    #   refute Repo.get(Comment, comment.id)
+    # end
+
+  end
+
+  describe "authenticated admin" do
+
+    setup do
+      login_admin 
+    end
+
+    # test "lists all entries on index", %{conn: conn} do
+    #   conn = get conn, post_comment_path(conn, :index)
+    #   assert html_response(conn, 200) =~ "Listing Comments"
+    # end
+    #
+    # test "approve comments makes them display", %{conn: conn} do
+    #   comment = fixture(:comment)
+    #   conn = put conn, post_comment_path(conn, :update, comment), comment: update_attrs()
+    #   assert conn.halted == true
+    #   assert html_response(conn, 302)
+    # end
   end
 end

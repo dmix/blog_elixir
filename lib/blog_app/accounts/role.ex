@@ -5,9 +5,7 @@ defmodule BlogApp.Accounts.Role do
   schema "accounts_roles" do
     field :admin, :boolean, default: false
     field :name, :string
-
     timestamps()
-
     has_many :users, BlogApp.Accounts.User
   end
 
@@ -17,6 +15,4 @@ defmodule BlogApp.Accounts.Role do
     |> cast(attrs, [:name, :admin])
     |> validate_required([:name, :admin])
   end
-
-  
 end

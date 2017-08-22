@@ -30,3 +30,19 @@ config :phoenix_active_link, :defaults,
   class_active:   "btn btn-primary active",
   class_inactive: "btn btn-outline inactive",
   active: :inclusive
+
+if Mix.env == :dev do
+  config :mix_test_watch,
+    clear: true,
+    tasks: [
+      "test",
+      "credo",
+    ],
+    exclude: [~r/priv\/.*/,
+              ~r/db_migration\/.*/,
+              ~r/rel\/.*/,
+              ~r/bin\/.*/,
+              ~r/_build\/.*/,
+              ~r/deps\/.*/,
+              ~r/assets\/.*/]
+end

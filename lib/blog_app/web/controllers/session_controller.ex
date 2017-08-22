@@ -8,7 +8,14 @@ defmodule BlogApp.Web.SessionController do
   plug :scrub_params, "user" when action in [:create]
 
   def new(conn, _params) do
-    render conn, "new.html", changeset: Accounts.changeset(%User{})
+    user = get_session(conn, :current_user)
+    if user do
+      conn
+      |> put_flash(:error, "Already logged in!")
+      |> redirect(to: page_path(conn, :index))
+    else
+      render conn, "new.html", changeset: Accounts.changeset(%User{})
+    end
   end
 
   def create(conn, %{"user" => %{"username" => username, "password" => password}})
@@ -48,7 +55,7 @@ defmodule BlogApp.Web.SessionController do
     conn
     |> put_session(:current_user, nil)
     |> put_flash(:error, "Invalid username/password combination!")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: session_path(conn, :new))
     |> halt()
   end
 end

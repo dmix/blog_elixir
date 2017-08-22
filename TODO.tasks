@@ -2,17 +2,24 @@ TODO:
 
 ✔ forms for creating post categories @done(2017-07-26 13:13) @project(TODO)
 ✔ update user form to include name/bio/etc   @done(2017-07-26 22:03) @project(TODO)
-☐ add blog/:category posts index
+✔ add blog/:category posts index @done(2017-08-10 16:17)) @project(TODO))
 ✔ index page for categories @done(2017-07-26 22:17) @project(TODO)
 ✔ add permalink form @done(2017-07-26 22:17) @project(TODO)
-☐ add permalink routes dmix.ca/x/:permalink
-☐ comments = working
+✔ add permalink routes dmix.ca/:permalink @done(2017-08-11 01:55)) @project(TODO))
+☐ add tests 
+    ✔ adding categories (model) @done(2017-08-18 17:30)) @project(TODO))
+    ✔ category controllers @done(2017-08-18 17:30)) @project(TODO))
+    ✔ session controller @done(2017-08-18 17:30)) @project(TODO))
+    ✔ Accounts context @done(2017-08-18 17:30)) @project(TODO))
+    ✔ Blog context @done(2017-08-18 17:30)) @project(TODO))
+    ☐ Comment controller tests (CRUD)
+    ☐ Comment admin tests (Index/Approve)
+☐ Comments = working
 ☐ sidebar with categories on certain pages (posts, homepage?)
-☐ UI design
-    ☐ nav bar
-    ☐ post typography
-    ☐ comments
-    ☐ categories
+☐ port current UI to Taychons
+    ☐ set up css files with PostCSS
+    ☐ convert grid
+    ☐ design forms
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿

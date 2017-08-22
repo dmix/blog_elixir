@@ -2,10 +2,8 @@ defmodule BlogApp.Web.UserController do
   use BlogApp.Web, :controller
 
   alias BlogApp.Accounts
-  alias BlogApp.User
-  alias BlogApp.Role
 
-  plug :authorize_admin when action in [:new, :create]
+  plug :authorize_admin when action in [:index, :new, :create]
   plug :authorize_user when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
@@ -25,15 +23,10 @@ defmodule BlogApp.Web.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :show, user))
+        |> redirect(to: user_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, roles: roles)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
   end
 
   def edit(conn, %{"id" => id}) do

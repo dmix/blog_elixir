@@ -10,6 +10,7 @@ defmodule BlogApp.Blog do
   alias BlogApp.Blog.Category
   alias BlogApp.Blog.Post
   alias BlogApp.Blog.PostCategory
+  alias BlogApp.Accounts.User
 
   @doc """
   Returns the list of posts.
@@ -55,7 +56,11 @@ defmodule BlogApp.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id) do
+    Repo.get!(Post, id) 
+    |> Repo.preload(:user)
+    |> Repo.preload(:categories)
+  end
 
   # Usage:
   # 
@@ -63,10 +68,9 @@ defmodule BlogApp.Blog do
   #     post = Blog.get_post(user, id)
   #
   def get_post!(user, id) do
-    Repo.get!(user, id)
-    |> Repo.preload(:comments)
-    |> Repo.preload(:user)
-    |> Repo.preload(:categories)
+    Repo.one(from(p in Post, 
+                  where: [user_id: ^user.id, id: ^id],
+                  preload: [:user, :categories]))
   end
 
   def comment_changeset(post, attrs \\ %{}) do
@@ -80,15 +84,16 @@ defmodule BlogApp.Blog do
 
   ## Examples
 
-      iex> create_post(%{field: value})
+      iex> create_post(%User{}, %{field: value})
       {:ok, %Post{}}
 
-      iex> create_post(%{field: bad_value})
+      iex> create_post(%User{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(user, attrs \\ %{}) do
-    user 
+  def create_post(%User{} = user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:posts)
     |> Post.changeset(attrs)
     |> Repo.insert()
   end
@@ -109,15 +114,6 @@ defmodule BlogApp.Blog do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
-  end
-
-  def append_categories(%Post{} = post, categories \\ []) do
-    for name <- categories, name != "" do
-      category = get_category_by_name!(name)
-      attrs = %{ :category_id => category.id, :post_id => post.id }
-      changeset = PostCategory.changeset(%PostCategory{}, attrs)
-      Repo.insert(changeset, on_conflict: :nothing)
-    end
   end
 
   @doc """
@@ -141,12 +137,14 @@ defmodule BlogApp.Blog do
 
   ## Examples
 
-      iex> change_post(post)
+      iex> change_post(user, post)
       %Ecto.Changeset{source: %Post{}}
 
   """
-  def change_post(%Post{} = post) do
-    Post.changeset(post, %{})
+  def change_post(user, post \\ %{}) do
+    user
+    |> Ecto.build_assoc(:posts)
+    |> Post.changeset(post)
   end
 
   alias BlogApp.Blog.Comment
@@ -192,8 +190,9 @@ defmodule BlogApp.Blog do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_comment(attrs \\ %{}) do
-    %Comment{}
+  def create_comment(post_id, attrs \\ %{}) do
+    Repo.get!(Post, post_id) 
+    |> Ecto.build_assoc(:comments)
     |> Comment.changeset(attrs)
     |> Repo.insert()
   end
@@ -350,23 +349,73 @@ defmodule BlogApp.Blog do
     Category.changeset(category, %{})
   end
 
-  # 
-  # Post Category many-to-many association
-  #
+  @doc """
+  Append Categories to a Post.
 
-def create_post_category(post, category) do
-    attrs = %{ post_id: post.id, category_id: category.id}
+  ## Examples
+
+      iex> append_categories(post, ["Startups", "Toronto"])
+      [{:ok, %PostCategory{}}]
+
+  """
+  def append_categories(%Post{} = post, categories \\ []) do
+    for name <- categories, name != "" do
+      category = get_category_by_name!(name)
+      attrs = %{:category_id => category.id, :post_id => post.id}
+      changeset = PostCategory.changeset(%PostCategory{}, attrs)
+      Repo.insert(changeset, on_conflict: :nothing)
+    end
+  end
+
+  @doc """
+  Create post category.
+
+  ## Examples
+
+      iex> create_post_category(post, category)
+      [{:ok, %PostCategory{}}]
+
+  """
+  def create_post_category(%Post{} = post, %Category{} = category) do
+    attrs = %{post_id: post.id, category_id: category.id}
     %PostCategory{}
     |> PostCategory.changeset(attrs)
     |> Repo.insert()
   end
 
-  def create_post_category(attrs \\ %{}) do
-    %PostCategory{}
-    |> Category.changeset(attrs)
-    |> Repo.insert()
+
+  @doc """
+  Gets a single post_category.
+
+  Raises `Ecto.NoResultsError` if the Post does not exist.
+
+  ## Examples
+
+      iex> get_post_category!(123)
+      %Post{}
+
+      iex> get_post_category!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_post_category!(id) do
+    Repo.get!(PostCategory, id) 
+    |> Repo.preload(:post) 
+    |> Repo.preload(:category)
   end
 
+  @doc """
+  Delete post category.
+
+  ## Examples
+
+      iex> delete_post_category(post_category)
+      {:ok, %PostCategory{}}
+
+      iex> delete_post_category(post_category)
+      {:error, %Ecto.Changeset{}}
+
+  """
   def delete_post_category(%PostCategory{} = post_category) do
     Repo.delete(post_category)
   end

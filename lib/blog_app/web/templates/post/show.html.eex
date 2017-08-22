@@ -41,5 +41,5 @@
 
   <%= link "Edit", to: user_post_path(@conn, :edit, @user, @post), class: "button warning" %>
   &nbsp;
-  <%= link "Back", to: user_post_path(@conn, :index, @user), class: "button alert" %>
+  <%= link "Back", to: post_path(@conn, :index), class: "button alert" %>
 </article>

@@ -1,7 +1,7 @@
+
 defmodule BlogApp.Accounts.User do
   use BlogApp.Web, :data
   import Comeonin.Argon2, only: [hashpwsalt: 1]
-
   alias BlogApp.Accounts.User
 
   schema "accounts_users" do

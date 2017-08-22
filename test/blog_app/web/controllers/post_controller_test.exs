@@ -1,69 +1,136 @@
 defmodule BlogApp.Web.PostControllerTest do
   use BlogApp.Web.ConnCase
 
+  alias BlogApp.Repo
   alias BlogApp.Blog
+  alias BlogApp.Blog.Category
+  alias BlogApp.Blog.Post
+  alias BlogApp.Accounts
+  alias BlogApp.Accounts.User
 
-  @create_attrs %{body: "some body", title: "some title"}
-  @update_attrs %{body: "some updated body", title: "some updated title"}
-  @invalid_attrs %{body: nil, title: nil}
+  # Post Attributes 
+  # -----------------------------------------------------------------------------
 
+  def valid_attrs,   do: params_for(:post, user: insert(:user))
+  def update_attrs,  do: valid_attrs() |> Map.put(:body, Faker.Lorem.sentence())
+  def invalid_attrs, do: valid_attrs() |> Map.put(:body, "")
+  @category %{name: "Startups", 
+              permalink: "startups", 
+              description: "This is an example description", 
+              icon: "book"}
+
+  # Post Factories
+  # -----------------------------------------------------------------------------
+ 
   def fixture(:post) do
-    {:ok, post} = Blog.create_post(@create_attrs)
+    attrs = valid_attrs()
+    user = Accounts.get_user!(attrs.user_id)
+    {:ok, post} = Blog.create_post(user, attrs)
     post
   end
 
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, post_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing Posts"
+  def fixture(:user) do
+    hd(Repo.all(User))
   end
 
-  test "renders form for new posts", %{conn: conn} do
-    conn = get conn, post_path(conn, :new)
-    assert html_response(conn, 200) =~ "New Post"
+  def fixture(:category) do
+    hd(Repo.all(Category))
   end
 
-  test "creates post and redirects to show when data is valid", %{conn: conn} do
-    conn = post conn, post_path(conn, :create), post: @create_attrs
+  # Post Controller Tests
+  # -----------------------------------------------------------------------------
 
-    assert %{id: id} = redirected_params(conn)
-    assert redirected_to(conn) == post_path(conn, :show, id)
+  describe "unauthenticated" do
 
-    conn = get conn, post_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "Show Post"
-  end
+    test "creating post requires authentication", %{conn: conn} do
+      post = fixture(:post)
+      user = fixture(:user)
+      conn = post conn, user_post_path(conn, :create, user), post: @create_attrs
+      assert conn.halted == true
+      assert html_response(conn, 302)
+    end
 
-  test "does not create post and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, post_path(conn, :create), post: @invalid_attrs
-    assert html_response(conn, 200) =~ "New Post"
-  end
+    test "updates chosen post and redirects when data is valid", %{conn: conn} do
+      post = fixture(:post)
+      user = fixture(:user)
+      conn = put conn, user_post_path(conn, :update, user, post), post: update_attrs()
+      assert conn.halted == true
+      assert html_response(conn, 302)
+    end
 
-  test "renders form for editing chosen post", %{conn: conn} do
-    post = fixture(:post)
-    conn = get conn, post_path(conn, :edit, post)
-    assert html_response(conn, 200) =~ "Edit Post"
-  end
-
-  test "updates chosen post and redirects when data is valid", %{conn: conn} do
-    post = fixture(:post)
-    conn = put conn, post_path(conn, :update, post), post: @update_attrs
-    assert redirected_to(conn) == post_path(conn, :show, post)
-
-    conn = get conn, post_path(conn, :show, post)
-    assert html_response(conn, 200) =~ "some updated body"
-  end
-
-  test "does not update chosen post and renders errors when data is invalid", %{conn: conn} do
-    post = fixture(:post)
-    conn = put conn, post_path(conn, :update, post), post: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit Post"
-  end
-
-  test "deletes chosen post", %{conn: conn} do
-    post = fixture(:post)
-    conn = delete conn, post_path(conn, :delete, post)
-    assert redirected_to(conn) == post_path(conn, :index)
-    assert_error_sent 404, fn ->
-      get conn, post_path(conn, :show, post)
+    test "deletes chosen post", %{conn: conn} do
+      post = fixture(:post)
+      user = fixture(:user)
+      conn = delete conn, user_post_path(conn, :delete, user, post)
+      assert conn.halted == true
+      assert html_response(conn, 302)
     end
   end
+
+  describe "authenticated" do
+
+    setup do
+      Blog.create_category(@category)
+      login_admin 
+    end
+
+    test "lists all entries on index", %{conn: conn} do
+      conn = get conn, post_path(conn, :index)
+      assert html_response(conn, 200) =~ "Blog"
+    end
+
+    test "renders form for new posts", %{conn: conn, user: user} do
+      conn = get conn, user_post_path(conn, :new, user)
+      assert html_response(conn, 200) =~ "New Post"
+    end
+
+    test "creates post and redirects to index when data is valid", %{conn: conn, user: user} do
+      post = params_for(:post, user: user)
+      categories = %{@category.name => ""}
+      conn = post conn, user_post_path(conn, :create, user), post: post, categories: categories
+      assert redirected_to(conn) == post_path(conn, :index)
+
+      conn = get conn, post_path(conn, :index)
+      assert html_response(conn, 200) =~ post.title
+    end
+
+    test "does not create post and renders errors when data is invalid", %{conn: conn, user: user} do
+      categories = %{@category.name => ""}
+      conn = post conn, user_post_path(conn, :create, user), post: invalid_attrs(), categories: categories
+      assert html_response(conn, 200) =~ "New Post"
+    end
+
+    test "renders form for editing chosen post", %{conn: conn, user: user} do
+      post = insert(:post, user: user)
+      conn = get conn, user_post_path(conn, :edit, user, post)
+      assert html_response(conn, 200) =~ "Edit Post"
+    end
+
+    test "updates chosen post and redirects when data is valid", %{conn: conn, user: user} do
+      post = insert(:post, user: user)
+      updated = update_attrs()
+      categories = %{@category.name => ""}
+      conn = put conn, user_post_path(conn, :update, user, post), post: updated, categories: categories
+      assert redirected_to(conn) == post_path(conn, :show, updated.permalink)
+
+      conn = get conn, post_path(conn, :index)
+      assert html_response(conn, 200) =~ updated.title
+    end
+
+    test "does not update chosen post and renders errors when data is invalid", %{conn: conn, user: user} do
+      attrs = params_for(:post, user: user)
+      invalid = attrs |> Map.put(:body, "")
+      {:ok, post} = Blog.create_post(user, attrs)
+      categories = %{@category.name => ""}
+      conn = put conn, user_post_path(conn, :update, post.user_id, post), post: invalid, categories: categories
+      assert html_response(conn, 200) =~ "Edit Post"
+    end
+
+    test "deletes chosen post", %{conn: conn, user: user} do
+      post = insert(:post, user: user)
+      conn = delete conn, user_post_path(conn, :delete, user, post)
+      assert redirected_to(conn) == post_path(conn, :index)
+    end
+  end
+
 end

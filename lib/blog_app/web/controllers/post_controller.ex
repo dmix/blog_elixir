@@ -1,9 +1,7 @@
 defmodule BlogApp.Web.PostController do
   use BlogApp.Web, :controller
-  require Logger
 
   alias BlogApp.Blog
-  alias BlogApp.Blog.Post
   alias BlogApp.Accounts
  
   plug :assign_user when not action in [:index, :show]
@@ -37,24 +35,19 @@ defmodule BlogApp.Web.PostController do
   end
 
   def new(conn, _params) do
-    changeset =
-      conn.assigns[:user]
-      |> Ecto.build_assoc(:posts)
-      |> Blog.change_post
+    changeset = Blog.change_post(conn.assigns[:user])
     render(conn, "new.html", 
            changeset: changeset, 
            categories: Blog.list_category_names)
   end
 
   def create(conn, %{"post" => post_params, "categories" => category_params}) do
-    user = conn.assigns[:user]
-           |> Ecto.build_assoc(:posts)
-    case Blog.create_post(user, post_params) do
+    case Blog.create_post(conn.assigns[:user], post_params) do
       {:ok, post} ->
         Blog.append_categories(post, Map.values(category_params))
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: user_post_path(conn, :index, conn.assigns[:user]))
+        |> redirect(to: post_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", 
                changeset: changeset,
@@ -70,16 +63,16 @@ defmodule BlogApp.Web.PostController do
 
 
   def show(conn, %{"id" => id}) do
-    user = Ecto.assoc(conn.assigns[:user], :posts)
+    user = conn.assigns[:user]
     post = Blog.get_post!(user, id) 
     comment_changeset = Blog.comment_changeset(post)
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
 
   def edit(conn, %{"id" => id}) do
-    user = Ecto.assoc(conn.assigns[:user], :posts)
+    user = conn.assigns[:user]
     post = Blog.get_post!(user, id)
-    changeset = Blog.change_post(post)
+    changeset = Blog.change_post(user, %{})
     render(conn, "edit.html", 
            post: post, 
            changeset: changeset,
@@ -87,27 +80,27 @@ defmodule BlogApp.Web.PostController do
   end
 
   def update(conn, %{"id" => id, "post" => post_params, "categories" => category_params}) do
-    user = Ecto.assoc(conn.assigns[:user], :posts)
+    user = conn.assigns[:user]
     post = Blog.get_post!(user, id)
     case Blog.update_post(post, post_params) do
       {:ok, post} ->
         Blog.append_categories(post, Map.values(category_params))
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: user_post_path(conn, :show, conn.assigns[:user], post))
+        |> redirect(to: post_path(conn, :show, post.permalink))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        render(conn, "edit.html", post: post, changeset: changeset, categories: Blog.list_category_names)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Ecto.assoc(conn.assigns[:user], :posts)
+    user = conn.assigns[:user]
     post = Blog.get_post!(user, id)
     {:ok, _post} = Blog.delete_post(post)
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: user_post_path(conn, :index, conn.assigns[:user]))
+    |> redirect(to: post_path(conn, :index))
   end
 
   defp assign_user(conn, _opts) do

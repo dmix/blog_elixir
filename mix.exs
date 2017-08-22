@@ -17,7 +17,12 @@ defmodule BlogApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {BlogApp.Application, []},
-     extra_applications: [:logger, :runtime_tools, :comeonin, :ex_machina]]
+     extra_applications: [
+       :logger, 
+       :runtime_tools, 
+       :comeonin, 
+       :ex_machina, 
+       :faker]]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,7 +38,6 @@ defmodule BlogApp.Mixfile do
      {:phoenix_ecto, "~> 3.2"},
      {:postgrex, "~> 0.13"},
      {:phoenix_html, "~> 2.10"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:phoenix_active_link, "~> 0.1"},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
@@ -41,8 +45,13 @@ defmodule BlogApp.Mixfile do
      {:argon2_elixir, "~> 1.2"},
      {:ex_machina, "~> 2.0"},
      {:earmark, "~> 1.2"},
-     {:distillery, "~> 1.4", runtime: false},
-     {:credo, "~> 0.8", only: [:dev, :test], runtime: false}]
+     {:phoenix_live_reload, "~> 1.0", only: [:dev]},
+     {:mix_test_watch, "~> 0.3",      only: [:dev, :test], runtime: false},
+     {:distillery, "~> 1.4",          only: [:dev],        runtime: false},
+     {:credo, "~> 0.8",               only: [:dev, :test], runtime: false},
+     {:faker, "~> 0.8",               only: [:dev, :test]},
+     {:exfmt, git: "https://github.com/lpil/exfmt.git", only: [:dev, :test]},
+     {:wallaby, "~> 0.19.0",          only: [:test]}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
@@ -53,11 +62,29 @@ defmodule BlogApp.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
+      "ecto.setup": [
+        "ecto.create", 
+        "ecto.migrate", 
+        "run priv/repo/seeds.exs"
+      ],
+      "ecto.reset": [
+        "ecto.drop", 
+        "ecto.setup"
+      ],
+      "clean": [
+        "run priv/repo/clean.exs",
+        "run priv/repo/seeds.exs"
+      ],
+      "test": [
+        "ecto.create --quiet", 
+        "ecto.migrate", 
+        "test",
+      ],
       "deploy": [
-        "mix release", # distillery
+        "release", # distillery
+      ],
+      "dev": [
+        "test.watch"
       ]
     ]
   end

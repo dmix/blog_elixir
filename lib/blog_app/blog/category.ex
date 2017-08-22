@@ -4,6 +4,7 @@ defmodule BlogApp.Blog.Category do
 
   schema "blog_categories" do
     field :name, :string
+    field :permalink, :string
     field :description, :string
     field :icon, :string
     many_to_many :posts, BlogApp.Blog.Post, join_through: "blog_post_categories"
@@ -14,7 +15,7 @@ defmodule BlogApp.Blog.Category do
   @doc false
   def changeset(%Category{} = category, attrs) do
     category
-    |> cast(attrs, [:name, :description, :icon])
-    |> validate_required([:name, :description, :icon])
+    |> cast(attrs, [:name, :permalink, :description, :icon])
+    |> validate_required([:name, :permalink, :description, :icon])
   end
 end

@@ -1,6 +1,10 @@
 defmodule BlogApp.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :blog_app
 
+  if Application.get_env(:blog_app, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", BlogApp.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
