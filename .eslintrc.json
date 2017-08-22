@@ -8,6 +8,9 @@
         "sourceType": "module"
     },
     "rules": {
+        "no-console": [
+            "error", { "allow": ["log", "warn", "error"] }
+        ],
         "indent": [
             "error",
             4
