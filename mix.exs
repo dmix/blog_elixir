@@ -80,13 +80,10 @@ defmodule BlogApp.Mixfile do
         "ecto.migrate", 
         "test",
       ],
-      "deploy": [
-        "release", # distillery
-      ],
-      "dev": [
-        "test.watch"
-      ],
-      "routes": "phx.routes BlogApp.Web.Router"
+      "deploy": "release", # distillery
+      "dev": "test.watch",
+      "routes": "phx.routes BlogApp.Web.Router",
+      "s": "phx.server",
     ]
   end
 end

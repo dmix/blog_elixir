@@ -1,6 +1,6 @@
 <h2>Edit Category</h2>
 
-<%= if current_user = current_user(@conn) do %>
+<%= if current_user(@conn) do %>
   <%= render "form.html", changeset: @changeset,
                           action: category_path(@conn, :update, @category) %>
 <% end %>

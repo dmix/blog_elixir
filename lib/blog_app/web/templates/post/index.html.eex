@@ -32,7 +32,7 @@
     <div class="small-12 columns">
       <%= markdown(post.body) %>
     </div>
-    <%= if current_user = current_user(@conn) do %>
+    <%= if current_user(@conn) do %>
       <div class="small-12 medium-4 columns">
         <%= link "Show", to: post_path(@conn, :show, post.permalink), class: "button expanded" %>
       </div>

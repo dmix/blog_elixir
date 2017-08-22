@@ -37,7 +37,7 @@ defmodule BlogApp.Web.CategoryController do
   def update(conn, %{"id" => id, "category" => category_params}) do
     category = Blog.get_category!(id)
     case Blog.update_category(category, category_params) do
-      {:ok, category} ->
+      {:ok, _} ->
         conn
         |> put_flash(:info, "Category updated successfully.")
         |> redirect(to: category_path(conn, :index))

@@ -1,6 +1,6 @@
 TODO:
 
-☐ Fix all Elixir/Phoenix warnings 
+✔ Fix all Elixir/Phoenix warnings  @done(2017-08-22 18:51)) @project(TODO))
 ☐ Port current CSS to Taychons @ui
     ☐ set up css files with PostCSS
     ☐ convert grid

@@ -20,7 +20,7 @@ defmodule BlogApp.Web.UserController do
   def create(conn, %{"user" => user_params}) do
     roles = Accounts.list_roles()
     case Accounts.create_user(user_params) do
-      {:ok, user} ->
+      {:ok, _} ->
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: user_path(conn, :index))

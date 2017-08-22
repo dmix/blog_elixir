@@ -3,8 +3,6 @@ defmodule BlogApp.Blog.PostCategory do
   alias BlogApp.Blog.PostCategory
 
   schema "blog_post_categories" do
-    @primary_key false
-
     belongs_to :post, BlogApp.Blog.Post
     belongs_to :category, BlogApp.Blog.Category
 
