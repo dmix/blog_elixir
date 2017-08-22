@@ -1,15 +1,11 @@
 TODO:
 
-☐ Add tests @tests
-    ✔ Comment controller tests (CRUD) @done(2017-08-22 16:42)) @project(TODO))
-    ☐ Comment admin tests (Index/Approve)
 ☐ Fix all Elixir/Phoenix warnings 
 ☐ Port current CSS to Taychons @ui
     ☐ set up css files with PostCSS
     ☐ convert grid
     ☐ design forms
 ☐ Comments = working @backend 
-    ✔ Comment seed data for testing UI @done(2017-08-22 17:28)) @project(TODO))
     ☐ Approve = working
     ☐ Add email to Comments
         ☐ Migration/Boilerplate
@@ -18,6 +14,10 @@ TODO:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+        ✔ Add tests @tests @done(2017-08-22 17:32)) @project(TODO))))
+    ✔ Comment controller tests (CRUD) @done(2017-08-22 16:42)) @project(TODO)))))
+    ✔ Comment admin tests (Index/Approve) @done(2017-08-22 17:32)) @project(TODO)))))
+    ✔ Comment seed data for testing UI @done(2017-08-22 17:28)) @project(TODO))))
         ✔ forms for creating post categories @done(2017-07-26 13:13) @project(TODO)))
     ✔ update user form to include name/bio/etc   @done(2017-07-26 22:03) @project(TODO)))
     ✔ add blog/:category posts index @done(2017-08-10 16:17)) @project(TODO))))

@@ -73,11 +73,13 @@ defmodule BlogApp.Web.CommentControllerTest do
       login_admin 
     end
 
-    # test "lists all entries on index", %{conn: conn} do
-    #   conn = get conn, post_comment_path(conn, :index)
-    #   assert html_response(conn, 200) =~ "Listing Comments"
-    # end
-    #
+    test "lists all entries on index", %{conn: conn} do
+      %{post: post, comment: comment, attrs: attrs} = fixture(:comment)
+      conn = get conn, comment_path(conn, :index)
+      assert html_response(conn, 200) =~ "Listing Comments"
+      assert html_response(conn, 200) =~  comment.author
+    end
+
     # test "approve comments makes them display", %{conn: conn} do
     #   comment = fixture(:comment)
     #   conn = put conn, post_comment_path(conn, :update, comment), comment: update_attrs()
