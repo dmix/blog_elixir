@@ -60,17 +60,44 @@ defmodule BlogApp.Blog do
     Repo.get!(Post, id) 
     |> Repo.preload(:user)
     |> Repo.preload(:categories)
+    |> Repo.preload(:comments)
   end
 
-  # Usage:
-  # 
-  #     user = assoc(conn.assigns[:user], :posts)
-  #     post = Blog.get_post(user, id)
-  #
-  def get_post!(user, id) do
+  @doc """
+  Gets a single post authored by a particular user.
+
+  Raises `Ecto.NoResultsError` if the Post does not exist.
+
+  Usage:
+  
+      user = Accounts.User{} // conn.assigns[:user]
+      post = Blog.Post{}#id
+  
+  """
+  def get_post!(%User{} = user, id) do
     Repo.one(from(p in Post, 
                   where: [user_id: ^user.id, id: ^id],
-                  preload: [:user, :categories]))
+                  preload: [:user, :categories, :comments]))
+  end
+
+  @doc """
+  Get a single post by permalink
+
+  Raises `Ecto.NoResultsError` if the Post does not exist.
+
+  ## Examples
+
+      iex> get_post_by!(:permalink, "permalink")
+      %Post{}
+
+      iex> get_post_by!(:permalink, "")
+      ** (Ecto.NoResultsError)
+  
+  """
+  def get_post_by!(:permalink, permalink) do
+    Repo.one(from(p in Post, 
+                  where: [permalink: ^permalink],
+                  preload: [:user, :categories, :comments]))
   end
 
   def comment_changeset(post, attrs \\ %{}) do

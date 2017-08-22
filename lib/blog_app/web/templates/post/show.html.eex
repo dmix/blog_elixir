@@ -1,4 +1,7 @@
 <article>
+  <%= if current_user = current_user(@conn) do %>
+    <%= link "Edit", to: user_post_path(@conn, :edit, current_user.id, @post), class: "button warning right" %>
+  <% end %>
   <input type="hidden" id="post-id" value="<%= @post.id %>">
 
   <h2>
@@ -39,7 +42,4 @@
     post: @post
   %>
 
-  <%= link "Edit", to: user_post_path(@conn, :edit, @user, @post), class: "button warning" %>
-  &nbsp;
-  <%= link "Back", to: post_path(@conn, :index), class: "button alert" %>
 </article>

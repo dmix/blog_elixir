@@ -56,11 +56,10 @@ defmodule BlogApp.Web.PostController do
   end
 
   def show(conn, %{"permalink" => permalink}) do
-    post = Blog.get_post!(permalink) 
+    post = Blog.get_post_by!(:permalink, permalink) 
     comment_changeset = Blog.comment_changeset(post)
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
-
 
   def show(conn, %{"id" => id}) do
     user = conn.assigns[:user]
