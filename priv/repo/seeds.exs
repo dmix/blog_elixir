@@ -15,7 +15,7 @@ alias BlogApp.Accounts.User
 alias BlogApp.Blog
 alias BlogApp.Blog.Category
 alias BlogApp.Blog.Post
-# alias BlogApp.Blog.PostCategory
+alias BlogApp.Blog.Comment
 
 import Ecto.Query, only: [from: 2]
 
@@ -60,6 +60,17 @@ find_or_create_post = fn post ->
   Repo.one(query)
 end
 
+find_or_create_comment = fn comment ->
+  query = from p in Comment,
+          where: p.author == ^comment.author and p.body == ^comment.body
+  if !Repo.one(query) do
+    Repo.insert(comment)
+  end
+  Repo.one(query)
+end
+
+IO.puts "Ecto: Seeding Database"
+
 # Create Roles
 # ----------------------------------------------------------------------------
 
@@ -98,12 +109,21 @@ dmix_user = find_or_create_user.(%{
 
 IO.puts "Creating Categories..."
 
+new_category = fn name, permalink ->
+  %Category{
+    name: name,
+    permalink: permalink,
+    description: "This is an example description", 
+    icon: "book"
+  }
+end
+
 categories = [
-  %Category{name: "Startups",   permalink: "startups",   description: "This is an example description", icon: "book"},
-  %Category{name: "UX Design",  permalink: "ux_design",  description: "This is an example description", icon: "book"},
-  %Category{name: "Toronto",    permalink: "toronto",    description: "This is an example description", icon: "book"},
-  %Category{name: "Elixir",     permalink: "elixir",     description: "This is an example description", icon: "book"},
-  %Category{name: "Javascript", permalink: "javascript", description: "This is an example description", icon: "book"}
+  new_category.("Startups",   "startups"),
+  new_category.("UX Design",  "ux_design"),
+  new_category.("Toronto",    "toronto"),
+  new_category.("Elixir",     "elixir"),
+  new_category.("Javascript", "javascript")
 ]
 
 Enum.map(categories, find_or_create_category)
@@ -111,10 +131,51 @@ Enum.map(categories, find_or_create_category)
 
 # Create Posts
 # ----------------------------------------------------------------------------
-post_1 = find_or_create_post.(%Post{
-    title: Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " "),
-    permalink: Faker.Internet.slug,
-    body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "<br>"
-})
-Blog.append_categories(post_1, ["Startups"])
 
+new_post = fn ->
+  %Post{
+      title: Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " "),
+      permalink: Faker.Internet.slug,
+      body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "<br>"),
+      user: dmix_user
+  }
+end
+
+post_1 = find_or_create_post.(new_post.())
+post_2 = find_or_create_post.(new_post.())
+post_3 = find_or_create_post.(new_post.())
+post_4 = find_or_create_post.(new_post.())
+post_5 = find_or_create_post.(new_post.())
+
+# Create Post Categories
+# ----------------------------------------------------------------------------
+
+IO.puts "Creating Post Categories..."
+
+Blog.append_categories(post_1, ["Startups"])
+Blog.append_categories(post_2, ["Startups"])
+Blog.append_categories(post_3, ["Toronto"])
+Blog.append_categories(post_4, ["UX Design"])
+Blog.append_categories(post_5, ["Elixir"])
+
+# Create Comments
+# ----------------------------------------------------------------------------
+
+IO.puts "Creating Comments..."
+
+new_comment = fn post, approved ->
+  %Comment{
+    body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 1, last: 2}), "<br>"),
+    author: Faker.Internet.user_name,
+    approved: approved,
+    post_id: post.id
+  }
+end
+
+comment_1 = find_or_create_comment.(new_comment.(post_1, true))
+comment_2 = find_or_create_comment.(new_comment.(post_1, true))
+comment_3 = find_or_create_comment.(new_comment.(post_1, true))
+comment_4 = find_or_create_comment.(new_comment.(post_1, false))
+comment_5 = find_or_create_comment.(new_comment.(post_2, true))
+
+IO.puts "Done"

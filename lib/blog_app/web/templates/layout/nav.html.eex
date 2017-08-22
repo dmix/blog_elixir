@@ -4,22 +4,28 @@
 <%= active_link(@conn, "About",    to: "/about"    ) %>
 
 <%= if current_user = current_user(@conn) do %>
-  <h4>Admin</h4>
-  <p>
-    <%= link "Users", to: user_path(@conn, :index) %> /
-    <%= link "New User", to: user_path(@conn, :new) %>
-  </p>
-  <p>
-    <%= link "Posts", to: post_path(@conn, :index) %> /
-    <%= link "New Post", to: user_post_path(@conn, :new, current_user.id) %>
-  </p>
-  <p>
-    <%= link "Categories", to: category_path(@conn, :index) %> /
-    <%= link "New Category", to: category_path(@conn, :new) %>
-  </p>
-  <p>
-    <%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete %>
-  </p>
+  <div class='admin-nav'>
+    <h4>Admin</h4>
+
+    <p>
+      <%= link "Users", to: user_path(@conn, :index) %> /
+      <%= link "New User", to: user_path(@conn, :new) %>
+    </p>
+    <p>
+      <%= link "Posts", to: post_path(@conn, :index) %> /
+      <%= link "New Post", to: user_post_path(@conn, :new, current_user.id) %>
+    </p>
+    <p>
+      <%= link "Comments", to: comment_path(@conn, :index) %>
+    </p>
+    <p>
+      <%= link "Categories", to: category_path(@conn, :index) %> /
+      <%= link "New Category", to: category_path(@conn, :new) %>
+    </p>
+    <p>
+      <%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete %>
+    </p>
+  <div>
 <% else %>
   <p>
     <%= link "Login", to: session_path(@conn, :new) %>

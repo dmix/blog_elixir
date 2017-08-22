@@ -71,7 +71,7 @@ defmodule BlogApp.Mixfile do
         "ecto.drop", 
         "ecto.setup"
       ],
-      "ecto.clean": [
+      "ecto.seed": [
         "run priv/repo/clean.exs",
         "run priv/repo/seeds.exs"
       ],
@@ -85,7 +85,8 @@ defmodule BlogApp.Mixfile do
       ],
       "dev": [
         "test.watch"
-      ]
+      ],
+      "routes": "phx.routes BlogApp.Web.Router"
     ]
   end
 end

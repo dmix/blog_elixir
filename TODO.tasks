@@ -1,15 +1,20 @@
 TODO:
 
-☐ add tests 
+☐ Add tests @tests
     ✔ Comment controller tests (CRUD) @done(2017-08-22 16:42)) @project(TODO))
     ☐ Comment admin tests (Index/Approve)
-☐ Comments = working
-☐ sidebar with categories on certain pages (posts, homepage?)
-☐ port current UI to Taychons
+☐ Fix all Elixir/Phoenix warnings 
+☐ Port current CSS to Taychons @ui
     ☐ set up css files with PostCSS
     ☐ convert grid
     ☐ design forms
-
+☐ Comments = working @backend 
+    ✔ Comment seed data for testing UI @done(2017-08-22 17:28)) @project(TODO))
+    ☐ Approve = working
+    ☐ Add email to Comments
+        ☐ Migration/Boilerplate
+        ☐ Gravatar UI
+☐ Sidebar with categories on certain pages (posts, homepage?) @ui
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

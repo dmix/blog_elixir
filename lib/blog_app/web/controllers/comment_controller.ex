@@ -10,6 +10,11 @@ defmodule BlogApp.Web.CommentController do
 
   action_fallback BlogApp.Web.FallbackController
 
+  def index(conn, _params) do
+    comments = Blog.list_comments()
+    render(conn, "index.html", comments: comments)
+  end
+
   def index(conn, %{"post_id" => post_id}) do
     comments = Blog.list_comments()
     render(conn, "index.json", comments: comments)
