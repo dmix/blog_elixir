@@ -8,7 +8,7 @@
         <em><%= @comment.inserted_at %></em>
       </div>
       <div class="columns small-4 text-right">
-        <%= if @conn.assigns[:author_or_admin] do %>
+        <% if @conn.assigns[:author_or_admin] do %>
           <%= unless @comment.approved do %>
             <button class="button tiny primary approve">Approve</button>
           <% end %>

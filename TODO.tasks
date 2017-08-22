@@ -1,6 +1,5 @@
 TODO:
 
-✔ Fix all Elixir/Phoenix warnings  @done(2017-08-22 18:51)) @project(TODO))
 ☐ Port current CSS to Taychons @ui
     ☐ set up css files with PostCSS
     ☐ convert grid
@@ -14,6 +13,7 @@ TODO:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+        ✔ Fix all Elixir/Phoenix warnings  @done(2017-08-22 18:51)) @project(TODO))))
         ✔ Add tests @tests @done(2017-08-22 17:32)) @project(TODO))))
     ✔ Comment controller tests (CRUD) @done(2017-08-22 16:42)) @project(TODO)))))
     ✔ Comment admin tests (Index/Approve) @done(2017-08-22 17:32)) @project(TODO)))))
