@@ -72,6 +72,23 @@ defmodule BlogApp.Web do
         require Logger
         require IEx 
       end
+
+      def markdown(body) do
+        body
+        |> Earmark.as_html!
+        |> raw
+      end
+
+      def log(msg) do
+        if Mix.env == :dev do
+          require Logger
+          Logger.info msg
+        end
+      end
+
+      def component(template, options) do
+        render BlogApp.Web.ComponentsView, "#{template}.html", options
+      end
     end
   end
 

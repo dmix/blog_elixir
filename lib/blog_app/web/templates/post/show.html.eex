@@ -4,30 +4,12 @@
   <% end %>
   <input type="hidden" id="post-id" value="<%= @post.id %>">
 
-  <h2>
-    <%= @post.title %>
-  </h2>
-
-  <h4>
-    <%= @post.user.username %>
-  </h4>
-
-  <small>
-    Categories:
-    <%= for category <- @post.categories do %>
-      <%= category.name %>,
-    <% end %>
-  </small>
-
-  <hr>
-  <%= markdown(@post.body) %>
-  <hr>
 
   <div class='comments'>
     <h3 class='comments-header'>Comments</h3>
     <%= for comment <- @post.comments do %>
-      <%= render BlogApp.Web.CommentView,
-        "comment.html",
+      <%= render BlogApp.Web.ComponentsView,
+        "blog_comment.html",
         comment: comment,
         author_or_admin: @conn.assigns[:author_or_admin],
         conn: @conn

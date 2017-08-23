@@ -1,0 +1,28 @@
+/* --------------------------------------------------------------------------*/
+/*
+/*                               DMIX THEME 
+/*
+/* --------------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------------*/
+/* Vendor */
+/* --------------------------------------------------------------------------*/
+
+@import 'tachyons';
+
+/* --------------------------------------------------------------------------*/
+/* Theme */
+/* --------------------------------------------------------------------------*/
+
+@import 'dmix/layout'
+@import 'dmix/typography'
+
+@import 'dmix/components/layout_navigation'
+@import 'dmix/components/layout_sidebar'
+@import 'dmix/components/layout_footer'
+
+@import 'dmix/components/content_home'
+@import 'dmix/components/content_page'
+
+@import 'dmix/components/blog_post'
+@import 'dmix/components/blog_comment'

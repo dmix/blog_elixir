@@ -1,0 +1,8 @@
+<nav class='border-left border-right'>
+    <%= component "content_logo", conn: @conn %>
+
+    <menu class='ma0'>
+        <%= component "content_navigation", conn: @conn %>
+    </menu>
+</nav>
+

@@ -1,0 +1,1 @@
+<%= component "layout_navigation", conn: @conn %>

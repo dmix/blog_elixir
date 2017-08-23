@@ -1,36 +1,61 @@
 <!doctype html>
 <html class='no-js' lang='en'>
 <head>
-    <%= render "head.html", conn: @conn %>
+    <%= render "app_head.html", conn: @conn %>
 </head>
 
-<body class='homepage'>
+<!-- TODO: add class containing .controller_name .action_name to <body>-->
+<body class='w-100 sans-serif'>
+	<div class='clearfix border'>
+		<div class='layout'>
 
-<div class='clearfix border'>
+            <!--   ### Sidebar ###   -->
+            <aside class='layout--sidebar bg-near-white w-100 w-20-l fn fl-ns br-l b--black-10'>
 
-    <div class="layout">
-      <nav class='border-left border-right'>
+                <!--   Navigation  -->
+                <div class='ph2'>
+                    <%= component "layout_sidebar", conn: @conn %>
+                </div>
 
-            <a href="<%= page_path(@conn, :index) %>" class='logo h1 bold center'>
-                <i class="fa fa-diamond" aria-hidden="true" /></i>
-                dmix
-            </a>
-            <menu>
-                <%= render "nav.html", conn: @conn %>
-            </menu>
-        </nav>
-        <main class='border-right'>
-            <%= render "alerts.html", conn: @conn %>
+            </aside>
 
-            <%= render @view_module, @view_template, assigns %>
-            <footer>
+            <!--   ### Main ###   -->
+            <main class='layout--main w-100 w-80-l fn fl-ns'>
+
+                <!--   Search-->
+                <section class='layout--search w-100-l fn fl-ns'>
+                  <%= component "layout_search", conn: @conn %>
+                </section>
+
+                <!--   Alerts   -->
+                <%= component "layout_alert", conn: @conn %>
+
+                <!--   Content   -->
+                <section class='layout--content w-75-l fn fl-ns pv3 ph4'>
+                    <%= render @view_module, @view_template, assigns %>
+                </section>
+
+                <!--   Buffer   -->
+                <aside class='layout--buffer w-100 w-25-l fn fl-ns'>
+                  <br>
+                </aside>
+
+            </main>
+
+            <!--  ### Footer ###   -->
+            <footer class='layout--footer 
+                           w-100-l 
+                           fl fl-ns 
+                           black-70 
+                           ph3 ph5-ns pv5 pv6-ns 
+                           bt b--black-10'>
+                <%= component "layout_footer", conn: @conn %>
             </footer>
-        </main>
-        <aside class='xs-hide'>
-        </aside>
-    </div>
-</div>
 
-<%= render "script.html", conn: @conn %>
+		</div>
+	</div>
+
+    <!--   Scripts   -->
+	<%= render "app_script.html", conn: @conn %>
 </body>
 </html>

@@ -1,14 +1,14 @@
 TODO:
 
 ☐ Port current CSS to Taychons @ui
-    ☐ set up css files with PostCSS
-    ☐ convert grid
-    ☐ design forms
-✔ Old Comments = working @backend @done(2017-08-22 23:02)) @project(TODO))
-    ✔ Create = working @done(2017-08-22 21:31)) @project(TODO))
-    ✔ Approve = working @done(2017-08-22 23:02)) @project(TODO))
-    ✔ Delete = working @done(2017-08-22 23:02)) @project(TODO))
-    ✔ All Tests for comment channel = passing @tests)) @done(2017-08-22 23:02)) @project(TODO))
+    ✔ set up css files with PostCSS @done(2017-08-23 19:22)) @project(TODO))
+    ✔ convert grid @done(2017-08-23 19:22)) @project(TODO))
+    ☐ grid
+        ✔ padding @done(2017-08-23 19:48)) @project(TODO))
+        ☐ mobile responsive
+    ☐ content
+        ☐ nav
+        ☐ forms
 ☐ Improve comment system @backend
     ☐ Support approve/disable sockets in comments admin index section
     ☐ Notify comment has been posted & awaits approval
@@ -20,3 +20,8 @@ TODO:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+    ✔ Old Comments = working @backend @done(2017-08-22 23:02)) @project(TODO))))
+  ✔ Create = working @done(2017-08-22 21:31)) @project(TODO))))
+  ✔ Approve = working @done(2017-08-22 23:02)) @project(TODO))))
+  ✔ Delete = working @done(2017-08-22 23:02)) @project(TODO))))
+  ✔ All Tests for comment channel = passing @tests)) @done(2017-08-22 23:02)) @project(TODO))))
