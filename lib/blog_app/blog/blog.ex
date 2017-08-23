@@ -217,6 +217,12 @@ defmodule BlogApp.Blog do
   """
   def get_comment!(id), do: Repo.get!(Comment, id)
 
+  def approve_comment(id) do
+    comment = Repo.get!(Comment, id)
+    changeset = Comment.changeset(comment, %{approved: true})
+    Repo.update(changeset)
+  end
+
   @doc """
   Creates a comment.
 

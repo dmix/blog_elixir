@@ -113,6 +113,7 @@ channel.on(APPROVED_COMMENT, payload => {
     if ($(`#comment-${payload.commentId}`).length === 0) {
         $('.comments .comments-header').after(createComment(payload))
     }
+
     // And then remove the 'Approve' button since we know it has been approved
     $(`#comment-${payload.commentId} .approve`).remove()
 })
