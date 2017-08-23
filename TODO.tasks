@@ -10,35 +10,12 @@ TODO:
     ☐ Delete = working
     ☐ Tests for comment channel = passing @tests
 ☐ Improve comment system @backend
+    ☐ Notify comment has been posted & awaits approval
     ☐ Add email to Comments
         ☐ Migration/Boilerplate
         ☐ Gravatar UI
+    ☐ Allow user to delete with temporary token
 ☐ Sidebar with categories on certain pages (posts, homepage?) @ui
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
-        ✔ Fix all Elixir/Phoenix warnings  @done(2017-08-22 18:51)) @project(TODO))))
-        ✔ Add tests @tests @done(2017-08-22 17:32)) @project(TODO))))
-    ✔ Comment controller tests (CRUD) @done(2017-08-22 16:42)) @project(TODO)))))
-    ✔ Comment admin tests (Index/Approve) @done(2017-08-22 17:32)) @project(TODO)))))
-    ✔ Comment seed data for testing UI @done(2017-08-22 17:28)) @project(TODO))))
-        ✔ forms for creating post categories @done(2017-07-26 13:13) @project(TODO)))
-    ✔ update user form to include name/bio/etc   @done(2017-07-26 22:03) @project(TODO)))
-    ✔ add blog/:category posts index @done(2017-08-10 16:17)) @project(TODO))))
-    ✔ index page for categories @done(2017-07-26 22:17) @project(TODO)))
-    ✔ add permalink form @done(2017-07-26 22:17) @project(TODO)))
-    ✔ add permalink routes dmix.ca/:permalink @done(2017-08-11 01:55)) @project(TODO))))
-    ✔ adding categories (model) @done(2017-08-18 17:30)) @project(TODO)))))
-    ✔ category controllers @done(2017-08-18 17:30)) @project(TODO))))
-    ✔ session controller @done(2017-08-18 17:30)) @project(TODO))))
-    ✔ Accounts context @done(2017-08-18 17:30)) @project(TODO))))
-    ✔ Blog context @done(2017-08-18 17:30)) @project(TODO))))
-    ✔ remove categories field from blog_posts db @done(2017-07-26 11:46) @project(TODO)
-    ✔ rename blog_posts_categories -> blog_post_categories @done(2017-07-26 11:46) @project(TODO)
-    ✔ Add Blog.Category schema @done(2017-07-26 11:40) @project(TODO)
-    ✔ Add to User @done(2017-07-26 11:40) @project(TODO)
-    ✔ short bio @done(2017-07-26 11:40) @project(TODO)
-    ✔ add blog_posts_categories @done(2017-07-26 11:40) @project(TODO)
-    ✔ change body string -> text @done(2017-07-26 11:39) @project(TODO)
-    ✔ add permalink:string @done(2017-07-26 11:39) @project(TODO)
-    ✔ add categories:{:array, :string} @done(2017-07-26 11:39) @project(TODO)
