@@ -40,7 +40,7 @@ defmodule BlogApp.Web.CommentChannel do
     case CommentHelper.approve(payload, socket) do
       {:ok, comment} ->
         new_payload =
-          payload 
+          payload
           |> Map.merge(%{
                          insertedAt: comment.inserted_at,
                          commentId: comment.id,

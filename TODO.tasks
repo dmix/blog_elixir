@@ -8,8 +8,9 @@ TODO:
     ✔ Create = working @done(2017-08-22 21:31)) @project(TODO))
     ☐ Approve = working
     ☐ Delete = working
-    ☐ Tests for comment channel = passing @tests
+    ☐ All Tests for comment channel = passing @tests))
 ☐ Improve comment system @backend
+    ☐ Support approve/disable sockets in comments admin index section
     ☐ Notify comment has been posted & awaits approval
     ☐ Add email to Comments
         ☐ Migration/Boilerplate
