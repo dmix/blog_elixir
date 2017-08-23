@@ -19,6 +19,7 @@ defmodule BlogApp.Web.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
+      import BlogApp.Factory
 
       # The default endpoint for testing
       @endpoint BlogApp.Web.Endpoint

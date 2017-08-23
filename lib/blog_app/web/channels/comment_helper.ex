@@ -1,19 +1,13 @@
 defmodule BlogApp.Web.CommentHelper do
+  alias BlogApp.Blog
   alias BlogApp.Blog.Comment
   alias BlogApp.Blog.Post
   alias BlogApp.Accounts.User
   alias BlogApp.Accounts.RoleChecker
   alias BlogApp.Repo
 
-  import Ecto, only: [build_assoc: 2]
-
   def create(%{"postId" => post_id, "body" => body, "author" => author}, _socket) do
-    post      = get_post(post_id)
-    changeset = post
-      |> build_assoc(:comments)
-      |> Comment.changeset(%{body: body, author: author})
-
-    Repo.insert(changeset)
+    Blog.create_comment(post_id, %{body: body, author: author})
   end
 
   def approve(%{"postId" => post_id, "commentId" => comment_id}, %{assigns: %{user: user_id}}) do

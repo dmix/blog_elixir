@@ -63,8 +63,9 @@ const resetFields = () => {
 
 // REQ 7: Push the CREATED_COMMENT event to the socket with the appropriate author/body
 $('.create-comment').on('click', event => {
-    console.log(CREATED_COMMENT)
     event.preventDefault()
+    console.log('CLICKED CREATE')
+
     channel.push(CREATED_COMMENT, { author: getCommentAuthor(), body: getCommentBody(), postId })
     resetFields()
 })
@@ -72,6 +73,8 @@ $('.create-comment').on('click', event => {
 // REQ 8: Push the APPROVED_COMMENT event to the socket with the appropriate author/body/comment id
 $('.comments').on('click', '.approve', event => {
     event.preventDefault()
+    console.log('CLICKED APPROVE')
+
     const commentId = getTargetCommentId(event.currentTarget)
     // Pull the approved comment author
     const author = $(`#comment-${commentId} .comment-author`).text().trim()
@@ -83,25 +86,32 @@ $('.comments').on('click', '.approve', event => {
 // REQ 9: Push the DELETED_COMMENT event to the socket but only pass the comment id (that's all we need)
 $('.comments').on('click', '.delete', event => {
     event.preventDefault()
+    console.log('CLICKED DELETE')
+
     const commentId = getTargetCommentId(event.currentTarget)
     channel.push(DELETED_COMMENT, { commentId, postId })
 })
 
 // REQ 10: Handle receiving the CREATED_COMMENT event
 channel.on(CREATED_COMMENT, payload => {
+    console.log(CREATED_COMMENT)
+
     // Don't append the comment if it hasn't been approved
     if (!userToken && !payload.approved) {
         return
     }
+
     // Add it to the DOM using our handy template function
-    $('.comments h2').after(createComment(payload))
+    $('.comments .comments-header').after(createComment(payload))
 })
 
 // REQ 11: Handle receiving the APPROVED_COMMENT event
 channel.on(APPROVED_COMMENT, payload => {
+    console.log(APPROVED_COMMENT)
+
     // If we don't already have the right comment, then add it to the DOM
     if ($(`#comment-${payload.commentId}`).length === 0) {
-        $('.comments h2').after(createComment(payload))
+        $('.comments .comments-header').after(createComment(payload))
     }
     // And then remove the 'Approve' button since we know it has been approved
     $(`#comment-${payload.commentId} .approve`).remove()
@@ -109,6 +119,8 @@ channel.on(APPROVED_COMMENT, payload => {
 
 // REQ 12: Handle receiving the DELETED_COMMENT event
 channel.on(DELETED_COMMENT, payload => {
+    console.log(DELETED_COMMENT)
+
     // Just delete the comment from the DOM
     $(`#comment-${payload.commentId}`).remove()
 })

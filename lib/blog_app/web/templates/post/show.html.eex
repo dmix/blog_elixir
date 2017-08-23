@@ -13,7 +13,7 @@
   </h4>
 
   <small>
-    Categories: 
+    Categories:
     <%= for category <- @post.categories do %>
       <%= category.name %>,
     <% end %>
@@ -23,8 +23,8 @@
   <%= markdown(@post.body) %>
   <hr>
 
-  <div class="comments">
-    <h3>Comments</h3>
+  <div class='comments'>
+    <h3 class='comments-header'>Comments</h3>
     <%= for comment <- @post.comments do %>
       <%= render BlogApp.Web.CommentView,
         "comment.html",

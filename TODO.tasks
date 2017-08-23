@@ -4,8 +4,12 @@ TODO:
     ☐ set up css files with PostCSS
     ☐ convert grid
     ☐ design forms
-☐ Comments = working @backend 
+☐ Old Comments = working @backend
+    ✔ Create = working @done(2017-08-22 21:31)) @project(TODO))
     ☐ Approve = working
+    ☐ Delete = working
+    ☐ Tests for comment channel = passing @tests
+☐ Improve comment system @backend
     ☐ Add email to Comments
         ☐ Migration/Boilerplate
         ☐ Gravatar UI

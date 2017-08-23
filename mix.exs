@@ -18,10 +18,10 @@ defmodule BlogApp.Mixfile do
   def application do
     [mod: {BlogApp.Application, []},
      extra_applications: [
-       :logger, 
-       :runtime_tools, 
-       :comeonin, 
-       :ex_machina, 
+       :logger,
+       :runtime_tools,
+       :comeonin,
+       :ex_machina,
        :faker]]
   end
 
@@ -63,12 +63,12 @@ defmodule BlogApp.Mixfile do
   defp aliases do
     [
       "ecto.setup": [
-        "ecto.create", 
-        "ecto.migrate", 
+        "ecto.create",
+        "ecto.migrate",
         "run priv/repo/seeds.exs"
       ],
       "ecto.reset": [
-        "ecto.drop", 
+        "ecto.drop",
         "ecto.setup"
       ],
       "ecto.seed": [
@@ -76,8 +76,8 @@ defmodule BlogApp.Mixfile do
         "run priv/repo/seeds.exs"
       ],
       "test": [
-        "ecto.create --quiet", 
-        "ecto.migrate", 
+        "ecto.create --quiet",
+        "ecto.migrate",
         "test",
       ],
       "deploy": "release", # distillery

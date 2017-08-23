@@ -16,5 +16,7 @@ defmodule BlogApp.Blog.Comment do
     comment
     |> cast(attrs, [:author, :body, :approved])
     |> validate_required([:author, :body, :approved])
+    |> unique_constraint(:author_body,
+                         name: :comments_author_body_index)
   end
 end

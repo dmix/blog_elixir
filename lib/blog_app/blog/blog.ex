@@ -38,7 +38,7 @@ defmodule BlogApp.Blog do
   end
 
   def list_posts(user_posts) do
-    Repo.all(user_posts) 
+    Repo.all(user_posts)
     |> Repo.preload(:user, :categories)
   end
 
@@ -57,7 +57,7 @@ defmodule BlogApp.Blog do
 
   """
   def get_post!(id) do
-    Repo.get!(Post, id) 
+    Repo.get!(Post, id)
     |> Repo.preload(:user)
     |> Repo.preload(:categories)
     |> Repo.preload(:comments)
@@ -69,13 +69,13 @@ defmodule BlogApp.Blog do
   Raises `Ecto.NoResultsError` if the Post does not exist.
 
   Usage:
-  
+
       user = Accounts.User{} // conn.assigns[:user]
       post = Blog.Post{}#id
-  
+
   """
   def get_post!(%User{} = user, id) do
-    Repo.one(from(p in Post, 
+    Repo.one(from(p in Post,
                   where: [user_id: ^user.id, id: ^id],
                   preload: [:user, :categories, :comments]))
   end
@@ -92,16 +92,16 @@ defmodule BlogApp.Blog do
 
       iex> get_post_by!(:permalink, "")
       ** (Ecto.NoResultsError)
-  
+
   """
   def get_post_by!(:permalink, permalink) do
-    Repo.one(from(p in Post, 
+    Repo.one(from(p in Post,
                   where: [permalink: ^permalink],
                   preload: [:user, :categories, :comments]))
   end
 
   def comment_changeset(post, attrs \\ %{}) do
-    post 
+    post
     |> Ecto.build_assoc(:comments)
     |> Comment.changeset(attrs)
   end
@@ -230,7 +230,7 @@ defmodule BlogApp.Blog do
 
   """
   def create_comment(post_id, attrs \\ %{}) do
-    Repo.get!(Post, post_id) 
+    Repo.get!(Post, post_id)
     |> Ecto.build_assoc(:comments)
     |> Comment.changeset(attrs)
     |> Repo.insert()
@@ -319,7 +319,7 @@ defmodule BlogApp.Blog do
   """
   def get_category!(id), do: Repo.get!(Category, id)
 
-  def get_category_by_name!(name) do 
+  def get_category_by_name!(name) do
     Repo.one(from(p in Category, where: [name: ^name]))
   end
 
@@ -438,8 +438,8 @@ defmodule BlogApp.Blog do
 
   """
   def get_post_category!(id) do
-    Repo.get!(PostCategory, id) 
-    |> Repo.preload(:post) 
+    Repo.get!(PostCategory, id)
+    |> Repo.preload(:post)
     |> Repo.preload(:category)
   end
 

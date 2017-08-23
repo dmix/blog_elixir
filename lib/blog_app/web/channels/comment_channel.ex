@@ -3,14 +3,13 @@ defmodule BlogApp.Web.CommentChannel do
   alias BlogApp.Web.CommentHelper
   require Logger
 
-  def join("comments:" <> _comment_id, payload, socket) do
+  def join("comments:" <> _post_id, payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
   end
-
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
@@ -32,9 +31,8 @@ defmodule BlogApp.Web.CommentChannel do
                               approved: comment.approved,
                             })
         {:noreply, socket}
-
-      {:error, _message} ->
-        {:noreply, socket}
+      {:error, changeset} ->
+        {:reply, {:error, %{message: changeset.errors}}, socket}
     end
   end
 
