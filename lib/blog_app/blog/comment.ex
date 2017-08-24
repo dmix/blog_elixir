@@ -6,6 +6,7 @@ defmodule BlogApp.Blog.Comment do
     field :approved, :boolean, default: false
     field :author, :string
     field :body, :string
+
     belongs_to :post, BlogApp.Blog.Post
 
     timestamps()
@@ -16,7 +17,6 @@ defmodule BlogApp.Blog.Comment do
     comment
     |> cast(attrs, [:author, :body, :approved])
     |> validate_required([:author, :body, :approved])
-    |> unique_constraint(:author_body,
-                         name: :comments_author_body_index)
+    |> unique_constraint(:author_body, name: :comments_author_body_index)
   end
 end

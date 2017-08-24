@@ -7,6 +7,7 @@ defmodule BlogApp.Blog.Category do
     field :permalink, :string
     field :description, :string
     field :icon, :string
+
     many_to_many :posts, BlogApp.Blog.Post, join_through: "blog_post_categories"
 
     timestamps()

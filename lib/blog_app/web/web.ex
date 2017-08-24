@@ -67,23 +67,10 @@ defmodule BlogApp.Web do
       # Plugins
       import PhoenixActiveLink
 
-      # Debugging
-      if Mix.env == :dev do
-        require Logger
-        require IEx 
-      end
-
       def markdown(body) do
         body
         |> Earmark.as_html!
         |> raw
-      end
-
-      def log(msg) do
-        if Mix.env == :dev do
-          require Logger
-          Logger.info msg
-        end
       end
 
       def component(template, options) do
@@ -104,12 +91,6 @@ defmodule BlogApp.Web do
     quote do
       use Phoenix.Channel
       import BlogApp.Web.Gettext
-
-      # Debugging
-      if Mix.env == :dev do
-        require Logger
-        require IEx 
-      end
     end
   end
 

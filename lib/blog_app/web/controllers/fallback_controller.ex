@@ -15,6 +15,6 @@ defmodule BlogApp.Web.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> render(BlogApp.Web.ErrorView, :"404")
+    |> render(BlogApp.Web.ErrorView, :"404", %{})
   end
 end

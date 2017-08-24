@@ -14,11 +14,9 @@ defmodule BlogApp.Blog.PostCategory do
     post_category
     |> cast(attrs, [:post_id, :category_id])
     |> validate_required([:post_id, :category_id])
-    |> unique_constraint(:post_id, 
-                         name: :post_categories_id_index)
+    |> unique_constraint(:post_id, name: :post_categories_id_index)
   end
 end
-
 # # Create the user. Note that the (empty) `organizations` field has to be preloaded.
 # user_map = %{display_name: "User 1", login_name: "1@y.com", password: "password"}
 # changeset = User.password_setting_changeset(%User{}, user_map)
@@ -32,4 +30,4 @@ end
 # changeset = Ecto.Changeset.change(user) |> Ecto.Changeset.put_assoc(:organizations, [org])
 #
 # # "When you save this change to the user, the join table will have its foreign keys populated in both directions."
-# Repo.update!(changeset)
+#tesegnahc(!etadpu.opeR #

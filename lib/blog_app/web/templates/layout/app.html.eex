@@ -13,7 +13,7 @@
             <aside class='layout--sidebar bg-near-white w-100 w-20-l fn fl-ns br-l b--black-10'>
 
                 <!--   Navigation  -->
-                <div class='ph2'>
+                <div class='ph4'>
                     <%= component "layout_sidebar", conn: @conn %>
                 </div>
 
@@ -31,7 +31,7 @@
                 <%= component "layout_alert", conn: @conn %>
 
                 <!--   Content   -->
-                <section class='layout--content w-75-l fn fl-ns pv3 ph4'>
+                <section class='layout--content w-75-l fn fl-ns pv4 ph4'>
                     <%= render @view_module, @view_template, assigns %>
                 </section>
 

@@ -1,4 +1,3 @@
-
 defmodule BlogApp.Accounts.User do
   use BlogApp.Web, :data
   import Comeonin.Argon2, only: [hashpwsalt: 1]
@@ -30,14 +29,35 @@ defmodule BlogApp.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :password, :password_confirmation, 
-                    :role_id, :name, :bio, :avatar_url, :twitter_url, 
-                    :linkedin_url, :github_url, :dribbble_url])
-    |> validate_required([:username, :email, :password, 
-                          :password_confirmation, :role_id, :name, :bio])
+    |> cast(attrs,
+       [
+         :username,
+         :email,
+         :password,
+         :password_confirmation,
+         :role_id,
+         :name,
+         :bio,
+         :avatar_url,
+         :twitter_url,
+         :linkedin_url,
+         :github_url,
+         :dribbble_url,
+       ])
+    |> validate_required([
+         :username,
+         :email,
+         :password,
+         :password_confirmation,
+         :role_id,
+         :name,
+         :bio,
+       ])
     |> hash_password
   end
 
+
+  @spec hash_password(Ecto.Changeset.t) :: Ecto.Changeset.t
   defp hash_password(changeset) do
     if password = get_change(changeset, :password) do
       changeset

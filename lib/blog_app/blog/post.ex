@@ -6,14 +6,15 @@ defmodule BlogApp.Blog.Post do
     field :body, :string
     field :title, :string
     field :permalink, :string
-
     field :category_names, :string, virtual: true
 
     timestamps()
 
     belongs_to :user, BlogApp.Accounts.User
     has_many :comments, BlogApp.Blog.Comment
-    many_to_many :categories, BlogApp.Blog.Category, join_through: "blog_post_categories"
+    many_to_many :categories,
+                 BlogApp.Blog.Category,
+                 join_through: "blog_post_categories"
   end
 
   @doc false
@@ -24,16 +25,14 @@ defmodule BlogApp.Blog.Post do
     |> strip_unsafe_body(attrs)
   end
 
-  defp strip_unsafe_body(model, %{"body" => nil}) do
-    model
-  end
 
-  defp strip_unsafe_body(model, %{"body" => body}) do
+  @spec strip_unsafe_body(Ecto.Changeset.t, map) :: any
+  defp strip_unsafe_body(context, %{"body" => nil}), do: context
+  defp strip_unsafe_body(context, %{"body" => body}) do
     {:safe, clean_body} = Phoenix.HTML.html_escape(body)
-    model |> put_change(:body, clean_body)
+    context
+    |> put_change(:body, clean_body)
   end
+  defp strip_unsafe_body(context, _), do: context
 
-  defp strip_unsafe_body(model, _) do
-    model
-  end
 end

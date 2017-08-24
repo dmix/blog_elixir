@@ -23,6 +23,7 @@ defmodule BlogApp.Web.UserSocket do
     case Phoenix.Token.verify(socket, "user", token, max_age: 1_209_600) do
       {:ok, user_id} ->
         {:ok, assign(socket, :user, user_id)}
+
       {:error, _reason} ->
         {:ok, socket}
     end

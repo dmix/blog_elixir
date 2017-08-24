@@ -16,10 +16,4 @@ defmodule BlogApp.Web.CommentView do
       author: comment.author,
       body: comment.body}
   end
-
-  def markdown(body) do
-    body
-    |> Earmark.as_html!
-    |> raw
-  end
 end

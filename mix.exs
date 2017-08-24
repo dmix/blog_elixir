@@ -51,6 +51,7 @@ defmodule BlogApp.Mixfile do
      {:credo, "~> 0.8",               only: [:dev, :test], runtime: false},
      {:faker, "~> 0.8",               only: [:dev, :test]},
      {:exfmt, git: "https://github.com/lpil/exfmt.git", only: [:dev, :test]},
+     {:dialyxir, "~> 0.5",            only: [:dev], runtime: false},
      {:wallaby, "~> 0.19.0",          only: [:test]}]
   end
 
@@ -79,6 +80,7 @@ defmodule BlogApp.Mixfile do
         "ecto.create --quiet",
         "ecto.migrate",
         "test",
+        "dialyzer"
       ],
       "deploy": "release", # distillery
       "dev": "test.watch",
