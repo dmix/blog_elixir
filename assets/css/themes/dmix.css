@@ -15,6 +15,7 @@
 /* --------------------------------------------------------------------------*/
 
 @import 'dmix/layout'
+@import 'dmix/content'
 @import 'dmix/typography'
 
 @import 'dmix/components/layout_navigation'
