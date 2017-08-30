@@ -1,11 +1,8 @@
-<div class="">
-  <div class="">
-    <h1>Posts</h1>
-    <%= if current_user = current_user(@conn) do %>
-      <%= link "New post", to: user_post_path(@conn, :new, current_user.id), class: "button expanded large" %>
-    <% end %>
-  </div>
-</div>
+<%= if current_user = current_user(@conn) do %>
+  <%= link "New post", to: user_post_path(@conn, :new, current_user.id), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
+<% end %>
+
+<h1 class='lh-title'>Posts</h1>
 
 <%= for post <- @posts do %>
   <div class="row post">

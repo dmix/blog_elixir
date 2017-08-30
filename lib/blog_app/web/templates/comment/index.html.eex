@@ -1,23 +1,21 @@
-<h2>Listing Comments</h2>
+<h1 class='lh-title'>Listing Comments</h1>
 
-<table class="table">
+<table class='table w-100'>
   <thead>
     <tr>
-      <th>Author</th>
-      <th>Body</th>
-      <th>Approved</th>
-
-      <th></th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Author</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Body</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Approved</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'></th>
     </tr>
   </thead>
   <tbody>
 <%= for comment <- @comments do %>
     <tr>
-      <td><%= comment.author %></td>
-      <td><%= markdown(comment.body) %></td>
-      <td><%= comment.approved %></td>
-
-      <td class="text-right">
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= comment.author %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= markdown(comment.body) %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= comment.approved %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 tr'>
         <span><%= link "Approve", to: post_comment_path(@conn, :show, comment.post_id, comment), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: post_comment_path(@conn, :delete, comment.post_id, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>

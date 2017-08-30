@@ -1,4 +1,0 @@
-<a href="<%= page_path(@conn, :index) %>" class='logo h1 bold center'>
-    <i class="fa fa-diamond" aria-hidden="true" /></i>
-    dmix
-</a>

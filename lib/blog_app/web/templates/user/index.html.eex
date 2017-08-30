@@ -1,23 +1,23 @@
-<h2>Listing Users</h2>
+<%= link "New User", to: user_path(@conn, :new), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
 
-<table class="table">
+<h1 class='lh-title'>Listing Users</h1>
+
+<table class="table w-100">
   <thead>
     <tr>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Password digest</th>
-
-      <th></th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Username</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Email</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Password digest</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'></th>
     </tr>
   </thead>
   <tbody>
 <%= for user <- @users do %>
     <tr>
-      <td><%= user.username %></td>
-      <td><%= user.email %></td>
-      <td><%= user.password_digest %></td>
-
-      <td class="text-right">
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= user.name %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= user.username %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= user.email %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 tr'>
         <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
@@ -27,4 +27,3 @@
   </tbody>
 </table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>

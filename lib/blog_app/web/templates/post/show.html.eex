@@ -1,9 +1,11 @@
 <article>
-  <%= if current_user = current_user(@conn) do %>
-    <%= link "Edit", to: user_post_path(@conn, :edit, current_user.id, @post), class: "button warning right" %>
-  <% end %>
   <input type="hidden" id="post-id" value="<%= @post.id %>">
 
+  <%= if current_user = current_user(@conn) do %>
+    <%= link "Edit", to: user_post_path(@conn, :edit, current_user.id, @post), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
+  <% end %>
+
+  <%= component "blog_post", conn: @conn, post: @post %>
 
   <div class='comments'>
     <h3 class='comments-header'>Comments</h3>

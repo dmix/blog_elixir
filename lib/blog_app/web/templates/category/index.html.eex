@@ -1,29 +1,29 @@
-<h2>Listing Categories</h2>
+<%= link "New Category", to: category_path(@conn, :new), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
 
-<table class="table">
+<h1 class='lh-title'>Listing Categories</h1>
+
+<table class='table w-100'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Icon</th>
-
-      <th></th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Name</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'> Description</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Icon</th>
+      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'></th>
     </tr>
   </thead>
+
   <tbody>
 <%= for category <- @categories do %>
     <tr>
-      <td><%= category.name %></td>
-      <td><%= category.description %></td>
-      <td><%= category.icon %></td>
-
-      <td class="text-right">
-        <span><%= link "Edit", to: category_path(@conn, :edit, category), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.name %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.description %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.icon %></td>
+      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 tr'>
+        <%= link "Edit", to: category_path(@conn, :edit, category), class: "f6 link dim ba ph3 pv2 mb2 dib black" %>
+        <%= link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph3 pv2 mb2 dib purple" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Category", to: category_path(@conn, :new) %></span>
