@@ -20,13 +20,13 @@
             <!--   ### Main ###   -->
             <main class='layout--main w-100 w-80-l fn fl-ns'>
 
+                <!--   Alerts   -->
+                <%= component "layout_alert", conn: @conn %>
+
                 <!--   Search-->
                 <section class='layout--search w-100-l fn fl-ns'>
                   <%= component "layout_search", conn: @conn %>
                 </section>
-
-                <!--   Alerts   -->
-                <%= component "layout_alert", conn: @conn %>
 
                 <!--   Content   -->
                 <section class='layout--content w-75-l fn fl-ns pv4 ph4'>
@@ -41,11 +41,11 @@
             </main>
 
             <!--  ### Footer ###   -->
-            <footer class='layout--footer 
-                           w-100-l 
-                           fl fl-ns 
-                           black-70 
-                           ph3 ph5-ns pv5 pv6-ns 
+            <footer class='layout--footer
+                           w-100-l
+                           fl fl-ns
+                           black-70
+                           ph3 ph5-ns pv5 pv6-ns
                            bt b--black-10'>
                 <%= component "layout_footer", conn: @conn %>
             </footer>

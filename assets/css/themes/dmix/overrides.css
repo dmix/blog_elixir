@@ -1,0 +1,31 @@
+/* --------------------------------------------------------------------------*/
+/*
+/*                               DMIX: Overrides 
+/*
+/* --------------------------------------------------------------------------*/
+
+
+/* --------------------------------------------------------------------------*/
+/* Tachyon */
+/* --------------------------------------------------------------------------*/
+
+.sans-serif {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Droid Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.f5 {
+    font-size: 1.1rem;
+}
+
+.ph4 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.b--black-10 {
+    border-color: rgba(0,0,0,0.08);
+}

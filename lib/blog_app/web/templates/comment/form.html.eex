@@ -1,27 +1,29 @@
 <%= form_for @changeset, @action, fn f -> %>
-  <form class='pa4 black-80'>
-    <%= if @changeset.action do %>
-      <div class="alert alert-danger">
-        <p>Oops, something went wrong! Please check the errors below.</p>
+  <div class='pa3 ba b--light-gray black-80 br1'>
+      <legend class='b mb2'>New Comment</legend>
+
+      <%= if @changeset.action do %>
+        <div class="alert f6 bg-light-red tc pa2 br2-ns ba b--black-10 white">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+
+      <div class="mv3">
+        <%= label f, :author, class: "f6 fw4 db mb2" %>
+        <%= text_input f, :author, class: "input-reset ba b--black-20 pa2 mb2 db w-75 measure" %>
+        <%= error_tag f, :author %>
       </div>
-    <% end %>
 
-    <div class="mv3">
-      <%= label f, :author, class: "f6 fw4 db mb2" %>
-      <%= text_input f, :author, class: "input-reset ba b--black-20 pa2 mb2 db w-75 measure" %>
-      <%= error_tag f, :author %>
-    </div>
+      <div class="mv3">
+        <%= label f, :body, class: "f6 fw4 db mb2" %>
+        <%= textarea f, :body, class: "db border-box hover-black w-75 measure ba b--black-20 pa2 br2 mb2" %>
+        <%= error_tag f, :body %>
+      </div>
 
-    <div class="mv3">
-      <%= label f, :body, class: "f6 fw4 db mb2" %>
-      <%= textarea f, :body, class: "db border-box hover-black w-75 measure ba b--black-20 pa2 br2 mb2" %>
-      <%= error_tag f, :body %>
-    </div>
-
-    <div class="">
-      <%= submit "Submit", class: "b ph3 pv2 outline-0 input-reset ba b--black bg-transparent grow pointer f6 dib br1" %>
-    </div>
-  </form>
+      <div class="">
+        <%= submit "Submit", class: "b ph3 pv2 outline-0 input-reset ba b--black bg-transparent grow pointer f6 dib br1" %>
+      </div>
+  </div>
 <% end %>
 
 

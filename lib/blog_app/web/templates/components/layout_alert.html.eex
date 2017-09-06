@@ -1,12 +1,12 @@
-<div class="row alerts">
+<div class="row alerts cb" >
     <%= if flash = get_flash(@conn, :info) do %>
-        <div class="success callout alert-info" role="alert">
+        <div class="alert f6 bg-light-gray b--gray tc pa3 ba black-80" role="alert">
             <%= flash %>
         </div>
     <% end %>
 
     <%= if flash = get_flash(@conn, :error) do %>
-        <div class="alert callout alert-error" role="alert">
+        <div class="alert f6 bg-light-red b--red tc pa3 ba white" role="alert">
             <%= flash %>
         </div>
     <% end %>

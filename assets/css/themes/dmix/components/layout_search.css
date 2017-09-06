@@ -1,0 +1,11 @@
+.search--icon {
+    position: relative;
+    left: 2.5rem;
+    top: 12px;
+    width: 0;
+    float: left;
+}
+
+.search--input {
+    padding-left: 4.5rem;
+}

@@ -1,7 +1,7 @@
 <%= form_for @changeset, @action, [class: "measure"],fn f -> %>
     <fieldset id="sign_in" class="ba b--transparent ph0 mh0">
         <%= if f.errors != [] do %>
-            <div class="alert alert-danger">
+            <div class="alert f6 bg-light-red tc pa2 br2-ns ba b--black-10 white">
                 <p>Oops, something went wrong! Please check the errors below:</p>
                 <ul>
                     <%= for {attr, message} <- f.errors do %>
