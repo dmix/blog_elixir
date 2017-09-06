@@ -133,10 +133,11 @@ Enum.map(categories, find_or_create_category)
 # ----------------------------------------------------------------------------
 
 new_post = fn ->
+  body = Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "</p><p>")
   %Post{
-      title: Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " "),
+      title: String.capitalize(Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " ")),
       permalink: Faker.Internet.slug,
-      body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "<br>"),
+      body: "<p>#{body}</p>"
       user: dmix_user
   }
 end

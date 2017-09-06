@@ -9,8 +9,42 @@
 /* Base
 /* --------------------------------------------------------------------------*/
 
+@import "colors";
+
 .layout--content .lh-title {
-    margin-top: 0;
+    /* margin-top: 0; */
     margin-bottom: 1rem;
     display: inline-block;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+hr {
+    color: transparent;
+    border: none;
+    background-color: black;
+    opacity: .1;
+    height: 1px;
+}
+
+.admin-table {
+    width: 100%;
+}
+
+.admin-table td, .admin-table th {
+    line-height: 1.5;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-color: var(--black-20);
+    border-style: dotted;
+    border-width: 0;
+    border-bottom-width: 1px;
+}
+
+.admin-table th {
+    border-style: solid;
+    border-color: var(--black-40);
 }

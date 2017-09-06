@@ -6,9 +6,8 @@
 
 MIX_ENV=production
 BIN_DIR=/usr/local/bin
-ASSETS_DIR=./assets
+ASSETS_DIR=assets
 FONTS_DIR=$(ASSETS_DIR)/static/fonts
-NPM_DIR=$(ASSETS_DIR)/node_modules/
 
 # -- Helpers
 
@@ -27,6 +26,8 @@ server:
 test:
 	@mix test.watch
 
+clean:
+	@rm .DS_Store; rm **/*/.DS_Store
 
 # -- Dependencies
 
@@ -37,7 +38,7 @@ update:
 install-fonts:
 	@cd $(ASSETS_DIR) && npm install --save-dev font-awesome
 	@mkdir -p $(FONTS_DIR)
-	@ln -sf $(NPM_DIR)/font-awesome/fonts/fontawesome-webfont.* $(FONTS_DIR)
+	@cd $(FONTS_DIR) && ln -sf ../../node_modules/font-awesome/fonts/fontawesome-webfont.* .
 
 install-npm:
 	@npm install -g phantomjs-prebuilt

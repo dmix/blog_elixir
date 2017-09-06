@@ -1,8 +1,7 @@
-<nav class='border-left border-right'>
-    <%= component "content_logo", conn: @conn %>
+<div class='content-logo mt4'>
+  <%= component "content_logo", conn: @conn %>
+</div>
 
-    <menu class='ma0'>
-        <%= component "content_navigation", conn: @conn %>
-    </menu>
+<nav class='content-nav mt4'>
+    <%= component "content_navigation", conn: @conn %>
 </nav>
-

@@ -4,4 +4,6 @@
                         categories: @categories,
                         action: user_post_path(@conn, :create, @user) %>
 
-<%= link "Back", to: user_post_path(@conn, :index, @user) %>
+<div class="lh-copy mt3">
+    <%= link "Back", to: post_path(@conn, :index), class: "f6 link dim black db" %>
+</div>

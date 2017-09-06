@@ -4,4 +4,7 @@
   <%= render "form.html", changeset: @changeset,
                           action: category_path(@conn, :update, @category) %>
 <% end %>
-<span><%= link "Back", to: category_path(@conn, :index) %></span>
+
+<div class="lh-copy mt3">
+    <%= link "Back", to: category_path(@conn, :index), class: "f6 link dim black db" %>
+</div>

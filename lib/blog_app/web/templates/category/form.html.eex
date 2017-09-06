@@ -5,25 +5,25 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+  <div class="mv3">
+    <%= label f, :name, class: "f6 fw4 db mb1" %>
+    <%= text_input f, :name, class: "input-reset ba b--black-20 pa2 mb2 db w-100" %>
     <%= error_tag f, :name %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= text_input f, :description, class: "form-control" %>
+  <div class="mv3">
+    <%= label f, :description, class: "f6 fw4 db mb1" %>
+    <%= text_input f, :description, class: "input-reset ba b--black-20 pa2 mb2 db w-100" %>
     <%= error_tag f, :description %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :icon, class: "control-label" %>
-    <%= text_input f, :icon, class: "form-control" %>
+  <div class="mv3">
+    <%= label f, :icon, class: "f6 fw4 db mb1" %>
+    <%= text_input f, :icon, class: "input-reset ba b--black-20 pa2 mb2 db w-100" %>
     <%= error_tag f, :icon %>
   </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "button primary" %>
+  <div class="mv3">
+    <%= submit "Submit", class: "b ph3 pv2 outline-0 input-reset ba b--black bg-transparent grow pointer f6 dib br1" %>
   </div>
 <% end %>

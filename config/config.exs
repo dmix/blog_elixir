@@ -27,8 +27,8 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :phoenix_active_link, :defaults,
-  class_active:   "btn btn-primary active",
-  class_inactive: "btn btn-outline inactive",
+  class_active:   "link dim black b--black-10 b ba br2 f6 f5-ns dib w-100 pv3 ph4 mb1",
+  class_inactive: "link dim black b--black-10   ba br2 f6 f5-ns dib w-100 pv3 ph4 mb1",
   active: :inclusive
 
 if Mix.env == :dev do

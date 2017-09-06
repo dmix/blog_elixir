@@ -4,4 +4,6 @@
                         roles: @roles,
                         action: user_path(@conn, :create) %>
 
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<div class="lh-copy mt3">
+    <%= link "Back", to: user_path(@conn, :index), class: "f6 link dim black db" %>
+</div>

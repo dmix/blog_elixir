@@ -1,4 +1,6 @@
-<a href="<%= page_path(@conn, :index) %>" class='logo h1 bold center'>
-    <i class="fa fa-diamond" aria-hidden="true" /></i>
+<div class="db tc">
+    <img src="http://tachyons.io/img/logo.jpg" class="br-100 ba h3 w3" alt="avatar">
+</div>
+<a href="<%= page_path(@conn, :index) %>" class='logo black link f2 b db tc'>
     dmix
 </a>

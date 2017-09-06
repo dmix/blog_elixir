@@ -1,33 +1,35 @@
-<%= active_link(@conn, "Home",     to: "/"        ) %>
-<%= active_link(@conn, "Blog",     to: "/blog"    ) %>
-<%= active_link(@conn, "Projects", to: "/projects") %>
-<%= active_link(@conn, "About",    to: "/about"   ) %>
+<menu class='primary-nav ma0 ph3'>
+  <%= active_link(@conn, "Home",     to: "/"        ) %>
+  <%= active_link(@conn, "Blog",     to: "/blog", active: [{BlogApp.Web.PostController, :any}]  ) %>
+  <%= active_link(@conn, "Projects", to: "/projects") %>
+  <%= active_link(@conn, "About",    to: "/about"   ) %>
+</menu>
 
 <%= if current_user = current_user(@conn) do %>
-    <div class='admin-nav'>
-        <h4>Admin</h4>
+    <ul class='admin-nav list ph3 mt7'>
+        <li class="db mb0 black-50">
+            <h4 class='dib mv3 black-70'>Admin</h4>
+            (<%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete, class: "link dark-green pv2" %>)
+        </li>
 
-        <p>
-            <%= link "Users", to: user_path(@conn, :index) %> /
-            <%= link "New User", to: user_path(@conn, :new) %>
-        </p>
-        <p>
-            <%= link "Posts", to: post_path(@conn, :index) %> /
-            <%= link "New Post", to: user_post_path(@conn, :new, current_user.id) %>
-        </p>
-        <p>
-            <%= link "Comments", to: comment_path(@conn, :index) %>
-        </p>
-        <p>
-            <%= link "Categories", to: category_path(@conn, :index) %> /
-            <%= link "New Category", to: category_path(@conn, :new) %>
-        </p>
-        <p>
-            <%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete %>
-        </p>
-    <div>
+        <li class="db mb2">
+            <%= link "Posts", to: post_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
+            <%= link "New", to: user_post_path(@conn, :new, current_user.id), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
+        </li>
+        <li class="db mb2">
+            <%= link "Users", to: user_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
+            <%= link "New", to: user_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
+        </li>
+        <li class="db mb2">
+            <%= link "Categories", to: category_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
+            <%= link "New", to: category_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
+        </li>
+        <li class="db mb2">
+            <%= link "Comments", to: comment_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
+        </li>
+    <ul>
 <% else %>
-    <p>
-        <%= link "Login", to: session_path(@conn, :new) %>
+    <p class='ph4 pv7 mt7'>
+        <%= link "Login", to: "/login", class: "link black-10 pv2" %>
     </p>
 <% end %>

@@ -2,25 +2,25 @@
 
 <h1 class='lh-title'>Listing Categories</h1>
 
-<table class='table w-100'>
+<table class='table admin-table'>
   <thead>
     <tr>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Name</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'> Description</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Icon</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'></th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Icon</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
 
   <tbody>
 <%= for category <- @categories do %>
     <tr>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.name %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.description %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= category.icon %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 tr'>
-        <%= link "Edit", to: category_path(@conn, :edit, category), class: "f6 link dim ba ph3 pv2 mb2 dib black" %>
-        <%= link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph3 pv2 mb2 dib purple" %>
+      <td><%= category.name %></td>
+      <td><%= category.description %></td>
+      <td><%= category.icon %></td>
+      <td class='tr'>
+        <%= link "Edit", to: category_path(@conn, :edit, category), class: "f6 link dim ba ph2 pv1 mb0 dib black-70" %>
+        <%= link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40" %>
       </td>
     </tr>
 <% end %>

@@ -1,26 +1,28 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if f.errors != [] do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below:</p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= message %></li>
+<%= form_for @changeset, @action, [class: "measure"],fn f -> %>
+    <fieldset id="sign_in" class="ba b--transparent ph0 mh0">
+        <%= if f.errors != [] do %>
+            <div class="alert alert-danger">
+                <p>Oops, something went wrong! Please check the errors below:</p>
+                <ul>
+                    <%= for {attr, message} <- f.errors do %>
+                        <li><%= humanize(attr) %> <%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
         <% end %>
-      </ul>
+
+        <div class="">
+            <label class='db fw4 lh-copy f6'>Username</label>
+            <%= text_input f, :username, class: "pa2 outline-0 input-reset ba bg-white b--black-50 br1 hover-black w-100" %>
+        </div>
+
+        <div class="mv3">
+            <label class='db fw4 lh-copy f6'>Password</label>
+            <%= password_input f, :password, class: "pa2 outline-0 input-reset ba bg-white b--black-50 br1 hover-black w-100" %>
+        </div>
+    </fieldset>
+
+    <div class="">
+        <%= submit "Submit", class: "b ph3 pv2 outline-0 input-reset ba b--black bg-transparent grow pointer f6 dib br1" %>
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <label>Username</label>
-    <%= text_input f, :username, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <label>Password</label>
-    <%= password_input f, :password, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "button primary" %>
-  </div>
 <% end %>

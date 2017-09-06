@@ -2,13 +2,14 @@
   <%= link "New post", to: user_post_path(@conn, :new, current_user.id), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
 <% end %>
 
-<h1 class='lh-title'>Posts</h1>
+<h1 class='lh-title'>Blog</h1>
 
 <%= for post <- @posts do %>
-  <div class="row post">
+  <hr>
+  <div class="row post lh-copy pb4">
     <div class="small-12 columns title">
-      <%= link to: post_path(@conn, :show, post.permalink) do %> 
-        <h3><%= post.title %></h3>
+      <%= link to: post_path(@conn, :show, post.permalink), class: "link dark-green" do %> 
+        <h2 class='lh-title'><%= post.title %></h2>
       <% end %>
     </div>
     <div class="small-12 columns">
@@ -26,9 +27,10 @@
       </small>
     </div>
 
-    <div class="small-12 columns">
+    <div class="f6 black-60">
       <%= markdown(post.body) %>
     </div>
+
     <%= if current_user(@conn) do %>
       <div class="small-12 medium-4 columns">
         <%= link "Show", to: post_path(@conn, :show, post.permalink), class: "button expanded" %>

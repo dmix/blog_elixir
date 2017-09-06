@@ -3,4 +3,6 @@
 <%= render "form.html", changeset: @changeset,
                         action: category_path(@conn, :create) %>
 
-<%= link "Back", to: category_path(@conn, :index) %>
+<div class="lh-copy mt3">
+    <%= link "Back", to: category_path(@conn, :index), class: "f6 link dim black db" %>
+</div>

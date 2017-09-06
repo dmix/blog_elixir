@@ -10,12 +10,10 @@
 		<div class='layout'>
 
             <!--   ### Sidebar ###   -->
-            <aside class='layout--sidebar bg-near-white w-100 w-20-l fn fl-ns br-l b--black-10'>
+            <aside class='layout--sidebar w-100 w-20-l fn fl-ns br-l b--black-10 shadow-side-1'>
 
                 <!--   Navigation  -->
-                <div class='ph4'>
-                    <%= component "layout_sidebar", conn: @conn %>
-                </div>
+                <%= component "layout_sidebar", conn: @conn %>
 
             </aside>
 

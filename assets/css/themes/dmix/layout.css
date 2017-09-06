@@ -23,12 +23,17 @@ menu {
     -webkit-margin-end: 0px;
     -webkit-padding-start: 0px;
 }
+
+.shadow-side-1 {
+    box-shadow: 3px 0 0 0 rgba(0, 0, 0, .02)
+}
+
 /* --------------------------------------------------------------------------*/
 /* Grid
 /* --------------------------------------------------------------------------*/
 
 .layout--sidebar {
     height: 100%;
-    min-height: 1280px;
+    min-height: 800px;
     margin-left: -1px;
 }

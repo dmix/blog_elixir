@@ -1,23 +1,31 @@
 <h1 class='lh-title'>Listing Comments</h1>
 
-<table class='table w-100'>
+<table class='table admin-table'>
   <thead>
     <tr>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Author</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Body</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'>Approved</th>
-      <th class='fw6 bb b--black-20 tl pv3 pr3 bg-white'></th>
+      <th>Author</th>
+      <th>Body</th>
+      <th>Approved</th>
     </tr>
   </thead>
   <tbody>
 <%= for comment <- @comments do %>
     <tr>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= comment.author %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= markdown(comment.body) %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30'><%= comment.approved %></td>
-      <td class='lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30 tr'>
-        <span><%= link "Approve", to: post_comment_path(@conn, :show, comment.post_id, comment), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: post_comment_path(@conn, :delete, comment.post_id, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      <td class=''><%= comment.author %></td>
+      <td class='w-50'><%= markdown(comment.body) %></td>
+      <td class='tr'>
+          <%= if comment.approved do %>
+            <%= link "Unapprove", to: post_comment_path(@conn, :show, comment.post_id, comment), 
+                                  class: "f6 link dim ba ph2 pv1 mb0 dib black-70" %>
+          <% else %>
+            <%= link "Approve", to: post_comment_path(@conn, :show, comment.post_id, comment), 
+                                class: "f6 link dim ba ph2 pv1 mb0 dib black-70" %>
+          <% end %>
+
+          <%= link "Delete", to: post_comment_path(@conn, :delete, comment.post_id, comment), 
+                             method: :delete, 
+                             data: [confirm: "Are you sure?"], 
+                             class: "f6 link dim ba ph2 pv1 mb0 dib black-40" %>
       </td>
     </tr>
 <% end %>

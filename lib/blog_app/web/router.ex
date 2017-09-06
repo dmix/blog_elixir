@@ -30,11 +30,12 @@ defmodule BlogApp.Web.Router do
 
     resources "/categories", CategoryController
 
-    resources "/users", UserController do
+    resources "/users", UserController, except: [:show] do
       resources "/blog", PostController
     end
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/login", SessionController, :new
 
     get "/:permalink", PostController, :show
   end
