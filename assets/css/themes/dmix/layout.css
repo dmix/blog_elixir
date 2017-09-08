@@ -4,7 +4,9 @@
 /*
 /* --------------------------------------------------------------------------*/
 
-
+@custom-media --breakpoint-not-small screen and (min-width: 30em);
+@custom-media --breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
+@custom-media --breakpoint-large screen and (min-width: 60em);
 /* --------------------------------------------------------------------------*/
 /* Base
 /* --------------------------------------------------------------------------*/
@@ -24,16 +26,38 @@ menu {
     -webkit-padding-start: 0px;
 }
 
-.shadow-side-1 {
-    box-shadow: 3px 0 0 0 rgba(0, 0, 0, .02)
+
+/* --------------------------------------------------------------------------*/
+/* Colors
+/* --------------------------------------------------------------------------*/
+
+.b--layout {
+    border-color: rgba(0,0,0,0.035);
 }
 
 /* --------------------------------------------------------------------------*/
 /* Grid
 /* --------------------------------------------------------------------------*/
 
+main {
+}
+
 .layout--sidebar {
     height: 100%;
-    min-height: 800px;
     margin-left: -1px;
 }
+
+@media (--breakpoint-large) {
+    .layout--sidebar {
+        min-height: 1200px;
+    }
+} 
+
+/* main { */
+/*   margin-left: 300px; */
+/*   min-height: 800px; */
+/* } */
+/* .layout--sidebar { */
+/*     position: fixed; */
+/* } */
+

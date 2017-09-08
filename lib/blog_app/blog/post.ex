@@ -18,6 +18,14 @@ defmodule BlogApp.Blog.Post do
   end
 
   @doc false
+  def summary(post) do
+    summary = post.body  
+              |> HtmlSanitizeEx.strip_tags
+              |> String.slice(0..300)
+    "#{summary}..."
+  end
+
+  @doc false
   def changeset(%Post{} = post, attrs) do
     post
     |> cast(attrs, [:title, :permalink, :body])

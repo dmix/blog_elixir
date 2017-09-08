@@ -9,32 +9,39 @@
 	<div class='clearfix border'>
 		<div class='layout'>
 
+            <!-- Mobile Search-->
+            <section class='layout--search dn-l dn-m db-ns w-100-ns fn bb b--layout'>
+              <%= component "layout_search", conn: @conn %>
+            </section>
+
             <!--   ### Sidebar ###   -->
-            <aside class='layout--sidebar w-100 w-20-l fn fl-ns br-l b--black-10 shadow-side-1'>
-
-                <!--   Navigation  -->
-                <%= component "layout_sidebar", conn: @conn %>
-
+            <aside class='layout--sidebar w-100 w-20-l w-30-m w-100-ns fn fl-ns br b--layout shadow-side-1'>
+                <div class='ph3'>
+                  <!--   Navigation  -->
+                  <%= component "layout_sidebar", conn: @conn %>
+                </div>
             </aside>
 
             <!--   ### Main ###   -->
-            <main class='layout--main w-100 w-80-l fn fl-ns'>
+            <main class='layout--main w-100 w-80-l w-70-m w-100-ns fn fl-ns'>
 
                 <!--   Alerts   -->
-                <%= component "layout_alert", conn: @conn %>
+                <section class='layout--alerts w-100-l fn'>
+                  <%= component "layout_alert", conn: @conn %>
+                </section>
 
                 <!--   Search-->
-                <section class='layout--search w-100-l fn fl-ns'>
+                <section class='layout--search db-l db-m dn db-l db-m w-100 fn bb b--layout'>
                   <%= component "layout_search", conn: @conn %>
                 </section>
 
                 <!--   Content   -->
-                <section class='layout--content w-75-l fn fl-ns pv4 ph4'>
+                <section class='layout--content w-100 w-80-l fn fl-ns pv4 ph3 ph5-l ph4-m'>
                     <%= render @view_module, @view_template, assigns %>
                 </section>
 
                 <!--   Buffer   -->
-                <aside class='layout--buffer w-100 w-25-l fn fl-ns'>
+                <aside class='layout--buffer w-20-l mw1-m db-l dn-m dn-ns fn fl-ns'>
                   <br>
                 </aside>
 

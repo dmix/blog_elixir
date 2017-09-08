@@ -1,4 +1,4 @@
-<div class="row alerts cb" >
+<div class="row alerts" >
     <%= if flash = get_flash(@conn, :info) do %>
         <div class="alert f6 bg-light-gray b--gray tc pa3 ba black-80" role="alert">
             <%= flash %>

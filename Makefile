@@ -12,11 +12,16 @@ FONTS_DIR=$(ASSETS_DIR)/static/fonts
 # -- Helpers
 
 dev:
-	@tmux split-window -v 'make test' \; \
-		  last-pane 				  \; \
-		  resize-pane -y 15
-	@make server
-	
+	@tmux \
+         rename-window "terminal"                 \; \
+         new-window -n "editor" -d "nvim"         \; \
+         new-window -n "test" "cd test && nvim"   \; \
+         split-window -h "make test"              \; \
+		 split-window -v "make server"            \; \
+         resize-pane -y 20                        \; \
+         select-pane -L                           \; \
+         select-window -t "editor"
+
 repl:
 	@iex -S mix
 
@@ -47,7 +52,7 @@ install-npm:
 install: install-npm install-fonts 
 	@mix deps.get
 	@mix ecto.setup
-
+	@chmod +x ./bin/*
 
 # -- Makefile 
 

@@ -1,20 +1,21 @@
 <article class='blog-post'>
-    <h1 class='lh-title'>
+    <h1 class='blog-post--title lh-title f1'>
         <%= @post.title %>
     </h1>
 
-    <h4>
-        <%= @post.user.username %>
-    </h4>
+    <div class='blog-post--details f6'>
+        <span class='blog-post--author gray'>
+        </span>
+        --
+        <span class='blog-post--categories gray'>
+            Categories:
+            <%= for category <- @post.categories do %>
+              <a href='/blog/<%= category.name %>'><%= category.name %></a>
+            <% end %>
+        </span>
+    </div>
 
-    <small>
-        Categories:
-        <%= for category <- @post.categories do %>
-            <%= category.name %>,
-        <% end %>
-    </small>
-
-    <hr>
-    <%= markdown(@post.body) %>
-    <hr>
+    <div class='blog-post--body lh-copy f4 mv4 black-80'>
+        <%= markdown(@post.body) %>
+    </div>
 </article>

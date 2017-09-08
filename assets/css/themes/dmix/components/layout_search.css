@@ -1,11 +1,22 @@
+.layout--search {
+}
+.layout--search:hover {
+    /* transform:scale(1.1) translateX(55px); */
+}
+
+.search--form:hover ::-webkit-input-placeholder {
+    color: var(--black-50);
+}
+
 .search--icon {
     position: relative;
-    left: 2.5rem;
-    top: 12px;
+    left: 2.3rem;
+    top: 13px;
     width: 0;
     float: left;
 }
 
 .search--input {
-    padding-left: 4.5rem;
+    /* padding-left: 4.5rem; */
 }
+

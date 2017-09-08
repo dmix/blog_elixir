@@ -5,42 +5,5 @@
 <h1 class='lh-title'>Blog</h1>
 
 <%= for post <- @posts do %>
-  <hr>
-  <div class="row post lh-copy pb4">
-    <div class="small-12 columns title">
-      <%= link to: post_path(@conn, :show, post.permalink), class: "link dark-green" do %> 
-        <h2 class='lh-title'><%= post.title %></h2>
-      <% end %>
-    </div>
-    <div class="small-12 columns">
-      <small>
-        Posted on <%= post.inserted_at %> by <%= link post.user.username, to: post_path(@conn, :index) %>
-      </small>
-    </div>
-
-    <div class="small-12 columns">
-      <small>
-        Categories: 
-        <%= for category <- post.categories do %>
-          <%= category.name %>,
-        <% end %>
-      </small>
-    </div>
-
-    <div class="f6 black-60">
-      <%= markdown(post.body) %>
-    </div>
-
-    <%= if current_user(@conn) do %>
-      <div class="small-12 medium-4 columns">
-        <%= link "Show", to: post_path(@conn, :show, post.permalink), class: "button expanded" %>
-      </div>
-      <div class="small-12 medium-4 columns">
-        <%= link "Edit", to: user_post_path(@conn, :edit, post.user, post), class: "button warning expanded" %>
-      </div>
-      <div class="small-12 medium-4 columns">
-        <%= link "Delete", to: user_post_path(@conn, :delete, post.user, post), method: :delete, data: [confirm: "Are you sure?"], class: "button alert expanded" %>
-      </div>
-    <% end %>
-  </div>
+  <%= component "blog_list", conn: @conn, post: post %>
 <% end %>

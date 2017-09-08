@@ -6,6 +6,17 @@
 
 
 /* --------------------------------------------------------------------------*/
-/* Title */
+/* Type */
 /* --------------------------------------------------------------------------*/
 
+.blog-post--body p {
+    font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+    font-family: Merriweather;
+    font-family: "Droid Serif";
+    font-family: "Libre Baskerville";
+    font-family: "Noto Serif";
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+}

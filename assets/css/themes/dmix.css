@@ -22,11 +22,8 @@
 @import 'dmix/typography';
 
 @import 'dmix/components/layout_navigation';
-@import 'dmix/components/layout_sidebar';
-@import 'dmix/components/layout_footer';
 @import 'dmix/components/layout_search';
 
-@import 'dmix/components/content_home';
 @import 'dmix/components/content_page';
 
 @import 'dmix/components/blog_post';

@@ -39,6 +39,8 @@ defmodule BlogApp.Mixfile do
      {:postgrex, "~> 0.13"},
      {:phoenix_html, "~> 2.10"},
      {:phoenix_active_link, "~> 0.1"},
+     {:html_sanitize_ex, "~> 1.3.0-rc3"},
+     {:timex, "~> 3.1"},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
      {:comeonin, "~> 4.0"},
@@ -49,7 +51,7 @@ defmodule BlogApp.Mixfile do
      {:mix_test_watch, "~> 0.3",      only: [:dev, :test], runtime: false},
      {:distillery, "~> 1.4",          only: [:dev],        runtime: false},
      {:credo, "~> 0.8",               only: [:dev, :test], runtime: false},
-     {:faker, "~> 0.8",               only: [:dev, :test]},
+     {:faker, "~> 0.9",               only: [:dev, :test]},
      {:exfmt, git: "https://github.com/lpil/exfmt.git", only: [:dev, :test]},
      {:dialyxir, "~> 0.5",            only: [:dev], runtime: false},
      {:wallaby, "~> 0.19.0",          only: [:test]}]

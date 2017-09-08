@@ -42,6 +42,10 @@ defmodule BlogApp.Blog do
     |> Repo.preload(:user, :categories)
   end
 
+  def last_post do
+    Repo.one(from x in Post, order_by: [desc: x.id], limit: 1)
+  end
+
   @doc """
   Gets a single post.
 

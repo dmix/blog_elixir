@@ -85,22 +85,22 @@ admin_role  = find_or_create_role.(%Role{name: "Admin Role", admin: true})
 IO.puts "Creating Admins..."
 
 _admin_user = find_or_create_user.(%{
-  username: "admin", 
-  email: "admin@test.com", 
-  bio: "My bio", 
-  name: "Admin", 
-  password: "test", 
-  password_confirmation: "test", 
+  username: "admin",
+  email: "admin@test.com",
+  bio: "My bio",
+  name: "Admin",
+  password: "test",
+  password_confirmation: "test",
   role_id: admin_role.id
 })
 
 dmix_user = find_or_create_user.(%{
-  username: "dmix", 
-  email: "dan@dmix.ca", 
-  bio: "My bio", 
-  name: "Dan McGrady", 
-  password: "test", 
-  password_confirmation: "test", 
+  username: "dmix",
+  email: "dan@dmix.ca",
+  bio: "My bio",
+  name: "Dan McGrady",
+  password: "test",
+  password_confirmation: "test",
   role_id: admin_role.id
 })
 
@@ -113,7 +113,7 @@ new_category = fn name, permalink ->
   %Category{
     name: name,
     permalink: permalink,
-    description: "This is an example description", 
+    description: "This is an example description",
     icon: "book"
   }
 end
@@ -133,11 +133,17 @@ Enum.map(categories, find_or_create_category)
 # ----------------------------------------------------------------------------
 
 new_post = fn ->
-  body = Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "</p><p>")
+  body = """
+  <p>
+  #{Faker.Lorem.paragraphs(%Range{first: 1, last: 4})}</p> <p>
+  #{Faker.Lorem.paragraphs(%Range{first: 1, last: 4})}</p> <p>
+  #{Faker.Lorem.paragraphs(%Range{first: 1, last: 4})}</p> <p>
+  #{Faker.Lorem.paragraphs(%Range{first: 1, last: 4})}</p>
+  """
   %Post{
       title: String.capitalize(Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " ")),
       permalink: Faker.Internet.slug,
-      body: "<p>#{body}</p>"
+      body: body,
       user: dmix_user
   }
 end
@@ -154,6 +160,7 @@ post_5 = find_or_create_post.(new_post.())
 IO.puts "Creating Post Categories..."
 
 Blog.append_categories(post_1, ["Startups"])
+Blog.append_categories(post_1, ["Toronto"])
 Blog.append_categories(post_2, ["Startups"])
 Blog.append_categories(post_3, ["Toronto"])
 Blog.append_categories(post_4, ["UX Design"])

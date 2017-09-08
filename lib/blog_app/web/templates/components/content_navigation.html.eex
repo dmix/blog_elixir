@@ -1,4 +1,4 @@
-<menu class='primary-nav ma0 ph3'>
+<menu class='primary-nav ma0'>
   <%= active_link(@conn, "Home",     to: "/"        ) %>
   <%= active_link(@conn, "Blog",     to: "/blog", active: [{BlogApp.Web.PostController, :any}]  ) %>
   <%= active_link(@conn, "Projects", to: "/projects") %>
@@ -6,7 +6,7 @@
 </menu>
 
 <%= if current_user = current_user(@conn) do %>
-    <ul class='admin-nav list ph3 mt7'>
+    <ul class='admin-nav list pa0 mt7'>
         <li class="db mb0 black-50">
             <h4 class='dib mv3 black-70'>Admin</h4>
             (<%= link "Logout", to: session_path(@conn, :delete, current_user.id), method: :delete, class: "link dark-green pv2" %>)
@@ -29,7 +29,7 @@
         </li>
     <ul>
 <% else %>
-    <p class='ph4 pv7 mt7'>
+    <p class='ph4 '>
         <%= link "Login", to: "/login", class: "link black-10 pv2" %>
     </p>
 <% end %>

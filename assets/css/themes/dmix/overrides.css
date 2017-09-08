@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------*/
 /*
-/*                               DMIX: Overrides 
+/*                               DMIX: Overrides
 /*
 /* --------------------------------------------------------------------------*/
 
@@ -8,6 +8,18 @@
 /* --------------------------------------------------------------------------*/
 /* Tachyon */
 /* --------------------------------------------------------------------------*/
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--black-30);
+}
+::-moz-placeholder {
+  color: var(--black-30);
+}
+
+.shadow-side-1 {
+    box-shadow: 3px 0 0 0 rgba(0, 0, 0, .01);
+    box-shadow: none;
+}
 
 .sans-serif {
     font-family: 'Open Sans', sans-serif;
@@ -29,3 +41,4 @@
 .b--black-10 {
     border-color: rgba(0,0,0,0.08);
 }
+

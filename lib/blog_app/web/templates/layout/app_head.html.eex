@@ -18,7 +18,7 @@
 
 <!-- ASSETS -->
 <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|PT+Sans:400,700|Droid+Sans:400,700|Open+Sans:400,700|Roboto:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|PT+Sans:400,700|Droid+Sans:400,700|Open+Sans:400,700|Roboto:400,700|Droid+Serif|Merriweather|Libre+Baskerville|Noto+Serif" rel="stylesheet">
 
 <!-- TOKEN -->
 <%= if current_user = current_user(@conn) do %>

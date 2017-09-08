@@ -30,7 +30,7 @@ defmodule BlogApp.Web.UserControllerTest do
     end
 
     test "creating user requires authentication", %{conn: conn} do
-      conn = post conn, user_path(conn, :create), user: %{}
+      conn = post conn, user_path(conn, :create), user: valid_attrs()
       assert conn.halted == true
       assert html_response(conn, 302)
     end
@@ -90,7 +90,7 @@ defmodule BlogApp.Web.UserControllerTest do
       user = fixture(:user)
       updated = update_attrs()
       conn = put conn, user_path(conn, :update, user), user: updated
-      assert redirected_to(conn) == user_path(conn, :show, user)
+      assert redirected_to(conn) == user_path(conn, :index)
 
       conn = get conn, user_path(conn, :index)
       assert html_response(conn, 200) =~ updated.username
