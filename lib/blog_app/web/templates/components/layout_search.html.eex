@@ -1,26 +1,26 @@
-<form class='search--form black-20 hover-black-60 pointer'>
+<form class='search--form black-20 hover-black-40 pointer'>
     <fieldset class='cf bn ma0 pa0'>
         <div class='cf'>
             <label class='clip' for='email-address'>
                 Search
             </label>
             <div class='search--icon
-                        f5
+                        f4
                         '>
                 <i class='fa fa-search' aria-hidden='true'></i>
             </div>
             <input
                 class='search--input
-                       f6 f6-l fl
+                       f6 f5-l fl
                        dib
                        input-reset bn
                        black-80 bg-white
-                       pa3 ph5
+                       pa3 ph5 mv1
                        outline-0
                        pointer
                        lh-solid
                        w-100 br0'
-                placeholder='Search blog posts, categories, etc...'
+                placeholder='Search blog, categories, etc...'
                 type='text'
                 name='search'
                 value=''

@@ -1,6 +1,11 @@
-<div class="db tc">
-    <img src="http://tachyons.io/img/logo.jpg" class="br-100 ba h3 w3" alt="avatar">
-</div>
-<a href="<%= page_path(@conn, :index) %>" class='logo black link f2 b db tc'>
-    dmix
+<a href="<%= page_path(@conn, :index) %>" class='db cb'>
+    <div class="content--logo db tc h3 mb2 flex  items-center">
+        <div style='background-image:url("http://tachyons.io/img/logo.jpg")' 
+             class='content--logo-avatar br-100 ba h3 w3 mr2 bg-black dib db-m' 
+             alt="dmix - Dan McGrady">
+        </div>
+        <div class='content--logo-name logo dib black link f2 bc'>
+            dmix
+        </div>
+    </div>
 </a>

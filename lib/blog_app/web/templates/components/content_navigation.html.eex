@@ -1,4 +1,4 @@
-<menu class='primary-nav ma0'>
+<menu class='content--navigation ma0'>
   <%= active_link(@conn, "Home",     to: "/"        ) %>
   <%= active_link(@conn, "Blog",     to: "/blog", active: [{BlogApp.Web.PostController, :any}]  ) %>
   <%= active_link(@conn, "Projects", to: "/projects") %>
@@ -30,6 +30,10 @@
     <ul>
 <% else %>
     <p class='ph4 '>
-        <%= link "Login", to: "/login", class: "link black-10 pv2" %>
+        <% link "Login", to: "/login", class: "link black-10 pv2" %>
     </p>
-<% end %>
+  <% end %>
+  <div class='black-30 f6 mt4'>
+    <p class='ph4'>
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+  </div>

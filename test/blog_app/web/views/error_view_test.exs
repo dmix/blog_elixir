@@ -1,7 +1,7 @@
 defmodule BlogApp.Web.ErrorViewTest do
   use BlogApp.Web.ConnCase, async: true
 
-  import Phoenix.Web.View
+  import Phoenix.View
 
   test "renders 404.html" do
     assert render_to_string(BlogApp.Web.ErrorView, "404.html", []) ==

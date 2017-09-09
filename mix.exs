@@ -49,6 +49,7 @@ defmodule BlogApp.Mixfile do
      {:earmark, "~> 1.2"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev]},
      {:mix_test_watch, "~> 0.3",      only: [:dev, :test], runtime: false},
+     {:ex_unit_notifier, "~> 0.1",    only: :test},
      {:distillery, "~> 1.4",          only: [:dev],        runtime: false},
      {:credo, "~> 0.8",               only: [:dev, :test], runtime: false},
      {:faker, "~> 0.9",               only: [:dev, :test]},

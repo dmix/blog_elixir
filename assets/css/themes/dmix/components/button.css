@@ -1,0 +1,19 @@
+
+.button {
+}
+
+.button:hover {
+}
+
+.button:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.button:active {
+    background-color: var(--black-0125);
+    position: relative;
+    top: 1px;
+    box-shadow: inset 0px 1px 1px var(--black-05);
+}
+

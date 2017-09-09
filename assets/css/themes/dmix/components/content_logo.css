@@ -1,0 +1,13 @@
+.content--logo {
+    margin: auto;
+    width: 10rem;
+}
+
+.content--logo-avatar {
+    background-size: contain;
+}
+
+.content--logo-name {
+    line-height: 0.75rem;
+    width: 5rem;
+}

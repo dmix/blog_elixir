@@ -9,6 +9,10 @@
 /* Base */
 /* --------------------------------------------------------------------------*/
 
+.f8 {
+    font-size: 0.5rem;
+}
+
 article a:hover, p a:hover {
   text-decoration:underline
 }

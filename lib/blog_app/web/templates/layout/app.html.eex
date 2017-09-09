@@ -15,35 +15,63 @@
             </section>
 
             <!--   ### Sidebar ###   -->
-            <aside class='layout--sidebar w-100 w-20-l w-30-m w-100-ns fn fl-ns br b--layout shadow-side-1'>
-                <div class='ph3'>
+            <aside class='layout--sidebar w-100 w-25-l w-30-m w-100-ns fn fl-ns br b--layout shadow-side-1'>
+                <div class='ph4-l ph3-m ph3-ns'>
                   <!--   Navigation  -->
                   <%= component "layout_sidebar", conn: @conn %>
                 </div>
             </aside>
 
             <!--   ### Main ###   -->
-            <main class='layout--main w-100 w-80-l w-70-m w-100-ns fn fl-ns'>
+            <main class='layout--main w-100 w-75-l w-70-m w-100-ns fn fl-ns'>
 
                 <!--   Alerts   -->
                 <section class='layout--alerts w-100-l fn'>
                   <%= component "layout_alert", conn: @conn %>
                 </section>
 
-                <!--   Search-->
+                <!--   Search   -->
                 <section class='layout--search db-l db-m dn db-l db-m w-100 fn bb b--layout'>
                   <%= component "layout_search", conn: @conn %>
                 </section>
+
+                <%= if assigns[:sidebar] do %>
+                  <!--   Sidebar  -->
+                  <aside class='layout--subnav w-20-l mw1-m dn db-l dn-m dn-ns fn fl-ns b--layout br'>
+
+                    <div class='ph3 pt2' style='min-height:1000px'>
+                        <div class='list mt5'>
+                            <!-- div class='bt b--black-10'>
+                                <a href='/blog' class='link button db pv3 ph1 f6 black'>
+                                  All
+                                </a>
+                            </div -->
+                            <%= for category <- @categories do %>
+                                <div class='bt b--black-10'>
+                                    <!-- <a href='#' class='bg-white ph3 pv2 cb db lh-copy f6 bt bl bb b--black-10 black-40'><%= category %></a> -->
+                                    <a href='/blog/<%= category %>' class='link button db pv3 ph1 f6 black-80 <%= if category == "Startups" do %>b<% end %>'>
+                                        <%= category %> 
+                                        <div class='count fr br-pill  <%= if category == "Startups" do %>bg-green<% else %>bg-black-60<% end %> dib pa1 f8 tc white'>10</div>
+                                    </a>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+
+                  </aside>
+                <% end %>
 
                 <!--   Content   -->
                 <section class='layout--content w-100 w-80-l fn fl-ns pv4 ph3 ph5-l ph4-m'>
                     <%= render @view_module, @view_template, assigns %>
                 </section>
 
-                <!--   Buffer   -->
-                <aside class='layout--buffer w-20-l mw1-m db-l dn-m dn-ns fn fl-ns'>
-                  <br>
-                </aside>
+                <%= if !assigns[:sidebar] do %>
+                  <!--   Buffer   -->
+                  <aside class='layout--buffer w-20-l mw1-m db-l dn-m dn-ns fn fl-ns'>
+                    <br>
+                  </aside>
+                <% end %>
 
             </main>
 

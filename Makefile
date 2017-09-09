@@ -12,15 +12,7 @@ FONTS_DIR=$(ASSETS_DIR)/static/fonts
 # -- Helpers
 
 dev:
-	@tmux \
-         rename-window "terminal"                 \; \
-         new-window -n "editor" -d "nvim"         \; \
-         new-window -n "test" "cd test && nvim"   \; \
-         split-window -h "make test"              \; \
-		 split-window -v "make server"            \; \
-         resize-pane -y 20                        \; \
-         select-pane -L                           \; \
-         select-window -t "editor"
+	@tmuxp load .tmuxp.yaml
 
 repl:
 	@iex -S mix

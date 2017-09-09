@@ -2,7 +2,7 @@
 <div class="row post lh-copy pv2">
 
   <div class="blog-list--title title mb2">
-      <%= link @post.title, to: post_path(@conn, :show, @post.permalink), class: "title b link underline-hover black-80 f4" %>
+      <%= link @post.title, to: post_path(@conn, :show, @post.permalink), class: "title b link underline-hover black-80 f3" %>
   </div>
 
   <div class="blog-list--categories f7 black-30">

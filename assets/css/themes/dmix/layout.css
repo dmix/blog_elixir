@@ -4,6 +4,8 @@
 /*
 /* --------------------------------------------------------------------------*/
 
+@import "colors";
+
 @custom-media --breakpoint-not-small screen and (min-width: 30em);
 @custom-media --breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
 @custom-media --breakpoint-large screen and (min-width: 60em);
@@ -45,6 +47,11 @@ main {
 .layout--sidebar {
     height: 100%;
     margin-left: -1px;
+}
+
+.layout--subnav {
+    min-height: 1000px;
+    margin-right:-1px
 }
 
 @media (--breakpoint-large) {

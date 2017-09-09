@@ -1,0 +1,28 @@
+@import "../colors";
+
+.content--navigation .inactive {
+    border-left: 3px solid var(--black-0125);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    color: var(--black-60);
+}
+
+.content--navigation .inactive:hover {
+    color: var(--black-80);
+}
+
+.content--navigation .inactive:active {
+    color: var(--black-70);
+}
+
+.content--navigation .inactive:focus {
+}
+
+.content--navigation .active {
+    color: var(--black-80);
+    border-left: 3px solid var(--green);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

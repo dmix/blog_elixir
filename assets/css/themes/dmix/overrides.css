@@ -10,10 +10,10 @@
 /* --------------------------------------------------------------------------*/
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: var(--black-30);
+  color: var(--black-20);
 }
 ::-moz-placeholder {
-  color: var(--black-30);
+  color: var(--black-20);
 }
 
 .shadow-side-1 {

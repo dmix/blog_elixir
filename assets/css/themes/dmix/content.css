@@ -30,6 +30,11 @@ hr {
     height: 1px;
 }
 
+.count {
+    position: relative;
+    top: -2px;
+}
+
 .help-block {
     font-size:.875rem;
     color:var(--black-60);
