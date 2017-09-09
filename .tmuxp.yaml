@@ -1,0 +1,16 @@
+session_name: blog
+start_directory: ~/dev/_elixir/blog_app
+windows:
+  - window_name: test
+    layout: main-vertical
+    panes:
+      - nvim 
+      - make test
+      - make server
+  - window_name: editor
+    focus: true
+    panes:
+      - nvim
+  - window_name: terminal
+    panes:
+      - pane
