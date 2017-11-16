@@ -5,6 +5,9 @@
 
     <div class='blog-post--details f6'>
         <span class='blog-post--author gray'>
+            By <span class='ttu'><%= @post.user.name %></span>
+            --
+            <%= short_date(@post.inserted_at) %>
         </span>
         --
         <span class='blog-post--categories gray'>

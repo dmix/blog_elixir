@@ -11,7 +11,7 @@
 
             <!-- Mobile Search-->
             <section class='layout--search dn-l dn-m db-ns w-100-ns fn bb b--layout'>
-              <%= component "layout_search", conn: @conn %>
+                <%= component "layout_search", conn: @conn %>
             </section>
 
             <!--   ### Sidebar ###   -->
@@ -27,36 +27,21 @@
 
                 <!--   Alerts   -->
                 <section class='layout--alerts w-100-l fn'>
-                  <%= component "layout_alert", conn: @conn %>
+                    <%= component "layout_alert", conn: @conn %>
                 </section>
 
                 <!--   Search   -->
                 <section class='layout--search db-l db-m dn db-l db-m w-100 fn bb b--layout'>
-                  <%= component "layout_search", conn: @conn %>
+                    <%= component "layout_search", conn: @conn %>
                 </section>
 
                 <%= if assigns[:sidebar] do %>
                   <!--   Sidebar  -->
                   <aside class='layout--subnav w-20-l mw1-m dn db-l dn-m dn-ns fn fl-ns b--layout br'>
 
-                    <div class='ph3 pt2' style='min-height:1000px'>
-                        <div class='list mt5'>
-                            <!-- div class='bt b--black-10'>
-                                <a href='/blog' class='link button db pv3 ph1 f6 black'>
-                                  All
-                                </a>
-                            </div -->
-                            <%= for category <- @categories do %>
-                                <div class='bt b--black-10'>
-                                    <!-- <a href='#' class='bg-white ph3 pv2 cb db lh-copy f6 bt bl bb b--black-10 black-40'><%= category %></a> -->
-                                    <a href='/blog/<%= category %>' class='link button db pv3 ph1 f6 black-80 <%= if category == "Startups" do %>b<% end %>'>
-                                        <%= category %> 
-                                        <div class='count fr br-pill  <%= if category == "Startups" do %>bg-green<% else %>bg-black-60<% end %> dib pa1 f8 tc white'>10</div>
-                                    </a>
-                                </div>
-                            <% end %>
-                        </div>
-                    </div>
+                      <div class='ph3 pt2' style='min-height:1000px'>
+                          <%= component "category_list", conn: @conn, categories: @categories, selected_category: @category %>
+                      </div>
 
                   </aside>
                 <% end %>
@@ -67,10 +52,10 @@
                 </section>
 
                 <%= if !assigns[:sidebar] do %>
-                  <!--   Buffer   -->
-                  <aside class='layout--buffer w-20-l mw1-m db-l dn-m dn-ns fn fl-ns'>
-                    <br>
-                  </aside>
+                    <!--   Buffer   -->
+                    <aside class='layout--buffer w-20-l mw1-m db-l dn-m dn-ns fn fl-ns'>
+                        <br>
+                    </aside>
                 <% end %>
 
             </main>

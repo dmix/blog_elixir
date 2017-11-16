@@ -27,8 +27,8 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :phoenix_active_link, :defaults,
-  class_active:   "active   button link black b--black-05 b ba br1 f6 f5-ns dib w-100 pv3 ph4 mb1",
-  class_inactive: "inactive button link black b--black-05   ba br1 f6 f5-ns dib w-100 pv3 ph4 mb1",
+  class_active:   "active   button link black b--black-05 b ba br1 f6 f5-ns dib w-100 pv3 ph4",
+  class_inactive: "inactive button link black b--black-05   ba br1 f6 f5-ns dib w-100 pv3 ph4",
   active: :inclusive
 
 if Mix.env == :dev do
@@ -46,3 +46,7 @@ if Mix.env == :dev do
               ~r/deps\/.*/,
               ~r/assets\/.*/]
 end
+
+config :phoenix, :template_engines,
+  slim: PhoenixSlime.Engine,
+  slime: PhoenixSlime.Engine

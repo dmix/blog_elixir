@@ -1,8 +1,7 @@
 <menu class='content--navigation ma0'>
-  <%= active_link(@conn, "Home",     to: "/"        ) %>
-  <%= active_link(@conn, "Blog",     to: "/blog", active: [{BlogApp.Web.PostController, :any}]  ) %>
-  <%= active_link(@conn, "Projects", to: "/projects") %>
-  <%= active_link(@conn, "About",    to: "/about"   ) %>
+  <%= for [name, route, controller ]<- navigation do %>
+    <%= active_link(@conn, name, to: route, active: controller) %>
+  <% end %>
 </menu>
 
 <%= if current_user = current_user(@conn) do %>
@@ -16,14 +15,17 @@
             <%= link "Posts", to: post_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
             <%= link "New", to: user_post_path(@conn, :new, current_user.id), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
         </li>
+
         <li class="db mb2">
             <%= link "Users", to: user_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
             <%= link "New", to: user_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
         </li>
+
         <li class="db mb2">
             <%= link "Categories", to: category_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
             <%= link "New", to: category_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc" %>
         </li>
+
         <li class="db mb2">
             <%= link "Comments", to: comment_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc" %>
         </li>
@@ -32,8 +34,9 @@
     <p class='ph4 '>
         <% link "Login", to: "/login", class: "link black-10 pv2" %>
     </p>
-  <% end %>
-  <div class='black-30 f6 mt4'>
-    <p class='ph4'>
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-  </div>
+<% end %>
+
+<div class='black-30 f6 mt4'>
+  <p class='ph4'>
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+</div>

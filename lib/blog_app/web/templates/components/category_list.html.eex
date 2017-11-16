@@ -1,0 +1,34 @@
+<div class='list mt5'>
+    <div class='bt b--black-05'>
+        <a href='/blog' class='link button db pv3 ph0 f6 black <%= if !assigns[:selected_category] do %>b<% end %>'>
+            All Categories
+            <div class='count fr br-pill  
+                        dib pa1 f8 tc 
+                        <%= if !assigns[:selected_category] do %>
+                            bg-green white
+                        <% else %>
+                            bg-black-60 white
+                        <% end %> '>
+                10
+            </div>
+        </a>
+    </div>
+
+    <%= for category <- @categories do %>
+        <div class='bt b--black-05'>
+            <a href='/blog/<%= category %>' 
+               class='link button db pv3 ph0 f6 black-80 <%= if category == @selected_category do %>b<% end %>'>
+                <%= category %> 
+                <div class='count fr br-pill  
+                            dib pa1 f8 tc 
+                            <%= if category == @selected_category do %>
+                                bg-green white
+                            <% else %>
+                                bg-black-60 white
+                            <% end %> '>
+                    10
+                </div>
+            </a>
+        </div>
+    <% end %>
+</div>

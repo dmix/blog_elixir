@@ -37,7 +37,7 @@ config :blog_app, BlogApp.Web.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/blog_app/web/views/.*(ex)$},
-      ~r{lib/blog_app/web/templates/.*(eex)$}
+      ~r{lib/blog_app/web/templates/.*(eex|slim|slime)$}
     ]
   ]
 

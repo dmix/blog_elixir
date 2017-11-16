@@ -313,6 +313,12 @@ defmodule BlogApp.Blog do
              select: c.name)
   end
 
+  def list_category_counts do
+    categories = Repo.all(Category)
+                 |> Repo.preload(:post)
+    categories
+  end
+
   @doc """
   Gets a single category.
 

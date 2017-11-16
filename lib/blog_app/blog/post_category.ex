@@ -17,6 +17,7 @@ defmodule BlogApp.Blog.PostCategory do
     |> unique_constraint(:post_id, name: :post_categories_id_index)
   end
 end
+
 # # Create the user. Note that the (empty) `organizations` field has to be preloaded.
 # user_map = %{display_name: "User 1", login_name: "1@y.com", password: "password"}
 # changeset = User.password_setting_changeset(%User{}, user_map)

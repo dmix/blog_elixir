@@ -12,7 +12,7 @@ defmodule BlogApp.Web.PostController do
     category = Blog.get_category_by_name!(category_name)
     if category do
       posts = Blog.list_category_posts(category.id)
-      render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true)
+      render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true, category: category_name)
     else
       conn
     end
@@ -23,7 +23,7 @@ defmodule BlogApp.Web.PostController do
     if conn.assigns[:user] do
       user = Ecto.assoc(conn.assigns[:user], :posts)
       posts = Blog.list_posts(user)
-      render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true)
+      render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true, category: nil)
     else
       conn
     end
@@ -31,7 +31,7 @@ defmodule BlogApp.Web.PostController do
 
   def index(conn, _params) do
     posts = Blog.list_posts
-    render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true)
+    render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true, category: nil)
   end
 
   def new(conn, _params) do

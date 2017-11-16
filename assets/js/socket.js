@@ -1,6 +1,4 @@
-// Import the socket library
 import { Socket } from 'phoenix'
-// And import jquery for DOM manipulation
 import $ from 'jquery'
 
 // Grab the user's token from the meta tag
@@ -11,9 +9,9 @@ const socket = new Socket('/socket', { params: { token: userToken } })
 socket.connect()
 
 // Our actions to listen for
-const CREATED_COMMENT = 'CREATED_COMMENT'
+const CREATED_COMMENT  = 'CREATED_COMMENT'
 const APPROVED_COMMENT = 'APPROVED_COMMENT'
-const DELETED_COMMENT = 'DELETED_COMMENT'
+const DELETED_COMMENT  = 'DELETED_COMMENT'
 
 // REQ 1: Grab the current post's id from a hidden input on the page
 const postId = $('#post-id').val()
@@ -49,6 +47,7 @@ const createComment = payload => `
         </div>
     </div>
 `
+
 // REQ 3: Provide the comment's author from the form
 const getCommentAuthor = () => $('#comment_author').val()
 // REQ 4: Provide the comment's body from the form

@@ -4,7 +4,7 @@ defmodule BlogApp.Web.UserController do
   alias BlogApp.Accounts
 
   plug :authorize_admin when action in [:index, :new, :create]
-  plug :authorize_user when action in [:edit, :update, :delete]
+  plug :authorize_user  when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
     users = Accounts.list_users()

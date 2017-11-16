@@ -1,9 +1,11 @@
 <%= if current_user = current_user(@conn) do %>
-  <%= link "New post", to: user_post_path(@conn, :new, current_user.id), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
+    <%= link "New post", to: user_post_path(@conn, :new, current_user.id), class: "fr f6 link dim ba ph3 pv2 mb2 dib black" %>
 <% end %>
 
-<h1 class='lh-title ttu '>Blog</h1>
+<h1 class='lh-title ttu '>
+    Blog<%= if assigns[:category] do %><span class='black-30'>: <%= @category %></span><% end %>
+</h1>
 
 <%= for post <- @posts do %>
-  <%= component "blog_list", conn: @conn, post: post %>
+    <%= component "blog_list", conn: @conn, post: post %>
 <% end %>
