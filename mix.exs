@@ -36,7 +36,7 @@ defmodule BlogApp.Mixfile do
     [{:phoenix,             "~> 1.3"},
      {:phoenix_pubsub,      "~> 1.0"},
      {:phoenix_ecto,        "~> 3.2"},
-     {:phoenix_slime,       "~> 0.8.0"},
+     {:phoenix_slime,       "~> 0.9.0"},
      {:postgrex,            "~> 0.13"},
      {:phoenix_html,        "~> 2.10"},
      {:phoenix_active_link, "~> 0.1"},

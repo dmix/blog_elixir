@@ -19,7 +19,7 @@ defmodule BlogApp.Blog.Post do
 
   @doc false
   def summary(post) do
-    summary = post.body  
+    summary = post.body
               |> HtmlSanitizeEx.strip_tags
               |> String.slice(0..300)
     "#{summary}..."

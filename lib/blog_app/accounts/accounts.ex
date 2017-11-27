@@ -7,6 +7,7 @@ defmodule BlogApp.Accounts do
 
   alias BlogApp.Repo
   alias BlogApp.Accounts.Role
+  alias BlogApp.Accounts.User
 
   @doc """
   Returns the list of roles.
@@ -102,8 +103,6 @@ defmodule BlogApp.Accounts do
     Role.changeset(role, %{})
   end
 
-  alias BlogApp.Accounts.User
-
   @doc """
   Returns the list of users.
 
@@ -197,7 +196,6 @@ defmodule BlogApp.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
-
 
   def changeset(user) do
     User.changeset(user, %{})
