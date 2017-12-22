@@ -33,6 +33,7 @@ defmodule BlogApp.Web.CommentChannel do
                               approved: comment.approved,
                             })
         {:noreply, socket}
+
       {:error, changeset} ->
         {:reply, {:error, %{message: changeset.errors}}, socket}
     end

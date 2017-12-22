@@ -9,11 +9,13 @@
 /* Tachyon */
 /* --------------------------------------------------------------------------*/
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: var(--black-20);
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: var(--black-20);
 }
+
 ::-moz-placeholder {
-  color: var(--black-20);
+    color: var(--black-20);
 }
 
 .shadow-side-1 {
@@ -22,11 +24,11 @@
 }
 
 .sans-serif {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans',  sans-serif;
     font-family: 'Droid Sans', sans-serif;
-    font-family: 'PT Sans', sans-serif;
-    font-family: 'Noto Sans', sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'PT Sans',    sans-serif;
+    font-family: 'Noto Sans',  sans-serif;
+    font-family: 'Roboto',     sans-serif;
 }
 
 .f5 {
@@ -34,7 +36,7 @@
 }
 
 .ph4 {
-    padding-left: 2.5rem;
+    padding-left:  2.5rem;
     padding-right: 2.5rem;
 }
 

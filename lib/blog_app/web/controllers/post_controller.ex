@@ -3,7 +3,7 @@ defmodule BlogApp.Web.PostController do
 
   alias BlogApp.Blog
   alias BlogApp.Accounts
- 
+
   plug :assign_user when not action in [:index, :show]
   plug :authorize_user when action in [:new, :create, :update, :edit, :delete]
   plug :set_authorization_flag
@@ -30,14 +30,17 @@ defmodule BlogApp.Web.PostController do
   end
 
   def index(conn, _params) do
-    posts = Blog.list_posts
-    render(conn, "index.html", posts: posts, categories: Blog.list_category_names, sidebar: true, category: nil)
+    render(conn, "index.html",
+           posts: Blog.list_posts,
+           categories: Blog.list_category_names,
+           sidebar: true,
+           category: nil)
   end
 
   def new(conn, _params) do
     changeset = Blog.change_post(conn.assigns[:user])
-    render(conn, "new.html", 
-           changeset: changeset, 
+    render(conn, "new.html",
+           changeset: changeset,
            categories: Blog.list_category_names)
   end
 
@@ -49,21 +52,21 @@ defmodule BlogApp.Web.PostController do
         |> put_flash(:info, "Post created successfully.")
         |> redirect(to: post_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", 
+        render(conn, "new.html",
                changeset: changeset,
                categories: Blog.list_category_names)
     end
   end
 
   def show(conn, %{"permalink" => permalink}) do
-    post = Blog.get_post_by!(:permalink, permalink) 
+    post = Blog.get_post_by!(:permalink, permalink)
     comment_changeset = Blog.comment_changeset(post)
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
 
   def show(conn, %{"id" => id}) do
     user = conn.assigns[:user]
-    post = Blog.get_post!(user, id) 
+    post = Blog.get_post!(user, id)
     comment_changeset = Blog.comment_changeset(post)
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
@@ -72,8 +75,8 @@ defmodule BlogApp.Web.PostController do
     user = conn.assigns[:user]
     post = Blog.get_post!(user, id)
     changeset = Blog.change_post(user, %{})
-    render(conn, "edit.html", 
-           post: post, 
+    render(conn, "edit.html",
+           post: post,
            changeset: changeset,
            categories: Blog.list_category_names)
   end

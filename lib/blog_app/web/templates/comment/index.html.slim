@@ -1,0 +1,25 @@
+h1.lh-title Listing Comments
+
+table.table.admin-table
+  thead
+    tr
+      th Author
+      th Body
+      th Approved
+  tbody
+    = for comment <- @comments do
+      tr
+        td= comment.author
+        td.w-50
+          = markdown(comment.body)
+        td.tr
+          = if comment.approved do
+          = link "Unapprove", to: post_comment_path(@conn, :show, comment.post_id, comment), \
+            class: "f6 link dim ba ph2 pv1 mb0 dib black-70"                                 \
+          - else
+            = link "Approve", to: post_comment_path(@conn, :show, comment.post_id, comment), \
+              class: "f6 link dim ba ph2 pv1 mb0 dib black-70"                               \
+          = link "Delete", to: post_comment_path(@conn, :delete, comment.post_id, comment), \
+            method: :delete,                                                                \
+            data: [confirm: "Are you sure?"],                                               \
+            class: "f6 link dim ba ph2 pv1 mb0 dib black-40"                                \

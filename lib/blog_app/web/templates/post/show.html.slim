@@ -1,0 +1,22 @@
+article
+    input type="hidden" id="post-id" value=@post.id
+
+    - if current_user = current_user(@conn) do
+        = link "Edit", to: user_post_path(@conn, :edit, current_user.id, @post), class: "fr f6 link dim ba ph3 pv2 mb2 dib black"
+
+    = component "blog_post", conn: @conn, post: @post
+
+    .comments
+        h3.comments-header Comments
+        = for comment <- @post.comments do
+            = render BlogApp.Web.ComponentsView,
+                "blog_comment.html",
+                comment: comment,
+                author_or_admin: @conn.assigns[:author_or_admin],
+                conn: @conn
+
+    = render BlogApp.Web.CommentView,
+        "form.html",
+        changeset: @comment_changeset,
+        action: post_comment_path(@conn, :create, @post),
+        post: @post

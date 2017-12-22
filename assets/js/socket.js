@@ -4,6 +4,7 @@ import $ from 'jquery'
 // Grab the user's token from the meta tag
 const userToken = $("meta[name='channel_token']").attr('content')
 // And make sure we're connecting with the user's token to persist the user id to the session
+
 const socket = new Socket('/socket', { params: { token: userToken } })
 // And connect out
 socket.connect()
@@ -65,7 +66,11 @@ $('.create-comment').on('click', event => {
     event.preventDefault()
     console.log('CLICKED CREATE')
 
-    channel.push(CREATED_COMMENT, { author: getCommentAuthor(), body: getCommentBody(), postId })
+    channel.push(CREATED_COMMENT, {
+        author: getCommentAuthor(),
+        body: getCommentBody(),
+        postId
+    })
     resetFields()
 })
 

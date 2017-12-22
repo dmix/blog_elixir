@@ -16,11 +16,11 @@ defmodule BlogApp.Accounts.User do
     field :linkedin_url, :string
     field :dribbble_url, :string
 
-    timestamps()
-
     # Virtual Fields
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+
+    timestamps()
 
     has_many :posts, BlogApp.Blog.Post
     belongs_to :role, BlogApp.Accounts.Role

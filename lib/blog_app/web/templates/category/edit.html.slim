@@ -1,0 +1,7 @@
+h2 Edit Category
+
+- if current_user(@conn) do
+    = render "form.html", changeset: @changeset, action: category_path(@conn, :update, @category)
+
+.lh-copy.mt3
+    = link "Back", to: category_path(@conn, :index), class: "f6 link dim black db" %>

@@ -9,7 +9,7 @@
 #   plug :set_post_and_authorize_user when action in [:update, :delete]
 #
 #   def create(conn, %{"comment" => comment_params, "post_id" => post_id}) do
-#     post = Account.get_user!(post_id) 
+#     post = Account.get_user!(post_id)
 #            |> Repo.preload([:user, :comments])
 #     case blog.create_comment(comment_params) do
 #       {:ok, comment} ->
@@ -22,7 +22,7 @@
 #   end
 #
 #   def update(conn, %{"id" => id, "post_id" => post_id, "comment" => comment_params}) do
-#     post = Account.get_user!(post_id) 
+#     post = Account.get_user!(post_id)
 #            |> Repo.preload([:user, :comments])
 #     comment = Blog.get_comment!(id)
 #

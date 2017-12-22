@@ -22,7 +22,8 @@ defmodule BlogApp.Mixfile do
        :runtime_tools,
        :comeonin,
        :ex_machina,
-       :faker]]
+       :faker
+     ]]
   end
 
   # Specifies which paths to compile per environment.

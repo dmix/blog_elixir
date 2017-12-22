@@ -1,12 +1,15 @@
 defmodule BlogApp.Accounts.Role do
   use BlogApp.Web, :data
   alias BlogApp.Accounts.Role
+  alias BlogApp.Accounts.User
 
   schema "accounts_roles" do
     field :admin, :boolean, default: false
     field :name, :string
+
     timestamps()
-    has_many :users, BlogApp.Accounts.User
+
+    has_many :users, User
   end
 
   @doc false

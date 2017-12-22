@@ -38,7 +38,6 @@ defmodule BlogApp.Web.CommentController do
 
   def update(conn, %{"post_id" => _post_id, "id" => id, "comment" => comment_params}) do
     comment = Blog.get_comment!(id)
-
     with {:ok, %Comment{} = comment} <- Blog.update_comment(comment, comment_params) do
       render(conn, "show.json", comment: comment)
     end
@@ -73,4 +72,5 @@ defmodule BlogApp.Web.CommentController do
   #   post = conn.assigns[:post]
   #   user && (user.id == post.user_id || Accounts.RoleChecker.is_admin?(user))
   # end
+
 end

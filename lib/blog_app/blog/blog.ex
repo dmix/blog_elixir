@@ -24,7 +24,7 @@ defmodule BlogApp.Blog do
   def list_posts do
     Repo.all(from p in Post,
              order_by: [desc: :inserted_at],
-             preload: [:user, :categories, :comments])
+             preload:  [:user, :categories, :comments])
   end
 
   def list_category_posts(category_id) do
