@@ -9,11 +9,11 @@ hr
   .blog-list--summary.mb3.f5.black-70
     = summary(@post.body)
   .blog-list--details.mt2.f6.black-40
-    | By
+    By
     span.ttu= @post.user.name
     br/
     = short_date(@post.inserted_at)
   .f6.dn
     = link to: post_path(@conn, :show, @post.permalink), class: "f7 link dim ba ph3 pv2 mb2 dib black-70 b--black-10 br1" do
-      | Read more
+      Read more
       i.fa.fa-angle-right aria-hidden="true"

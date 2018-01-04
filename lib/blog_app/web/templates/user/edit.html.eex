@@ -1,9 +1,0 @@
-<h2>Edit User</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        roles: @roles,
-                        action: user_path(@conn, :update, @user) %>
-
-<div class="lh-copy mt3">
-    <%= link "Back", to: user_path(@conn, :index), class: "f6 link dim black db" %>
-</div>

@@ -14,8 +14,7 @@ config :blog_app, BlogApp.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "/WBEf0t0wHXs8HkJJsb+X0Y7AYKS4OepyPXnLzy83s+POdwDhyy0Kv0hZys4t9TG",
   render_errors: [view: BlogApp.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: BlogApp.Web.Pubsub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: BlogApp.Web.Pubsub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

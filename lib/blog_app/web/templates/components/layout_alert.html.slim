@@ -1,0 +1,8 @@
+.row.alerts
+  - if flash = get_flash(@conn, :info) do
+    .alert.f6.bg-light-gray.b--gray.tc.pa3.ba.black-80 role="alert"
+      = flash
+
+  - if flash = get_flash(@conn, :error) do
+    .alert.f6.bg-light-red.b--red.tc.pa3.ba.white role="alert"
+      = flash

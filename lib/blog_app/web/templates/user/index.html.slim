@@ -1,0 +1,20 @@
+= link "New User", to: user_path(@conn, :new), class: "fr f6 link dim ba ph3 pv2 mb2 dib black"
+
+h1.lh-title Listing Users
+
+table.table.admin-table
+  thead
+    tr
+      th Username
+      th Email
+      th Password digest
+      th
+  tbody
+    - for user <- @users do
+      tr
+        td = user.name
+        td = user.username
+        td = user.email
+        td.tr
+          span = link "Edit", to: user_path(@conn, :edit, user), class: "f6 link dim ba ph2 pv1 mb0 dib black-70"
+          span = link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40"
