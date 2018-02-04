@@ -9,7 +9,7 @@ defmodule BlogApp.Application do
     # Define workers and child supervisors to be supervised
     children = [
       supervisor(BlogApp.Repo, []),
-      supervisor(BlogApp.Web.Endpoint, []),
+      supervisor(BlogApp.Web.Endpoint, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

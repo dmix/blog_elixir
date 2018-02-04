@@ -2,7 +2,7 @@
 
 h1.lh-title Listing Categories
 
-table class='table admin-table'
+table class="table admin-table"
   thead
     tr
       th Name
@@ -12,11 +12,11 @@ table class='table admin-table'
 
   tbody
 = for category <- @categories do
-    tr
-      td = category.name
-      td = category.description
-      td = category.icon
-      td.tr
-        = link "Edit", to: category_path(@conn, :edit, category), class: "f6 link dim ba ph2 pv1 mb0 dib black-70"
-        = link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40"
+  tr
+    td = category.name
+    td = category.description
+    td = category.icon
+    td.tr
+      = link "Edit", to: category_path(@conn, :edit, category), class: "f6 link dim ba ph2 pv1 mb0 dib black-70"
+      = link "Delete", to: category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40"
 

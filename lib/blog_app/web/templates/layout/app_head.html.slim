@@ -18,12 +18,12 @@ meta name="viewport" content="width=device-width, initial-scale=1"
 / link href="{{ site.url }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed"
 
 / -- ASSETS --
-link rel="stylesheet" href=static_path(@conn, "/css/app.css")
-link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|PT+Sans:400,700|Droid+Sans:400,700|Open+Sans:400,700|Roboto:400,700|Droid+Serif|Merriweather|Libre+Baskerville|Noto+Serif"  rel="stylesheet"
+link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
+link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|PT+Sans:400,700|Droid+Sans:400,700|Open+Sans:400,700|Roboto:400,700|Droid+Serif|Merriweather|Libre+Baskerville|Noto+Serif" rel="stylesheet"
 
 / -- TOKEN --
-- if current_user = current_user(@conn)
-    = tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "user", current_user.id)
+- if current_user = current_user(@conn) do
+  = tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "user", current_user.id)
 
 / -- TITLE --
-title dmix - Dan McGrady/title
+title dmix - Dan McGrady

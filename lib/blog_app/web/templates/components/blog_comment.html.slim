@@ -1,23 +1,17 @@
-<%= if @conn.assigns[:author_or_admin] || @comment.approved do %>
-    <div id="comment-<%= @comment.id %>" class="blog--comment pa3 bt b--black-05" data-comment-id="<%= @comment.id %>">
-        <div class="">
-            <div class="mb2">
-                <strong class="comment-author"><%= @comment.author %></strong>
-            </div>
-            <div class="mb2 black-40 f6">
-                <%= short_date @comment.inserted_at %>
-            </div>
-            <div class="mb2">
-                <% if @conn.assigns[:author_or_admin] do %>
-                    <%= unless @comment.approved do %>
-                        <button class="button tiny primary approve">Approve</button>
-                    <% end %>
-                    <button class="button tiny alert delete">Delete</button>
-                <% end %>
-            </div>
-        </div>
-        <div class="lh-copy">
-            <%= @comment.body %>
-        </div>
-    </div>
-<% end %>
+- if @conn.assigns[:author_or_admin] || @comment.approved do
+  .blog--comment.pa3.bt.b--black-05 id="#comment-#{ @comment.id }" data-comment-id=@comment.id
+    div
+      .mb2
+        strong.comment-author
+          = @comment.author
+      .mb2.black-40.f6
+         = short_date @comment.inserted_at
+      .mb2
+        - if @conn.assigns[:author_or_admin] do
+          - unless @comment.approved do
+            button.button.tiny.primary.approve
+              Approve
+          button.button.tiny.alert.delete
+            Delete
+    .lh-copy
+       = @comment.body
