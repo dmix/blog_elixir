@@ -1,0 +1,14 @@
+.list.mt5
+  .bt.b--black-05
+    a class="link button db pv3 ph0 f6 black" href="/blog"
+      All Categories
+      = if !assigns[:selected_category] do
+        .count.fr.br-pill.dib.pa1.f8.tc.bg-green.white
+      - else
+        .count.fr.br-pill.dib.pa1.f8.tc.bg-black.white
+
+  = for category <- @categories do
+    .bt.b--black-05
+      a class="link button db pv3 ph0 f6 black-80" href="/blog/#{category}"
+        = category
+        div  class="count fr br-pill dib pa1 f8 tc"

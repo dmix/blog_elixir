@@ -1,0 +1,9 @@
+h2 Edit Post
+
+= if current_user = current_user(@conn) do
+  = render "form.html", changeset: @changeset,
+                        categories: @categories,
+                        action: Routes.user_post_path(@conn, :update, current_user.id, @post)
+
+.lh-copy.mt3
+  = link "Back", to: Routes.post_path(@conn, :index), class: "f6 link dim black db"

@@ -37,7 +37,7 @@ How to start app:
   * Install mix/npm dependencies with `make install`
   * Create and migrate database with `mix ecto.setup`
   * Seed database with fake content with `mix ecto.seed`
-  * Start Phoenix endpoint with `mix s` 
+  * Start Phoenix endpoint with `mix s`
   * Run automated testing with `mix dev`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.

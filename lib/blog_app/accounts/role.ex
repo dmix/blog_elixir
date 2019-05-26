@@ -1,5 +1,5 @@
 defmodule BlogApp.Accounts.Role do
-  use BlogApp.Web, :data
+  use BlogAppWeb, :data
   alias BlogApp.Accounts.Role
   alias BlogApp.Accounts.User
 

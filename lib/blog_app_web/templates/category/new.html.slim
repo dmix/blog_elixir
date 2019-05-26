@@ -1,0 +1,6 @@
+h2 New Category
+= render "form.html", changeset: @changeset, \
+                      action: Routes.category_path(@conn, :create)
+
+.lh-copy.mt3
+  = link "Back", to: Routes.category_path(@conn, :index), class: "f6 link dim black db"

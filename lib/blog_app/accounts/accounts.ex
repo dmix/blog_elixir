@@ -3,7 +3,7 @@ defmodule BlogApp.Accounts do
   The boundary for the Accounts system.
   """
 
-  use BlogApp.Web, :context
+  use BlogAppWeb, :context
 
   alias BlogApp.Repo
   alias BlogApp.Accounts.Role

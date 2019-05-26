@@ -1,0 +1,19 @@
+= form_for @changeset, @action, [class: "measure"],fn f ->
+  fieldset#sign_in.ba.b--transparent.ph0.mh0
+    - if f.errors != [] do
+      .alert.f6.bg-light-red.tc.pa2.br2-ns.ba.b--black-10.white
+        p Oops, something went wrong! Please check the errors below:
+        ul
+          - for {attr, message} <- f.errors do
+            li = humanize(attr)
+            = message
+    div
+      label.db.fw4.lh-copy.f6 Username
+      = text_input f, :username, class: "pa2 outline-0 input-reset ba bg-white b--black-50 br1 hover-black w-100"
+
+    .mv3
+      label.db.fw4.lh-copy.f6 Password
+      = password_input f, :password, class: "pa2 outline-0 input-reset ba bg-white b--black-50 br1 hover-black w-100"
+
+  div
+    = submit "Submit", class: "b ph3 pv2 outline-0 input-reset ba b--black bg-transparent grow pointer f6 dib br1"

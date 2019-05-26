@@ -1,0 +1,19 @@
+hr
+
+.row.post.lh-copy.pv2
+  .blog-list--title.title.mb2
+    = link @post.title, to: Routes.post_path(@conn, :show, @post.permalink), class: "title b link underline-hover black-80 f3"
+  .blog-list--categories.f7.black-30
+    = for category <- @post.categories do
+      a.f7.link.dim.ba.ph2.pv1.mb2.dib.b--black-10.br1 href="/blog/#{category.name}" = category.name
+  .blog-list--summary.mb3.f5.black-70
+    = summary(@post.body)
+  .blog-list--details.mt2.f6.black-40
+    By
+    span.ttu= @post.user.name
+    br
+    = short_date(@post.inserted_at)
+  .f6.dn
+    = link to: Routes.post_path(@conn, :show, @post.permalink), class: "f7 link dim ba ph3 pv2 mb2 dib black-70 b--black-10 br1" do
+      Read more
+      i.fa.fa-angle-right aria-hidden="true"

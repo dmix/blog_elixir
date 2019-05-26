@@ -1,5 +1,5 @@
 defmodule BlogApp.Blog.PostCategory do
-  use BlogApp.Web, :data
+  use BlogAppWeb, :data
   alias BlogApp.Blog.PostCategory
 
   schema "blog_post_categories" do

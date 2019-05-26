@@ -21,8 +21,8 @@ defmodule BlogApp.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import BlogApp.Factory
       import BlogApp.DataCase
+      import BlogApp.Factory
     end
   end
 
@@ -37,7 +37,7 @@ defmodule BlogApp.DataCase do
   end
 
   @doc """
-  A helper that transform changeset errors to a map of messages.
+  A helper that transforms changeset errors into a map of messages.
 
       assert {:error, changeset} = Accounts.create_user(%{password: "short"})
       assert "password is too short" in errors_on(changeset).password

@@ -1,0 +1,63 @@
+<!doctype html>
+<html class='no-js' lang='en'>
+<head>
+    {% include head.html %}
+</head>
+
+<body class='homepage'>
+
+<div class='clearfix border'>
+
+    <div class="layout">
+        <nav class='border-left border-right'>
+            <a class='logo h1 bold center'>
+                <i class="fa fa-diamond" aria-hidden="true" />
+                dmix
+            </a>
+            <menu>
+				{% for item in site.data.menu %}
+					<a href='{{ item.url }}' class='btn {{ item.style }}'>
+						{{ item.name }}
+					</a>
+				{% endfor %}
+            </menu>
+        </nav>
+        <main class='border-right'>
+            <article>
+                <h1>Daniel McGrady</h1>
+
+                <hr>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the
+                    <a href="#">industry's standard</a> dummy text 
+                    ever since 
+                    the 1500s,
+                    when an unknown printer took a galley of type and
+                    scrambled it to make a type specimen book.
+                </p>
+                <hr>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and
+                    scrambled it to make a <a href="#">type specimen book
+                    </a>. It has
+                    survived not only five centuries, but also the leap into
+                    electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of
+                    Letraset sheets containing Lorem Ipsum passages, and
+                    more recently with desktop publishing
+                </p>
+            </article>
+            <footer>
+            </footer>
+        </main>
+        <aside class='xs-hide'>
+        </aside>
+    </div>
+</div>
+
+</body>
+</html>

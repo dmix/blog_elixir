@@ -29,7 +29,7 @@ clean:
 # -- Dependencies
 
 update:
-	@cd $(ASSETS_DIR) && npm update 
+	@cd $(ASSETS_DIR) && npm update
 	@mix deps.update --all
 
 install-fonts:
@@ -41,12 +41,12 @@ install-npm:
 	@npm install -g phantomjs-prebuilt
 	@cd $(ASSETS_DIR) && npm install
 
-install: install-npm install-fonts 
+install: install-npm install-fonts
 	@mix deps.get
 	@mix ecto.setup
 	@chmod +x ./bin/*
 
-# -- Makefile 
+# -- Makefile
 
 .PHONY: install install-fonts install-fonts update test server repl dev
 .DEFAULT_GOAL := dev

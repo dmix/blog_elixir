@@ -1,13 +1,13 @@
 defmodule BlogApp.Blog.Comment do
-  use BlogApp.Web, :data
+  use BlogAppWeb, :data
   alias BlogApp.Blog.Comment
 
   schema "blog_comments" do
-    field :approved, :boolean, default: false
-    field :author, :string
-    field :body, :string
+    field(:approved, :boolean, default: false)
+    field(:author, :string)
+    field(:body, :string)
 
-    belongs_to :post, BlogApp.Blog.Post
+    belongs_to(:post, BlogApp.Blog.Post)
 
     timestamps()
   end

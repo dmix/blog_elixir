@@ -3,7 +3,7 @@ defmodule BlogApp.Blog do
   The boundary for the Blog system.
   """
 
-  use BlogApp.Web, :context
+  use BlogAppWeb, :context
 
   alias BlogApp.Repo
   alias BlogApp.Blog.Comment
@@ -22,19 +22,30 @@ defmodule BlogApp.Blog do
 
   """
   def list_posts do
-    Repo.all(from p in Post,
-             order_by: [desc: :inserted_at],
-             preload:  [:user, :categories, :comments])
+    Repo.all(
+      from(p in Post,
+        order_by: [desc: :inserted_at],
+        preload: [:user, :categories, :comments]
+      )
+    )
   end
 
   def list_category_posts(category_id) do
-    post_ids = Repo.all(from p in PostCategory,
-                        where: [category_id: ^category_id],
-                        select: p.post_id)
-    Repo.all(from p in Post,
-             where: p.id in ^post_ids,
-             order_by: [desc: :inserted_at],
-             preload: [:user, :categories, :comments])
+    post_ids =
+      Repo.all(
+        from(p in PostCategory,
+          where: [category_id: ^category_id],
+          select: p.post_id
+        )
+      )
+
+    Repo.all(
+      from(p in Post,
+        where: p.id in ^post_ids,
+        order_by: [desc: :inserted_at],
+        preload: [:user, :categories, :comments]
+      )
+    )
   end
 
   def list_posts(user_posts) do
@@ -43,7 +54,7 @@ defmodule BlogApp.Blog do
   end
 
   def last_post do
-    Repo.one(from x in Post, order_by: [desc: x.id], limit: 1)
+    Repo.one(from(x in Post, order_by: [desc: x.id], limit: 1))
   end
 
   @doc """
@@ -79,9 +90,12 @@ defmodule BlogApp.Blog do
 
   """
   def get_post!(%User{} = user, id) do
-    Repo.one(from(p in Post,
-                  where: [user_id: ^user.id, id: ^id],
-                  preload: [:user, :categories, :comments]))
+    Repo.one(
+      from(p in Post,
+        where: [user_id: ^user.id, id: ^id],
+        preload: [:user, :categories, :comments]
+      )
+    )
   end
 
   @doc """
@@ -99,9 +113,12 @@ defmodule BlogApp.Blog do
 
   """
   def get_post_by!(:permalink, permalink) do
-    Repo.one(from(p in Post,
-                  where: [permalink: ^permalink],
-                  preload: [:user, :categories, :comments]))
+    Repo.one(
+      from(p in Post,
+        where: [permalink: ^permalink],
+        preload: [:user, :categories, :comments]
+      )
+    )
   end
 
   def comment_changeset(post, attrs \\ %{}) do
@@ -201,8 +218,11 @@ defmodule BlogApp.Blog do
 
   """
   def list_comments(%Post{} = post) do
-    Repo.all(from(p in Comment,
-                  where: [post_id: ^post.id]))
+    Repo.all(
+      from(p in Comment,
+        where: [post_id: ^post.id]
+      )
+    )
   end
 
   @doc """
@@ -293,7 +313,6 @@ defmodule BlogApp.Blog do
     Comment.changeset(comment, %{})
   end
 
-
   @doc """
   Returns the list of categories.
 
@@ -307,15 +326,19 @@ defmodule BlogApp.Blog do
     Repo.all(Category)
   end
 
-
   def list_category_names do
-    Repo.all(from c in Category,
-             select: c.name)
+    Repo.all(
+      from(c in Category,
+        select: c.name
+      )
+    )
   end
 
   def list_category_counts do
-    categories = Repo.all(Category)
-                 |> Repo.preload(:post)
+    categories =
+      Repo.all(Category)
+      |> Repo.preload(:post)
+
     categories
   end
 
@@ -418,7 +441,7 @@ defmodule BlogApp.Blog do
       category = get_category_by_name!(name)
       attrs = %{:category_id => category.id, :post_id => post.id}
       changeset = PostCategory.changeset(%PostCategory{}, attrs)
-      Repo.insert(changeset, on_conflict: :nothing)
+      Repo.insert(changeset)
     end
   end
 
@@ -433,11 +456,11 @@ defmodule BlogApp.Blog do
   """
   def create_post_category(%Post{} = post, %Category{} = category) do
     attrs = %{post_id: post.id, category_id: category.id}
+
     %PostCategory{}
     |> PostCategory.changeset(attrs)
     |> Repo.insert()
   end
-
 
   @doc """
   Gets a single post_category.
@@ -474,5 +497,4 @@ defmodule BlogApp.Blog do
   def delete_post_category(%PostCategory{} = post_category) do
     Repo.delete(post_category)
   end
-
 end

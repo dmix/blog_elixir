@@ -1,5 +1,5 @@
 defmodule BlogApp.Blog.Post do
-  use BlogApp.Web, :data
+  use BlogAppWeb, :data
   alias BlogApp.Blog.Post
 
   schema "blog_posts" do
