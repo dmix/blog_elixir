@@ -1,6 +1,6 @@
 defmodule BlogAppWeb.ComponentsView do
   use BlogAppWeb, :view
-  alias BlogApp.Blog.Post
+  # / alias BlogApp.Blog.Post
 
   def navigation do
     [
