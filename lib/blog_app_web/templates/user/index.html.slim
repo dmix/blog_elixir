@@ -1,4 +1,4 @@
-= link "New User", to: Routes.Routes.user_path(@conn, :new), class: "fr f6 link dim ba ph3 pv2 mb2 dib black"
+= link "New User", to: Routes.user_path(@conn, :new), class: "fr f6 link dim ba ph3 pv2 mb2 dib black"
 
 h1.lh-title Listing Users
 
@@ -16,5 +16,5 @@ table.table.admin-table
         td = user.username
         td = user.email
         td.tr
-          span = link "Edit", to: Routes.Routes.user_path(@conn, :edit, user), class: "f6 link dim ba ph2 pv1 mb0 dib black-70"
-          span = link "Delete", to: Routes.Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40"
+          span = link "Edit", to: Routes.user_path(@conn, :edit, user), class: "f6 link dim ba ph2 pv1 mb0 dib black-70"
+          span = link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "f6 link dim ba ph2 pv1 mb0 dib black-40"

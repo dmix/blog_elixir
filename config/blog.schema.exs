@@ -24,15 +24,15 @@
       datatype: :atom,
       default: :info
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.root": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.root here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.root",
+    "blog.Elixir.BlogAppWeb.Endpoint.root": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.root here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.root",
       datatype: :binary,
       default: "/Users/brichey/Documents/dev/phoenix/blog"
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.render_errors.accepts": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.render_errors.accepts here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.render_errors.accepts",
+    "blog.Elixir.BlogAppWeb.Endpoint.render_errors.accepts": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.render_errors.accepts here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.render_errors.accepts",
       datatype: [
         list: :binary
       ],
@@ -41,51 +41,51 @@
         "json"
       ]
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.pubsub.name": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.pubsub.name here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.pubsub.name",
+    "blog.Elixir.BlogAppWeb.Endpoint.pubsub.name": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.pubsub.name here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.pubsub.name",
       datatype: :atom,
-      default: BlogApp.Web.Pubsub
+      default: BlogAppWeb.Pubsub
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.pubsub.adapter": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.pubsub.adapter here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.pubsub.adapter",
+    "blog.Elixir.BlogAppWeb.Endpoint.pubsub.adapter": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.pubsub.adapter here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.pubsub.adapter",
       datatype: :atom,
       default: Phoenix.PubSub.PG2
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.http.port": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.http.port here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.http.port",
+    "blog.Elixir.BlogAppWeb.Endpoint.http.port": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.http.port here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.http.port",
       datatype: :binary,
       default: nil
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.url.host": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.url.host here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.url.host",
+    "blog.Elixir.BlogAppWeb.Endpoint.url.host": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.url.host here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.url.host",
       datatype: :binary,
       default: "example.com"
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.url.port": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.url.port here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.url.port",
+    "blog.Elixir.BlogAppWeb.Endpoint.url.port": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.url.port here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.url.port",
       datatype: :integer,
       default: 80
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.cache_static_manifest": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.cache_static_manifest here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.cache_static_manifest",
+    "blog.Elixir.BlogAppWeb.Endpoint.cache_static_manifest": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.cache_static_manifest here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.cache_static_manifest",
       datatype: :binary,
       default: "priv/static/manifest.json"
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.server": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.server here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.server",
+    "blog.Elixir.BlogAppWeb.Endpoint.server": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.server here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.server",
       datatype: :atom,
       default: true
     ],
-    "blog.Elixir.BlogApp.Web.Endpoint.secret_key_base": [
-      doc: "Provide documentation for blog.Elixir.BlogApp.Web.Endpoint.secret_key_base here.",
-      to: "blog.Elixir.BlogApp.Web.Endpoint.secret_key_base",
+    "blog.Elixir.BlogAppWeb.Endpoint.secret_key_base": [
+      doc: "Provide documentation for blog.Elixir.BlogAppWeb.Endpoint.secret_key_base here.",
+      to: "blog.Elixir.BlogAppWeb.Endpoint.secret_key_base",
       datatype: :binary,
       default: "fmEw9VvdugAYE+2kNnWz5OgB99A0PW/bmVwlC9wm9To8FBfKP2rKiaaIPfgf6adq"
     ],

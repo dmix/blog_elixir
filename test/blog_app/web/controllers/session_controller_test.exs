@@ -1,5 +1,5 @@
-defmodule BlogApp.Web.SessionControllerTest do
-  use BlogApp.Web.ConnCase
+defmodule BlogAppWeb.SessionControllerTest do
+  use BlogAppWeb.ConnCase
 
   alias BlogApp.Accounts
 

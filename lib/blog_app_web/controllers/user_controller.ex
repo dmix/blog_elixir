@@ -23,7 +23,7 @@ defmodule BlogAppWeb.UserController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.Routes.user_path(conn, :index))
+        |> redirect(to: Routes.user_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, roles: roles)
     end
@@ -44,7 +44,7 @@ defmodule BlogAppWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.Routes.user_path(conn, :index))
+        |> redirect(to: Routes.user_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
     end
@@ -56,7 +56,7 @@ defmodule BlogAppWeb.UserController do
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.Routes.user_path(conn, :index))
+    |> redirect(to: Routes.user_path(conn, :index))
   end
 
   defp authorize_user(conn, _) do

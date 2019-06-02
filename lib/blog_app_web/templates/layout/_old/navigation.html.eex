@@ -24,7 +24,7 @@
     <ul class="menu">
         <%= if current_user = current_user(@conn) do %>
           <li>
-            <%= link current_user.username, to: Routes.Routes.user_path(@conn, :edit, current_user.id) %>
+            <%= link current_user.username, to: Routes.user_path(@conn, :edit, current_user.id) %>
           </li>
           <li>
             <%= link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "button alert" %>

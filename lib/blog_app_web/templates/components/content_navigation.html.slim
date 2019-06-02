@@ -11,8 +11,8 @@ menu.content--navigation.ma0
       = link "Posts", to: Routes.post_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
       = link "New", to: Routes.user_post_path(@conn, :new, current_user.id), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
     li.db.mb2
-      = link "Users", to: Routes.Routes.user_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
-      = link "New", to: Routes.Routes.user_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
+      = link "Users", to: Routes.user_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
+      = link "New", to: Routes.user_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
     li.db.mb2
       = link "Categories", to: Routes.category_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
       = link "New", to: Routes.category_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"

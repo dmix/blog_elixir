@@ -1,5 +1,5 @@
-defmodule BlogApp.Web.CategoryControllerTest do
-  use BlogApp.Web.ConnCase
+defmodule BlogAppWeb.CategoryControllerTest do
+  use BlogAppWeb.ConnCase
 
   alias BlogApp.Blog
 

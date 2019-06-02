@@ -1,7 +1,7 @@
 defmodule BlogApp.CommentChannelTest do
-  use BlogApp.Web.ChannelCase
+  use BlogAppWeb.ChannelCase
 
-  alias BlogApp.Web.CommentChannel
+  alias BlogAppWeb.CommentChannel
 
   setup do
     user    = insert(:user)

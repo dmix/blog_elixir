@@ -79,4 +79,4 @@ config :blog_app, BlogApp.Repo,
   database: "blog_dev",
   hostname: "localhost",
   pool_size: 10,
-  port: "5433"
+  port: "5432"

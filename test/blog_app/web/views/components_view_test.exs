@@ -1,6 +1,6 @@
-defmodule BlogApp.Web.ComponentsViewTest do
-  use BlogApp.Web.ConnCase, async: true
-  import BlogApp.Web.ComponentsView
+defmodule BlogAppWeb.ComponentsViewTest do
+  use BlogAppWeb.ConnCase, async: true
+  import BlogAppWeb.ComponentsView
   import Phoenix.View
 
   test "relative_date/1 returns a relative date (ex: 1 day ago)" do

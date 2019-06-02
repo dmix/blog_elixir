@@ -15,4 +15,5 @@ config :blog_app, BlogApp.Repo,
   password: "postgres",
   database: "blog_app_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  port: "5432"

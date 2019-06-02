@@ -2,7 +2,7 @@ defmodule BlogApp.CommentHelperTest do
   use BlogApp.DataCase
 
   alias BlogApp.Blog.Comment
-  alias BlogApp.Web.CommentHelper
+  alias BlogAppWeb.CommentHelper
 
   import BlogApp.Factory
 

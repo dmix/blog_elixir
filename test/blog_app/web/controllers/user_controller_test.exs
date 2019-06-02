@@ -1,5 +1,5 @@
-defmodule BlogApp.Web.UserControllerTest do
-  use BlogApp.Web.ConnCase
+defmodule BlogAppWeb.UserControllerTest do
+  use BlogAppWeb.ConnCase
 
   alias BlogApp.Accounts
 

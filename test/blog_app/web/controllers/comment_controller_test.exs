@@ -1,5 +1,5 @@
-defmodule BlogApp.Web.CommentControllerTest do
-  use BlogApp.Web.ConnCase
+defmodule BlogAppWeb.CommentControllerTest do
+  use BlogAppWeb.ConnCase
 
   alias BlogApp.Repo
   alias BlogApp.Blog
