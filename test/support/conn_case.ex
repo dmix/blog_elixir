@@ -41,8 +41,8 @@ defmodule BlogAppWeb.ConnCase do
           build_conn(:get, "/")
           |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
           |> Plug.Session.call(@session)
-          |> Conn.fetch_session()
-          |> Conn.put_session(:current_user, session_data)
+          |> Plug.Conn.fetch_session()
+          |> Plug.Conn.put_session(:current_user, session_data)
 
         {:ok, conn: conn, session_data: session_data, user: user}
       end

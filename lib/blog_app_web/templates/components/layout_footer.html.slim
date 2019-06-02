@@ -1,6 +1,6 @@
 .mw9.center
   .mb5.lh-copy
-    - for [name, route, controller ]<- navigation do
+    - for [name, route, _controller ]<- navigation do
       a.black-70.link.hover-blue.b.dib.mr3.mb3 href=("<%= route %>") title=("<%= name %>")
         = name
   /

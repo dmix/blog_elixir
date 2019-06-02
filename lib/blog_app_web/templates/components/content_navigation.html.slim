@@ -1,5 +1,5 @@
 menu.content--navigation.ma0
-  = for [name, route, controller] <- navigation do
+  = for [name, route, controller] <- navigation() do
     = active_link(@conn, name, to: route, active: controller)
 
 = if current_user = current_user(@conn) do

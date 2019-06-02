@@ -3,13 +3,13 @@ defmodule BlogApp.Accounts.Role do
   alias BlogApp.Accounts.Role
   alias BlogApp.Accounts.User
 
-  schema "accounts_roles" do
-    field :admin, :boolean, default: false
-    field :name, :string
+  schema 'accounts_roles' do
+    field(:admin, :boolean, default: false)
+    field(:name, :string)
 
     timestamps()
 
-    has_many :users, User
+    has_many(:users, User)
   end
 
   @doc false

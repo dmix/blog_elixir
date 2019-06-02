@@ -19,7 +19,10 @@ meta name="viewport" content="width=device-width, initial-scale=1"
 
 / -- ASSETS --
 link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
+
+/ -- 3RD PARTY ASSETS --
 link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|PT+Sans:400,700|Droid+Sans:400,700|Open+Sans:400,700|Roboto:400,700|Droid+Serif|Merriweather|Libre+Baskerville|Noto+Serif" rel="stylesheet"
+script src="https://kit.fontawesome.com/fec2640040.js"
 
 / -- TOKEN --
 - if current_user = current_user(@conn) do
