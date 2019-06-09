@@ -1,4 +1,4 @@
-@import "../colors";
+@import "../variables";
 
 .content--navigation .inactive {
     border-left: 3px solid var(--black-0125);

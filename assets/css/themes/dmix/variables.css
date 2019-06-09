@@ -1,11 +1,18 @@
 /*
 
-   COLOR VARIABLES
+   VARIABLES
 
 */
 
 :root {
-    --transparent:   transparent;
+    --serif-family:  et-bembo,Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Georgia,serif;
+    --sans-family:  'Roboto',     sans-serif;
+    /* font-family: 'Open Sans',  sans-serif; */
+    /* font-family: 'Droid Sans', sans-serif; */
+    /* font-family: 'PT Sans',    sans-serif; */
+    /* font-family: 'Noto Sans',  sans-serif; */
+    /* font-family:  */
+    /* --transparent:   transparent; */
 
     --black:         #000;
     --near-black:    #111;

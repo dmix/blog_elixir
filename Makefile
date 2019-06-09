@@ -10,6 +10,7 @@ ASSETS_DIR=assets
 FONTS_DIR=$(ASSETS_DIR)/static/fonts
 DB_PATH=/Users/dmix/.asdf/installs/postgres/10.8
 IEX_PATH=/Users/dmix/.asdf/shims/iex
+HOME=/Users/dmix
 
 # -- Helpers
 
@@ -19,16 +20,22 @@ dev:
 repl:
 	@iex -S mix
 
+asdf:
+	. $(HOME)/.asdf/asdf.sh
+	. $(HOME)/.asdf/completions/asdf.bash
+	asdf local erlang 21.0
+
 db-src:
 	export PATH="\$PATH:~/.asdf/installs/postgres/10.8/bin/"
 
 db:
-	$(DB_PATH)/bin/pg_ctl -D $(DB_PATH)/data -l logfile start
+	@$(DB_PATH)/bin/pg_ctl -D $(DB_PATH)/data -l logfile start
 
 db-stop:
-	$(DB_PATH)/bin/pg_ctl -D $(DB_PATH)/data stop
+	@$(DB_PATH)/bin/pg_ctl -D $(DB_PATH)/data stop
 
 server:
+	@ln -sf /Users/dmix/dev/_elixir/blog/priv/static/app.js /Users/dmix/dev/_elixir/blog/priv/static/js/app.js
 	@rlwrap -a foo iex -S mix phx.server
 
 test:
@@ -44,7 +51,7 @@ update:
 	@mix deps.update --all
 
 install-fonts:
-	@cd $(ASSETS_DIR) && npm install --save-dev font-awesome
+	@cd $(ASSETS_DIR) && yarn add -D font-awesome
 	@mkdir -p $(FONTS_DIR)
 	@cd $(FONTS_DIR) && ln -sf ../../node_modules/font-awesome/fonts/fontawesome-webfont.* .
 

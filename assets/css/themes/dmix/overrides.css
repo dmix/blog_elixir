@@ -23,12 +23,12 @@
     box-shadow: none;
 }
 
+.serif {
+    font-family: var(--serif-family);
+}
+
 .sans-serif {
-    font-family: 'Open Sans',  sans-serif;
-    font-family: 'Droid Sans', sans-serif;
-    font-family: 'PT Sans',    sans-serif;
-    font-family: 'Noto Sans',  sans-serif;
-    font-family: 'Roboto',     sans-serif;
+    font-family: var(--sans-family);
 }
 
 .f5 {

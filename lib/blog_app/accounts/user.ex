@@ -3,7 +3,7 @@ defmodule BlogApp.Accounts.User do
   import Argon2, only: [hash_pwd_salt: 1]
   alias BlogApp.Accounts.User
 
-  schema 'accounts_users' do
+  schema "accounts_users" do
     field(:email, :string)
     field(:password_digest, :string)
     field(:username, :string)

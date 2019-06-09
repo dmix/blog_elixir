@@ -9,7 +9,7 @@
 /* Base
 /* --------------------------------------------------------------------------*/
 
-@import "colors";
+@import "variables";
 
 .layout--content .lh-title {
     /* margin-top: 0; */
