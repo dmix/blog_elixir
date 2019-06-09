@@ -1,13 +1,18 @@
-.content--logo {
+.content__logo {
     margin: auto;
     width: 10rem;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    float: right;
 }
 
-.content--logo-avatar {
+.content__logo-avatar {
     background-size: contain;
+    /* float: right; */
 }
 
-.content--logo-name {
+.content__logo-name {
     line-height: 0.75rem;
     width: 5rem;
+    margin: auto;
 }

@@ -1,6 +1,11 @@
-menu.content--navigation.ma0
+- button_class = "button link black dib tr w-100 ph4 f5 center"
+- row_class = button_class <> "dim dark-gray ba dib"
+- row_class_new =  button_class <> "ph3 pa2 link dim dark-gray ba dib"
+
+menu.content__navigation.ma0
   = for [name, route, controller] <- navigation() do
-    = active_link(@conn, name, to: route, active: controller)
+    = link name, to: route, class: button_class
+
 
 = if current_user = current_user(@conn) do
   ul.admin-nav.list.pa0.mt7
@@ -8,19 +13,19 @@ menu.content--navigation.ma0
       h4.dib.mv3.black-70 Admin
       = link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "link dark-green pv2"
     li.db.mb2
-      = link "Posts", to: Routes.post_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
-      = link "New", to: Routes.user_post_path(@conn, :new, current_user.id), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
+      = link "Posts", to: Routes.post_path(@conn, :index), class: row_class
+      = link "New", to: Routes.user_post_path(@conn, :new, current_user.id), class: row_class_new
     li.db.mb2
-      = link "Users", to: Routes.user_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
-      = link "New", to: Routes.user_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
+      = link "Users", to: Routes.user_path(@conn, :index), class: row_class
+      = link "New", to: Routes.user_path(@conn, :new), class: row_class_new
     li.db.mb2
-      = link "Categories", to: Routes.category_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
-      = link "New", to: Routes.category_path(@conn, :new), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-30 tc"
+      = link "Categories", to: Routes.category_path(@conn, :index), class: row_class
+      = link "New", to: Routes.category_path(@conn, :new), class: row_class_new
     li.db.mb2
-      = link "Comments", to: Routes.comment_path(@conn, :index), class: "f6 ph3 pa2 link dim dark-gray ba b--black-20 dib w-60 tc"
+      = link "Comments", to: Routes.comment_path(@conn, :index), class: row_class
     ul
 - else
-  p.ph4 = link "Login", to: "/login", class: "link black-10 pv2"
+  p.ph4 = link "Login", to: "/login", class: "link black-10 pv2 tc w-100 db"
 
-.black-30.f6.mt4
-  p.ph4 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+/.black-30.f6.mt4
+/  p.ph4 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s

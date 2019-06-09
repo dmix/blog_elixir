@@ -1,22 +1,30 @@
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /*
 /*                               dmix: Layout
 /*
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 
 @import "variables";
 
-@custom-media --breakpoint-not-small screen and (min-width: 30em);
-@custom-media --breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
-@custom-media --breakpoint-large screen and (min-width: 60em);
+@custom-media __breakpoint-not-small screen and (min-width: 30em);
+@custom-media __breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
+@custom-media __breakpoint-large screen and (min-width: 60em);
 
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /* Base
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 
 body, html {
     height: 100%;
-    background: white;
+    background: var(--bg);
+}
+
+.layout__content {
+    background-color: var(--secondary-bg);
+}
+
+.max-width {
+    max-width: var(--max-width);
 }
 
 menu {
@@ -30,33 +38,33 @@ menu {
 }
 
 
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /* Colors
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 
 .b--layout {
     border-color: rgba(0,0,0,0.035);
 }
 
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /* Grid
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 
 main {
 }
 
-.layout--sidebar {
+.layout__sidebar {
     height: 100%;
     margin-left: -1px;
 }
 
-.layout--subnav {
+.layout__subnav {
     min-height: 1000px;
     margin-right:-1px
 }
 
-@media (--breakpoint-large) {
-    .layout--sidebar {
+@media (__breakpoint-large) {
+    .layout__sidebar {
         min-height: 1200px;
     }
 }
@@ -65,6 +73,6 @@ main {
 /*   margin-left: 300px; */
 /*   min-height: 800px; */
 /* } */
-/* .layout--sidebar { */
+/* .layout__sidebar { */
 /*     position: fixed; */
 /* } */

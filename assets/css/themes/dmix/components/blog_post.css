@@ -1,23 +1,69 @@
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /*
 /*                               DMIX: Blog Post
 /*
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 
 
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
 /* Type */
-/* --------------------------------------------------------------------------*/
+/* __________________________________________________________________________*/
+@import '../variables';
 
-.blog-post--body p {
-    /* font-family: Georgia,Cambria,"Times New Roman",Times,serif; */
-    /* font-family: Merriweather; */
-    /* font-family: "Droid Serif"; */
-    /* font-family: "Libre Baskerville"; */
-    /* font-family: "Noto Serif"; */
-    font-family: var(--serif-family);
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.58;
-    letter-spacing: -.003em;
+.blog-post {
+    h1 {
+        /* font-size: 3rem; */
+    }
+
+    h2 {
+        font-style: italic;
+    }
+
+    &__sublinks {
+        line-height: 1.5rem;
+        font-size: 0.94rem;
+        font-family: var(--serif-family);
+        margin: 1rem 0;
+    }
+
+    span {
+      display: inline-block;
+      margin: 0 3px 0 0;
+    }
+
+    .sidenote, .marginnote {
+        padding: 20px;
+        background: white;
+        float: right;
+        clear: right;
+        margin-right: -63%;
+        width: 52%;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1rem;
+        color: #7d7d7d;
+        line-height: 1.35;
+        vertical-align: baseline;
+        position: relative;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+.blog-post__title {
+    /* text-transform: capitalize; */
+}
+
+.blog-post__body  {
+    p {
+        font-family: var(--serif-family);
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.3rem;
+        line-height: 1.58em;
+        letter-spacing: -.003em;
+        margin-bottom: 20px;
+    }
 }

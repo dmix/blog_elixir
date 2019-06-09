@@ -5,14 +5,22 @@
 */
 
 :root {
-    --serif-family:  et-bembo,Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Georgia,serif;
+    --serif-family:  'et-book', 'et-bembo', Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     --sans-family:  'Roboto',     sans-serif;
+
+    /* --bg: #f8fdff; */
+    /* --bg: #f8fff9; */
+    --bg: #f8fdff;
+    --secondary-bg: #FFF;
+    --primary: #196ca9;
     /* font-family: 'Open Sans',  sans-serif; */
     /* font-family: 'Droid Sans', sans-serif; */
     /* font-family: 'PT Sans',    sans-serif; */
     /* font-family: 'Noto Sans',  sans-serif; */
     /* font-family:  */
     /* --transparent:   transparent; */
+
+    --max-width:     560px;
 
     --black:         #000;
     --near-black:    #111;

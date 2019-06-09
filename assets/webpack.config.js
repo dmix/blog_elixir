@@ -65,12 +65,19 @@ module.exports = () => ({
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '../css/app.css',
+            filename: './css/app.css',
         }),
-        new CopyWebpackPlugin([{
-            from: 'static/',
-            to: '../',
-        }]),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'fonts/'),
+                to: path.resolve(__dirname, '../priv/static/fonts'),
+            },
+            // {
+            //     from: 'static/',
+            //     to: '../',
+            // }
+        ]),
         new VueLoaderPlugin(),
+
     ],
 })

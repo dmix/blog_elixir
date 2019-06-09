@@ -1,28 +1,36 @@
 @import "../variables";
 
-.content--navigation .inactive {
-    border-left: 3px solid var(--black-0125);
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    color: var(--black-60);
+.content__logo {
+    margin-right: 1.0rem;
+    .content__logo-name {
+      color: #111;
+    }
 }
 
-.content--navigation .inactive:hover {
+.content__navigation {
+    margin-right: 1.5rem;
+}
+
+.content__navigation a {
+    /* border-left: 3px solid var(--black-0125); */
+    /* color: var(--black-60); */
+    padding: 0.75rem 0;
+}
+
+.content__navigation .inactive:hover {
     color: var(--black-80);
 }
 
-.content--navigation .inactive:active {
+.content__navigation .inactive:active {
     color: var(--black-70);
 }
 
-.content--navigation .inactive:focus {
+.content__navigation .inactive:focus {
 }
 
-.content--navigation .active {
+.content__navigation .active {
     color: var(--black-80);
-    border-left: 3px solid var(--green);
+    /* border-left: 3px solid var(--green); */
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-bottom: none;

@@ -68,7 +68,7 @@ Enum.each(0..20, fn _x ->
     Blog.create_post(user, %{
       title: Enum.join(Faker.Lorem.words(%Range{first: 1, last: 8}), " "),
       permalink: Faker.Internet.slug(),
-      body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "<br>")
+      body: Enum.join(Faker.Lorem.paragraphs(%Range{first: 5, last: 10}), "</p> <p>")
     })
 
   {:ok, _} = Blog.create_post_category(post, Enum.random(category_list))

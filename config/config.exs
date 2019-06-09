@@ -25,10 +25,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :phoenix_active_link, :defaults,
-  class_active: "active   button link black b--black-05 b ba br1 f6 f5-ns dib w-100 pv3 ph4",
-  class_inactive: "inactive button link black b--black-05   ba br1 f6 f5-ns dib w-100 pv3 ph4",
-  active: :inclusive
+# config :phoenix_active_link, :defaults,
+#   class_active: "active button link black b--black-05 b ba br1 f6 f5-ns dib w-100 pv3 ph4",
+#   class_inactive: "inactive button link black b--black-05   ba br1 f6 f5-ns dib w-100 pv3 ph4",
+#   active: :inclusive
 
 if Mix.env() == :dev do
   config :mix_test_watch,

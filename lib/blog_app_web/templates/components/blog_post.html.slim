@@ -1,15 +1,24 @@
 article.blog-post
-  h1.blog-post--title.lh-title.f1
-    = @post.title
+  header
+    h1.blog-post__title.lh-title
+      /- title = @post.title
+      - title = "Researchers propose solar methanol island using ocean CO₂ "
+      /- title = "Warnings from the past"
+      = link title, 
+             to: Routes.post_path(@conn, :show, @post.permalink),
+             title: @post.title,
+             rel: "bookmark",
+             class: "title b link black-80 f1"
 
-  .blog-post--details.f6
-    span.blog-post--author.gray
-      span By 
-      span.ttu= @post.user.name
-      = short_date(@post.inserted_at)
-    span.blog-post--categories.gray
-      span Categories
-      = for category <- @post.categories do
-        a href="/blog/#{category.name}" = category.name
-  .blog-post--body.lh-copy.f4.mv4.black-80
-    = markdown(@post.body)
+  .blog-post__sublinks.f6.ttu
+    div= @post.user.name
+    div= short_date(@post.inserted_at)
+    div
+      span Filed under 
+      span.blog-post__categories.gray
+        = for category <- @post.categories do
+          a href="/blog/#{category.name}" = category.name
+
+  section.blog-post__body.lh-copy.f4.mv4.black-80.max-width
+    /= markdown(@post.body)
+    = render "test_post.html"
