@@ -9,8 +9,7 @@ html.no-js
 
           /  Sidebar
           aside.layout__sidebar.w-100.w-25-l.w-30-m.w-100-ns.fn.fl-ns.br.b--layout.shadow-side-1
-              div.ph4-l.ph3-m.ph3-ns
-                  = component "layout_sidebar", conn: @conn
+            = component "layout_sidebar", conn: @conn
 
           /  Main
           main.layout__main.w-100.w-75-l.w-70-m.w-100-ns.fn.fl-ns
@@ -20,7 +19,7 @@ html.no-js
                   = component "layout_alert", conn: @conn
 
               / Search
-              section.layout__search.db-l.db-m.dn.db-l.db-m.w-100.fn.bb.b--layout
+              section.layout__search.db-l.db-m.dn.db-l.db-m.w-80.fn.bb.b--layout
                   = component "layout_search", conn: @conn
 
               = if assigns[:sidebar] do

@@ -1,10 +1,10 @@
-- button_class = "button link black dib tr w-100 ph4 f5 center"
+- button_class = "button link black dib w-100 ph4 f5"
 - row_class = button_class <> "dim dark-gray ba dib"
 - row_class_new =  button_class <> "ph3 pa2 link dim dark-gray ba dib"
 
 menu.content__navigation.ma0
   = for [name, route, controller] <- navigation() do
-    = link name, to: route, class: button_class
+    = link name, to: route, class: name <> " " <> button_class
 
 
 = if current_user = current_user(@conn) do
@@ -24,8 +24,8 @@ menu.content__navigation.ma0
     li.db.mb2
       = link "Comments", to: Routes.comment_path(@conn, :index), class: row_class
     ul
-- else
-  p.ph4 = link "Login", to: "/login", class: "link black-10 pv2 tc w-100 db"
+/- else
+/  p.ph4 = link "Login", to: "/login", class: "link black-10 pv2 tc w-100 db"
 
 /.black-30.f6.mt4
 /  p.ph4 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s

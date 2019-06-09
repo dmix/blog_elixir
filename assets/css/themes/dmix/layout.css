@@ -6,9 +6,10 @@
 
 @import "variables";
 
-@custom-media __breakpoint-not-small screen and (min-width: 30em);
-@custom-media __breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
-@custom-media __breakpoint-large screen and (min-width: 60em);
+@custom-media --breakpoint-small screen and (max-width: 30em);
+@custom-media --breakpoint-not-small screen and (min-width: 30em);
+@custom-media --breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
+@custom-media --breakpoint-large screen and (min-width: 60em);
 
 /* __________________________________________________________________________*/
 /* Base
@@ -63,7 +64,32 @@ main {
     margin-right:-1px
 }
 
-@media (__breakpoint-large) {
+@media (--breakpoint-small) {
+    .layout__sidebar {
+        display: flex;
+        margin: 1rem 0;
+
+        &-logo {
+        }
+
+        &-nav {
+            padding-top: 0.5rem;
+            flex-grow: 1;
+        }
+    }
+}
+
+@media (--breakpoint-not-small) {
+    .layout__sidebar {
+        &-logo {
+        }
+
+        &-nav {
+        }
+    }
+}
+
+@media (--breakpoint-large) {
     .layout__sidebar {
         min-height: 1200px;
     }

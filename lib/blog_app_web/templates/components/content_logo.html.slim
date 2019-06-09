@@ -1,5 +1,4 @@
-a.db.cb href="#{Routes.page_path(@conn, :index)}"
-  .content__logo.db.tr.w4.flex.items-center
-    /.content__logo-avatar.br-100.ba.h3.mb3.w3.bg-black.db alt="dmix - Dan McGrady" style="background-image:url('http://tachyons.io/img/logo.jpg')"
-    .content__logo-avatar.br-100.ba.h3.w3.mr2.bg-black.db.db-m alt="dmix - Dan McGrady" style="background-image:url('http://tachyons.io/img/logo.jpg')"
-    .content__logo-name.logo.dib.link.f2.bc dmix
+.content-logo.db.cb.flex
+  a.content-logo__body.flex.items-center href="#{Routes.page_path(@conn, :index)}"
+    .content-logo__avatar.br-100.ba.h3.w3.bg-black.db.db-m alt="dmix - Dan McGrady" style="background-image:url('http://tachyons.io/img/logo.jpg')"
+    .content-logo__name.logo.black.dib.link.f2.bc dmix

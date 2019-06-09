@@ -1,5 +1,27 @@
 @import "../variables";
 
+@media (--breakpoint-small) {
+    .content__navigation {
+        display: grid;
+        grid-template-areas:
+           "Home Blog"
+           "Projects About";
+
+        .button {
+            text-align: left;
+            width: 50%;
+        }
+    }
+}
+
+@media (--breakpoint-not-small) {
+    .content__navigation {
+        .button {
+            text-align: right;
+        }
+    }
+}
+
 .content__logo {
     margin-right: 1.0rem;
     .content__logo-name {

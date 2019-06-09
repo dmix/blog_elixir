@@ -1,10 +1,17 @@
 .layout__search {
-    max-width: 850px;
-    padding: 10px 0;
+}
+
+@media (--breakpoint-large) {
+  .layout__search {
+      padding: 10px 0;
+  }
+
+  .search__form {
+    border-radius: 5px;
+  }
 }
 
 .search__form  {
-  border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.1);
 
   .search__icon {
