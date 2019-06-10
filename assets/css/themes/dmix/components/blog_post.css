@@ -11,12 +11,18 @@
 @import '../variables';
 
 .blog-post {
-    h1 {
-        /* font-size: 3rem; */
+    &__title {
+        font-weight: 500;
+        line-height: 1.2;
     }
 
     h2 {
+        font-size: 1.4em;
         font-style: italic;
+    }
+
+    h3 {
+        font-size: 1.2rem;
     }
 
     &__sublinks {
@@ -26,29 +32,72 @@
         margin: 1rem 0;
     }
 
-    span {
-      display: inline-block;
-      margin: 0 3px 0 0;
+    &__sublinks span {
+        display: inline-block;
+        margin: 0 4px 0 0;
     }
+}
 
+@media (--breakpoint-small) {
+    .blog-post {
+        &__title {
+            font-size: 2.8rem;
+            font-weight: 500;
+            line-height: 1.0;
+        }
+    }
+}
+
+.sidenote, .marginnote {
+    padding: 20px;
+    background: white;
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #7d7d7d;
+    line-height: 1.35;
+    vertical-align: baseline;
+    position: relative;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+@custom-media --breakpoint-wide screen and (min-width: 1200px);
+@custom-media --breakpoint-wide-mid screen and (min-width: 960px) and (max-width: 1090px);
+@custom-media --breakpoint-wide-small screen and (min-width: 1090px) and (max-width: 1200px);
+
+/* max-width: 1200px */
+/* min-width: 1090px */
+
+@media (--breakpoint-small) {
     .sidenote, .marginnote {
-        padding: 20px;
-        background: white;
-        float: right;
-        clear: right;
+        display: none;
+    }
+}
+
+@media (--breakpoint-wide-small) {
+    .sidenote, .marginnote {
+        margin-right: -28%;
+        width: 52%;
+    }
+}
+
+@media (--breakpoint-wide-mid) {
+    .sidenote, .marginnote {
+        margin-right: -53%;
+        width: 52%;
+    }
+}
+
+@media (--breakpoint-wide) {
+    .sidenote, .marginnote {
         margin-right: -63%;
         width: 52%;
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 1rem;
-        color: #7d7d7d;
-        line-height: 1.35;
-        vertical-align: baseline;
-        position: relative;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
     }
 }
 

@@ -2,7 +2,7 @@
   = link "New post", to: Routes.user_post_path(@conn, :new, current_user.id), class: "fr f6 link dim ba ph3 pv2 mb2 dib black"
 
 h1.lh-title.ttu
-  Blog
+  span Blog
   = if assigns[:category] do
     span.black-30 = @category
 

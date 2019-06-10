@@ -4,7 +4,8 @@
 
 menu.content__navigation.ma0
   = for [name, route, controller] <- navigation() do
-    = link name, to: route, class: name <> " " <> button_class
+    = link to: route, class: name <> " " <> button_class do
+      span.underline-small= name
 
 
 = if current_user = current_user(@conn) do

@@ -4,6 +4,15 @@
 
 */
 
+@custom-media --breakpoint-small screen and (max-width: 30em);
+@custom-media --breakpoint-not-small screen and (min-width: 30em);
+@custom-media --breakpoint-medium screen and (min-width: 30em) and (max-width: 60em);
+@custom-media --breakpoint-large screen and (min-width: 60em);
+
+@custom-media --breakpoint-wide screen and (min-width: 1200px);
+@custom-media --breakpoint-wide-mid screen and (min-width: 960px) and (max-width: 1090px);
+@custom-media --breakpoint-wide-small screen and (min-width: 1090px) and (max-width: 1200px);
+
 :root {
     --serif-family:  'et-book', 'et-bembo', Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     --sans-family:  'Roboto',     sans-serif;

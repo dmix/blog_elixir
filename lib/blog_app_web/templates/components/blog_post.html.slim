@@ -1,15 +1,14 @@
 article.blog-post
   header
-    h1.blog-post__title.lh-title
-      /- title = @post.title
-      - title = "Researchers propose solar methanol island using ocean CO₂ "
-      /- title = "Warnings from the past"
-      = link title, 
-             to: Routes.post_path(@conn, :show, @post.permalink),
-             title: @post.title,
-             rel: "bookmark",
-             class: "title b link black-80 f1"
+    - title = "Researchers propose solar methanol island using ocean CO₂ "
+    = link title, 
+      to: Routes.post_path(@conn, :show, @post.permalink),
+      title: @post.title,
+      rel: "bookmark",
+      class: "blog-post__title lh-title title link black-80 f1"
 
+      /- title = @post.title
+      /- title = "Warnings from the past"
   .blog-post__sublinks.f6.ttu
     div= @post.user.name
     div= short_date(@post.inserted_at)
