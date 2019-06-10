@@ -4,7 +4,7 @@ const routes = {
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/blog',
             components: {
                 blog: BlogView,
             },

@@ -21,6 +21,11 @@ defmodule BlogAppWeb.Router do
     get("/about", PageController, :about)
     get("/projects", PageController, :projects)
 
+    get("/admin/posts", PostController, :admin_index)
+    get("/admin/comments", CommentController, :admin_index)
+    get("/admin/categories", CategoryController, :index)
+    get("/admin/users", UserController, :index)
+
     resources("/blog", PostController, only: [:index])
     resources("/blog/:category", PostController, only: [:index])
 

@@ -5,10 +5,12 @@ defmodule BlogAppWeb.CommentController do
   alias BlogApp.Blog
   alias BlogApp.Blog.Comment
 
-  plug :scrub_params, "comment" when action in [:create, :update]
-  #plug :set_post_and_authorize_user when action in [:update, :delete]
+  plug(:scrub_params, "comment" when action in [:create, :update])
+  plug(:put_layout, "admin.html" when action in [:index, :edit])
 
-  action_fallback BlogAppWeb.FallbackController
+  # plug :set_post_and_authorize_user when action in [:update, :delete]
+
+  action_fallback(BlogAppWeb.FallbackController)
 
   def index(conn, %{"post_id" => post_id}) do
     post = Blog.get_post!(post_id)
@@ -23,6 +25,7 @@ defmodule BlogAppWeb.CommentController do
 
   def create(conn, %{"post_id" => post_id, "comment" => comment_params}) do
     comment = Blog.create_comment(post_id, comment_params)
+
     with {:ok, %Comment{} = comment} <- comment do
       conn
       |> put_status(:created)
@@ -38,6 +41,7 @@ defmodule BlogAppWeb.CommentController do
 
   def update(conn, %{"post_id" => _post_id, "id" => id, "comment" => comment_params}) do
     comment = Blog.get_comment!(id)
+
     with {:ok, %Comment{} = comment} <- Blog.update_comment(comment, comment_params) do
       render(conn, "show.json", comment: comment)
     end
@@ -45,6 +49,7 @@ defmodule BlogAppWeb.CommentController do
 
   def delete(conn, %{"post_id" => _post_id, "id" => id}) do
     comment = Blog.get_comment!(id)
+
     with {:ok, %Comment{}} <- Blog.delete_comment(comment) do
       send_resp(conn, :no_content, "")
     end
@@ -72,5 +77,4 @@ defmodule BlogAppWeb.CommentController do
   #   post = conn.assigns[:post]
   #   user && (user.id == post.user_id || Accounts.RoleChecker.is_admin?(user))
   # end
-
 end

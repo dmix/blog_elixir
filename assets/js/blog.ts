@@ -1,5 +1,6 @@
 import '../css/app.css'
 
+import 'phoenix_html'
 import '@babel/polyfill'
 import Vue from 'vue/dist/vue.esm.js'
 import VueRouter from 'vue-router'

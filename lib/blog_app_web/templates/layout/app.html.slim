@@ -29,7 +29,7 @@ html.no-js
                           = component "category_list", conn: @conn, categories: @categories, selected_category: @category
 
               / Content
-              section.layout__content.w-100.w-80-l.fn.fl-ns.pv4-m.pv4-l.ph3.ph5-l.ph4-m
+              section.layout__content.w-100.w-80-l.fn.fl-ns.pv4.ph3.ph5-l.ph4-m
                   = render @view_module, @view_template, assigns
 
               = if !assigns[:sidebar] do
@@ -38,7 +38,7 @@ html.no-js
                       br
 
           /  Footer
-          footer.layout__footer.w-100-l.fl.fl-ns.bblack-70.ph3.ph5-ns.pv5.pv6-ns.bt.b--black-10
+          footer.layout__footer.w-100-l.fl.fl-ns.bblack-70.ph3.ph5-ns.pv5.pv6-ns
               = component "layout_footer", conn: @conn
 
       / Scripts

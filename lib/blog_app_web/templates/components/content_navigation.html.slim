@@ -1,32 +1,16 @@
-- button_class = "button link black dib w-100 ph4 f5"
-- row_class = button_class <> "dim dark-gray ba dib"
-- row_class_new =  button_class <> "ph3 pa2 link dim dark-gray ba dib"
-
 menu.content__navigation.ma0
   = for [name, route, controller] <- navigation() do
-    = link to: route, class: name <> " " <> button_class do
+    = link to: route, class: name <> " button link black dib w-100 ph4 f5" do
       span.underline-small= name
-
-
-= if current_user = current_user(@conn) do
-  ul.admin-nav.list.pa0.mt7
-    li.db.mb0.black-50
-      h4.dib.mv3.black-70 Admin
-      = link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "link dark-green pv2"
-    li.db.mb2
-      = link "Posts", to: Routes.post_path(@conn, :index), class: row_class
-      = link "New", to: Routes.user_post_path(@conn, :new, current_user.id), class: row_class_new
-    li.db.mb2
-      = link "Users", to: Routes.user_path(@conn, :index), class: row_class
-      = link "New", to: Routes.user_path(@conn, :new), class: row_class_new
-    li.db.mb2
-      = link "Categories", to: Routes.category_path(@conn, :index), class: row_class
-      = link "New", to: Routes.category_path(@conn, :new), class: row_class_new
-    li.db.mb2
-      = link "Comments", to: Routes.comment_path(@conn, :index), class: row_class
-    ul
-/- else
-/  p.ph4 = link "Login", to: "/login", class: "link black-10 pv2 tc w-100 db"
 
 /.black-30.f6.mt4
 /  p.ph4 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+
+.admin-nav
+  - admin_class = "f6 link dim br1 ba ph3 pv2 mb2 dib black"
+  = if current_user = current_user(@conn) do
+      = link "Admin", to: Routes.post_path(@conn, :admin_index), class: admin_class
+      = link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: admin_class
+  - else
+      = link "Login", to: "/login", class: admin_class
+

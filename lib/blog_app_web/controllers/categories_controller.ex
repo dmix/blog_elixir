@@ -4,11 +4,16 @@ defmodule BlogAppWeb.CategoryController do
   alias BlogApp.Blog
   alias BlogApp.Blog.Category
   alias BlogApp.Accounts
- 
-  plug :authorize_admin when action in [:index, :new, :create, :edit, :update, :delete]
+
+  plug(
+    :authorize_admin
+    when action in [:index, :new, :create, :edit, :update, :delete]
+  )
+
+  plug(:put_layout, "admin.html" when action in [:index, :new, :create, :edit, :delete])
 
   def index(conn, _params) do
-    categories = Blog.list_categories
+    categories = Blog.list_categories()
     render(conn, "index.html", categories: categories)
   end
 
@@ -23,6 +28,7 @@ defmodule BlogAppWeb.CategoryController do
         conn
         |> put_flash(:info, "Category created successfully.")
         |> redirect(to: Routes.category_path(conn, :index))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -36,11 +42,13 @@ defmodule BlogAppWeb.CategoryController do
 
   def update(conn, %{"id" => id, "category" => category_params}) do
     category = Blog.get_category!(id)
+
     case Blog.update_category(category, category_params) do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Category updated successfully.")
         |> redirect(to: Routes.category_path(conn, :index))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", category: category, changeset: changeset)
     end
@@ -57,10 +65,11 @@ defmodule BlogAppWeb.CategoryController do
 
   defp authorize_admin(conn, _) do
     user = get_session(conn, :current_user)
+
     if user && Accounts.RoleChecker.is_admin?(user) do
       conn
     else
-    conn
+      conn
       |> put_flash(:error, "You are not authorized to admin categories")
       |> redirect(to: Routes.page_path(conn, :index))
       |> halt()

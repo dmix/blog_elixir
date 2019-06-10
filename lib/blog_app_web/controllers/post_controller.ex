@@ -4,9 +4,10 @@ defmodule BlogAppWeb.PostController do
   alias BlogApp.Blog
   alias BlogApp.Accounts
 
-  plug(:assign_user when action not in [:index, :show])
-  plug(:authorize_user when action in [:new, :create, :update, :edit, :delete])
+  plug(:assign_user when action not in [:index, :show, :admin_index])
+  plug(:authorize_user when action in [:admin_index, :new, :create, :update, :edit, :delete])
   plug(:set_authorization_flag)
+  plug(:put_layout, "admin.html" when action in [:admin_index, :new, :create, :edit, :delete])
 
   def index(conn, %{"category" => category_name}) do
     category = Blog.get_category_by_name!(category_name)
@@ -50,6 +51,10 @@ defmodule BlogAppWeb.PostController do
       sidebar: true,
       category: nil
     )
+  end
+
+  def admin_index(conn, _params) do
+    render(conn, "admin.html", posts: Blog.list_posts())
   end
 
   def new(conn, _params) do

@@ -3,8 +3,9 @@ defmodule BlogAppWeb.UserController do
 
   alias BlogApp.Accounts
 
-  plug :authorize_admin when action in [:index, :new, :create]
-  plug :authorize_user  when action in [:edit, :update, :delete]
+  plug(:authorize_admin when action in [:index, :new, :create, :delete])
+  plug(:authorize_user when action in [:edit, :update, :delete])
+  plug(:put_layout, "admin.html" when action not in [:show])
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -19,11 +20,13 @@ defmodule BlogAppWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     roles = Accounts.list_roles()
+
     case Accounts.create_user(user_params) do
       {:ok, _} ->
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.user_path(conn, :index))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, roles: roles)
     end
@@ -45,6 +48,7 @@ defmodule BlogAppWeb.UserController do
         conn
         |> put_flash(:info, "User updated successfully.")
         |> redirect(to: Routes.user_path(conn, :index))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset, roles: roles)
     end
@@ -61,7 +65,9 @@ defmodule BlogAppWeb.UserController do
 
   defp authorize_user(conn, _) do
     user = get_session(conn, :current_user)
-    if user && (Integer.to_string(user.id) == conn.params["id"] || Accounts.RoleChecker.is_admin?(user)) do
+
+    if user &&
+         (Integer.to_string(user.id) == conn.params["id"] || Accounts.RoleChecker.is_admin?(user)) do
       conn
     else
       conn
@@ -73,6 +79,7 @@ defmodule BlogAppWeb.UserController do
 
   defp authorize_admin(conn, _) do
     user = get_session(conn, :current_user)
+
     if user && Accounts.RoleChecker.is_admin?(user) do
       conn
     else

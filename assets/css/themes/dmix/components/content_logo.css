@@ -25,7 +25,7 @@
 
 @media (--breakpoint-not-small) {
     .content-logo {
-        margin-top: 7rem;
+        margin-top: 8rem;
         justify-content: flex-end;
 
         &__name {
